@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartCity</string>
+
+    <string name="head_title_home">智慧社区</string>
+
+    <string name="btm_title_home">主页</string>
+    <string name="btm_title_service">服务</string>
+    <string name="btm_title_person">个人</string>
+    <string name="btm_title_more">更多</string>
+</resources>
