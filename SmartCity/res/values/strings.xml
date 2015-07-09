@@ -8,4 +8,9 @@
     <string name="btm_title_service">服务</string>
     <string name="btm_title_person">个人</string>
     <string name="btm_title_more">更多</string>
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_clickme">Click me</string>
+    <string name="iv_contentd">Img describe.</string>
 </resources>
