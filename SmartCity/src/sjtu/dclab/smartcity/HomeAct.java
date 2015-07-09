@@ -53,7 +53,7 @@ public class HomeAct extends Activity {
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_home = inflater.inflate(R.layout.tab_home, null);
-        View view_exp = inflater.inflate(R.layout.tab_service, null);
+        View view_exp = inflater.inflate(R.layout.tab_mailbox, null);
         View view_about = inflater.inflate(R.layout.tab_person, null);
         View view_more = inflater.inflate(R.layout.tab_more, null);
 

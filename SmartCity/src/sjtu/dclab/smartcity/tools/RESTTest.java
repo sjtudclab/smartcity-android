@@ -3,11 +3,18 @@ package sjtu.dclab.smartcity.tools;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.List;
+
+import sjtu.dclab.smartcity.model.Mail;
 
 /**RESTTest
  * RESTTest
@@ -18,26 +25,30 @@ import org.json.JSONObject;
 public class RESTTest {
     static final String TAG = "RESTTest";
 
-    public static final String URL_REST_MAILBOX_BASE = "202.120.40.111:8080/community-server/rest/mailboxs";
-    public static final String WAIT = "waiting";
-    public static final String DONE = "done";
-    public static final String DISCUSS = "discussed";
-    public static final String TRANSFER = "transferred";
-
     /**
      * @param context
      */
-    public static void RequestForJson(Context context, String urlBase, String userID, String restCommond) {
+    public static void RequestForJson(final Context context, String urlBase, String userID, String restCommond) {
 //        RequestParams params = new RequestParams();
 //        params.put("imei", "862950025623748");
 //        Toast.makeText(context, "Sending: ", Toast.LENGTH_SHORT).show();
-        AsyncHttpClient client = new AsyncHttpClient();//´´½¨¿Í»§¶Ë¶ÔÏó
-        client.post(urlBase + "/" + userID + "/" + restCommond, new JsonHttpResponseHandler() {
-            @Override//·µ»ØJSONArray¶ÔÏó | JSONObject¶ÔÏó
+        AsyncHttpClient client = new AsyncHttpClient();//åˆ›å»ºå®¢æˆ·ç«¯å¯¹è±¡
+        String url = urlBase + "/" + userID + "/" + restCommond;
+//        Log.i(TAG, "url: " + url);
+        client.get(url, new JsonHttpResponseHandler() {
+            @Override//è¿”å›žJSONArrayå¯¹è±¡ | JSONObjectå¯¹è±¡
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
                 if (statusCode == 200) {
-                    Log.i(TAG, response.toString());
+                    Gson gson = new Gson();
+                    List<Mail> mailsList = gson.fromJson(String.valueOf(response), new TypeToken< List<Mail> >(){}.getType());
+                    if (mailsList != null){
+                        Log.i(TAG, mailsList.toString());
+                    }
                 }
             }
             @Override
