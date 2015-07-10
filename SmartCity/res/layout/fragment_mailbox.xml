@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/txView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_world" />
+
+    <LinearLayout android:id="@+id/ll_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"
+        android:layout_marginRight="5dp"
+        android:background="#0FFF"
+        android:padding="5dp" >
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0FFF"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_horizontal" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/petname" />
+            <TextView android:id="@+id/tv_mail_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="onClickProcess"
+                android:textColor="#FFF"
+                android:text="待办" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0FFF"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_horizontal" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/distance" />
+            <TextView android:id="@+id/tv_mail_discuss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="onClickProcess"
+                android:paddingTop="3dp"
+                android:textColor="#FFF"
+                android:text="待议" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0FFF"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_horizontal" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/petname" />
+            <TextView android:id="@+id/tv_mail_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="onClickProcess"
+                android:textColor="#FFF"
+                android:text="已办" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0FFF"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_horizontal" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/distance" />
+            <TextView android:id="@+id/tv_mail_transfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="onClickProcess"
+                android:paddingTop="3dp"
+                android:textColor="#FFF"
+                android:text="转办" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0FFF"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_horizontal" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/battery" />
+            <TextView android:id="@+id/tv_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="onClickProcess"
+                android:paddingTop="5dp"
+                android:textColor="#FFF"
+                android:text="好友" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
