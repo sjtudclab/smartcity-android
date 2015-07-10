@@ -19,10 +19,7 @@
         </activity>
         <activity android:name=".HomeAct"/>
         <activity android:name=".RESTTestAty" />
-<<<<<<< HEAD
 
-=======
->>>>>>> b24116a7aa04cbf811e8f374582f4101f0c4df64
     </application>
 
 </manifest>
