@@ -6,12 +6,21 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.*;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.ViewFlipper;
+import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Yang on 2015/7/6.
@@ -20,9 +29,26 @@ public class HomeAct extends Activity {
     private ViewPager tabPager;
     private ImageView tabCur;
     private ImageView tabHome, tabExp, tabAbt, tabMore;
+    private ViewFlipper vflipper;
+    private ListView lview;
+
+    // 图片数组
+    private int[] arrayPictures = { R.drawable.bg001, R.drawable.bg002,
+            R.drawable.bg003, R.drawable.bg004 };
+    /*// 要显示的图片在图片数组中的Index
+    private int pictureIndex = 0;
+    // 左右滑动时手指按下的X坐标
+    private float touchDownX;
+    // 左右滑动时手指松开的X坐标
+    private float touchUpX;*/
+
+
+
 
     private int offset = 0;
     private int curTabIndex = 0;
+
+
 
     private String labels[] = null;
     private int icons[] = null;
@@ -56,6 +82,7 @@ public class HomeAct extends Activity {
         View view_exp = inflater.inflate(R.layout.tab_service, null);
         View view_about = inflater.inflate(R.layout.tab_person, null);
         View view_more = inflater.inflate(R.layout.tab_more, null);
+
 
         final ArrayList<View> views = new ArrayList<View>();
         views.add(view_home);
@@ -93,26 +120,98 @@ public class HomeAct extends Activity {
         };
         tabPager.setAdapter(pagerAdapter);
 
-        // second page
-//        icons = new int[] { R.drawable.item_icon_repair,
-//                R.drawable.item_icon_return, R.drawable.item_icon_change,
-//                R.drawable.item_icon_record, R.drawable.item_icon_comp };
-//        labels = new String[] { "����ά��", "�����˻�", "���뻻��", "ά�޼�¼", "Ͷ��" };
-//
-//        serviceGridView = (GridView) view_exp.findViewById(R.id.serviceItems);
-//        System.out.println(serviceGridView == null);
-//        ArrayList<HashMap<String, Object>> serviceItems = new ArrayList<HashMap<String, Object>>();
-//        for (int i = 0; i < labels.length; i++) {
-//            HashMap<String, Object> map = new HashMap<String, Object>();
-//            map.put("itemIcon", icons[i]);
-//            map.put("itemLab", labels[i]);
-//            serviceItems.add(map);
-//        }
-//        SimpleAdapter itemsAdapter = new SimpleAdapter(this, serviceItems,
-//                R.layout.service_item, new String[] { "itemIcon", "itemLab" },
-//                new int[] { R.id.itemIcon, R.id.itemLab });
-//        serviceGridView.setAdapter(itemsAdapter);
-//        serviceGridView.setOnItemClickListener(new ServiceItemClickListener());
+
+
+        // viewgrid
+        icons = new int[] { R.drawable.oriental_window,
+                R.drawable.payment_record, R.drawable.property_management,
+                R.drawable.public_opinion_square, R.drawable.information,
+                R.drawable.announcement, R.drawable.community_act,
+                R.drawable.work_log, R.drawable.population_information,
+                R.drawable.data_management,R.drawable.housing_information,
+                R.drawable.resident_mailbox,R.drawable.resident_opnion
+                };
+        labels = new String[] { "东方之窗", "收款纪录", "物业管理", "民意广场",
+                                "个人信息", "社区公告", "社区活动", "工作日志",
+                                "人口信息", "人事管理", "房屋信息", "居民信箱",
+                                "舆情管理" };
+
+        serviceGridView = (GridView) view_home.findViewById(R.id.gview);
+        System.out.println(serviceGridView == null);
+        ArrayList<HashMap<String, Object>> serviceItems = new ArrayList<HashMap<String, Object>>();
+        for (int i = 0; i < labels.length; i++) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("itemIcon", icons[i]);
+            map.put("itemLab", labels[i]);
+            serviceItems.add(map);
+        }
+        String[] from = new String[] { "itemIcon", "itemLab"};
+        int[] to = new int[] { R.id.itemIcon, R.id.itemLab };
+        SimpleAdapter itemsAdapter = new SimpleAdapter(this, serviceItems,
+            R.layout.service_item, from,
+                to);
+        serviceGridView.setAdapter(itemsAdapter);
+        //serviceGridView.setOnItemClickListener(new ServiceItemClickListener());
+
+
+        // imageswitcher
+        /*imageSwicher = (ImageSwitcher) view_home.findViewById(R.id.iswitcher);
+        System.out.println(imageSwicher == null);
+        //设置Factory
+        imageSwicher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                ImageView imageView = new ImageView(getApplicationContext());
+                imageView.setImageResource(arrayPictures[pictureIndex]);
+                return imageView;
+            }
+            });
+        /*
+        //设置OnTouchListener，我们通过Touch事件来切换图片
+        imageSwicher.setOnTouchListener(this);*/
+        /*imageSwicher.setInAnimation(AnimationUtils.loadAnimation(this,
+                android.R.anim.slide_in_left));
+        imageSwicher.setOutAnimation(AnimationUtils.loadAnimation(this,
+                android.R.anim.slide_out_right));*/
+
+
+    //viewflipper
+        vflipper = (ViewFlipper) view_home.findViewById(R.id.vflipper);
+        vflipper.startFlipping();
+
+
+    //listview
+        lview = (ListView)view_about.findViewById(R.id.lview);
+        SimpleAdapter adapter = new SimpleAdapter(this,getData(),R.layout.friend_list,
+                new String[]{"title","info","img"},
+                new int[]{R.id.title,R.id.info,R.id.img});
+        lview.setAdapter(adapter);
+
+
+    }
+
+    private List<Map<String, Object>> getData() {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("title", "G1");
+        map.put("info", "google 1");
+        map.put("img", R.drawable.i1);
+        list.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("title", "G2");
+        map.put("info", "google 2");
+        map.put("img", R.drawable.i2);
+        list.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("title", "G3");
+        map.put("info", "google 3");
+        map.put("img", R.drawable.i3);
+        list.add(map);
+
+        return list;
     }
 
     /**
