@@ -12,4 +12,23 @@
     <string name="hello_world">Hello world!</string>
     <string name="btn_clickme">Click me</string>
     <string name="iv_contentd">Img describe.</string>
+
+    <!--login-->
+    <string name="login_title">东方名城智慧邻里登陆</string>
+    <string name="login_name">用户名</string>
+    <string name="login_passwd">密码</string>
+    <string name="login_btn">登陆</string>
+
+    <!--身份选择-->
+    <string name="identity_1">居委会工作</string>
+    <string name="identity_2">业委会工作</string>
+    <string name="identity_3">党建工作</string>
+    <string name="identity_4">居民生活</string>
+
+    <!--发布公告-->
+    <string name="pub_ann">发布公告</string>
+    <string name="ann_title">公告标题</string>
+    <string name="ann_text">公告正文</string>
+    <string name="upload_pic">上传照片</string>
+    <string name="upload_video">上传视频</string>
 </resources>

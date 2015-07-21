@@ -9,3 +9,4 @@
 3.图片放在res/values/drawable中，h/l/x/mh-dpi为尺寸大小，默认为hdpi和png格式
 4.编码方式统一采用utf-8
 5.新建的activity不要设成启动页面
+6.在非相对布局的情况下不要添加id属性
