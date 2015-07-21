@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="东方名城智慧邻里登陆"
+        android:id="@+id/textView"
+        android:autoText="false"
+        android:background="#ffffffff"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:id="@+id/editText"
+        android:text="用户名"
+        android:textColor="#ffd5d6d9"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/corner_bg"
+        android:layout_gravity="center_horizontal" />
+
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:id="@+id/editText2"
+        android:text="密码"
+        android:textColor="#ffd5d6d9"
+        android:background="@drawable/corner_bg"
+        android:textSize="20dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="登陆"
+        android:id="@+id/button"
+        android:layout_below="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
