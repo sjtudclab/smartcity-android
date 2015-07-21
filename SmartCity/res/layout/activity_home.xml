@@ -75,7 +75,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/btm_title_service"
+                        android:text="@string/btm_title_contacts"
                         android:textColor="#fff"
                         android:textSize="12sp" />
             </LinearLayout>
@@ -100,7 +100,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/btm_title_person"
+                        android:text="@string/btm_title_chat"
                         android:textColor="#fff"
                         android:textSize="12sp" />
             </LinearLayout>
@@ -125,7 +125,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/btm_title_more"
+                        android:text="@string/btm_title_profile"
                         android:textColor="#fff"
                         android:textSize="12sp" />
             </LinearLayout>

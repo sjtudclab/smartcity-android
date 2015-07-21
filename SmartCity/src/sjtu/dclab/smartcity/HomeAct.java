@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class HomeAct extends Activity {
     private ViewPager tabPager;
     private ImageView tabCur;
-    private ImageView tabHome, tabExp, tabAbt, tabMore;
+    private ImageView tabHome, tabContacts, tabChat, tabProfile;    //依次为：主页、联系人、聊天、个人主页
 
     private int offset = 0;
     private int curTabIndex = 0;
@@ -38,24 +38,24 @@ public class HomeAct extends Activity {
         tabPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
         tabHome = (ImageView) findViewById(R.id.img_home);
-        tabExp = (ImageView) findViewById(R.id.img_exp);
-        tabAbt = (ImageView) findViewById(R.id.img_about);
-        tabMore = (ImageView) findViewById(R.id.img_more);
+        tabContacts = (ImageView) findViewById(R.id.img_exp);
+        tabChat = (ImageView) findViewById(R.id.img_about);
+        tabProfile = (ImageView) findViewById(R.id.img_more);
         tabCur = (ImageView) findViewById(R.id.img_tab_now);
 
         tabHome.setOnClickListener(new MyOnClickListener(0));
-        tabExp.setOnClickListener(new MyOnClickListener(1));
-        tabAbt.setOnClickListener(new MyOnClickListener(2));
-        tabMore.setOnClickListener(new MyOnClickListener(3));
+        tabContacts.setOnClickListener(new MyOnClickListener(1));
+        tabChat.setOnClickListener(new MyOnClickListener(2));
+        tabProfile.setOnClickListener(new MyOnClickListener(3));
 
         Display curDisplay = getWindowManager().getDefaultDisplay();
         offset = curDisplay.getWidth() / 4;
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_home = inflater.inflate(R.layout.tab_home, null);
-        View view_exp = inflater.inflate(R.layout.tab_mailbox, null);
-        View view_about = inflater.inflate(R.layout.tab_person, null);
-        View view_more = inflater.inflate(R.layout.tab_more, null);
+        View view_exp = inflater.inflate(R.layout.tab_contacts, null);
+        View view_about = inflater.inflate(R.layout.tab_chat, null);
+        View view_more = inflater.inflate(R.layout.tab_profile, null);
 
         final ArrayList<View> views = new ArrayList<View>();
         views.add(view_home);
