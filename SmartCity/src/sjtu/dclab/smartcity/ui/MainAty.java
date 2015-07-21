@@ -1,10 +1,10 @@
-package sjtu.dclab.smartcity;
+package sjtu.dclab.smartcity.ui;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends Activity {
+public class MainAty extends Activity {
     /**
      * Called when the activity is first created.
      */
@@ -13,7 +13,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.aty_main);
 
-        startActivity(new Intent(getApplicationContext(), HomeAct.class));
+        //app入口，可以修改来测试自己的activity
+        startActivity(new Intent(getApplicationContext(), HomeAty.class));
         finish();
     }
 }

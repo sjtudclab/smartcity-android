@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity;
+package sjtu.dclab.smartcity.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,13 +10,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 
 /**
  * Created by Yang on 2015/7/6.
  */
-public class HomeAct extends Activity {
+public class HomeAty extends Activity {
     private ViewPager tabPager;
     private ImageView tabCur;
     private ImageView tabHome, tabContacts, tabChat, tabProfile;    //依次为：主页、联系人、聊天、个人主页
@@ -32,15 +33,15 @@ public class HomeAct extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.aty_home);
 
         tabPager = (ViewPager) findViewById(R.id.tabpager);
         tabPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
         tabHome = (ImageView) findViewById(R.id.img_home);
-        tabContacts = (ImageView) findViewById(R.id.img_exp);
-        tabChat = (ImageView) findViewById(R.id.img_about);
-        tabProfile = (ImageView) findViewById(R.id.img_more);
+        tabContacts = (ImageView) findViewById(R.id.img_contacts);
+        tabChat = (ImageView) findViewById(R.id.img_chat);
+        tabProfile = (ImageView) findViewById(R.id.img_profile);
         tabCur = (ImageView) findViewById(R.id.img_tab_now);
 
         tabHome.setOnClickListener(new MyOnClickListener(0));
@@ -53,15 +54,15 @@ public class HomeAct extends Activity {
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_home = inflater.inflate(R.layout.tab_home, null);
-        View view_exp = inflater.inflate(R.layout.tab_contacts, null);
-        View view_about = inflater.inflate(R.layout.tab_chat, null);
-        View view_more = inflater.inflate(R.layout.tab_profile, null);
+        View view_contacts = inflater.inflate(R.layout.tab_contacts, null);
+        View view_chat = inflater.inflate(R.layout.tab_chat, null);
+        View view_profile = inflater.inflate(R.layout.tab_profile, null);
 
         final ArrayList<View> views = new ArrayList<View>();
         views.add(view_home);
-        views.add(view_exp);
-        views.add(view_about);
-        views.add(view_more);
+        views.add(view_contacts);
+        views.add(view_chat);
+        views.add(view_profile);
 
         // adapter of the ViewPager tabPager
         PagerAdapter pagerAdapter = new PagerAdapter() {
@@ -99,7 +100,7 @@ public class HomeAct extends Activity {
 //                R.drawable.item_icon_record, R.drawable.item_icon_comp };
 //        labels = new String[] { "����ά��", "�����˻�", "���뻻��", "ά�޼�¼", "Ͷ��" };
 //
-//        serviceGridView = (GridView) view_exp.findViewById(R.id.serviceItems);
+//        serviceGridView = (GridView) view_contacts.findViewById(R.id.serviceItems);
 //        System.out.println(serviceGridView == null);
 //        ArrayList<HashMap<String, Object>> serviceItems = new ArrayList<HashMap<String, Object>>();
 //        for (int i = 0; i < labels.length; i++) {

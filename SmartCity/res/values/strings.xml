@@ -5,10 +5,9 @@
     <string name="head_title_home">东方名城</string>
 
     <string name="btm_title_home">主页</string>
-    <string name="btm_title_contacts">好友</string>
+    <string name="btm_title_contacts">联系人</string>
     <string name="btm_title_chat">聊天</string>
     <string name="btm_title_profile">个人</string>
-
 
     <string name="hello_world">Hello world!</string>
     <string name="btn_clickme">Click me</string>

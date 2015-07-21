@@ -65,12 +65,12 @@
                     android:orientation="vertical" >
 
                 <ImageView
-                        android:id="@+id/img_exp"
+                        android:id="@+id/img_contacts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:scaleType="matrix"
-                        android:src="@drawable/tab_img_exp" />
+                        android:src="@drawable/tab_img_contacts" />
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -90,12 +90,12 @@
                     android:orientation="vertical" >
 
                 <ImageView
-                        android:id="@+id/img_about"
+                        android:id="@+id/img_chat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:scaleType="matrix"
-                        android:src="@drawable/tab_img_about" />
+                        android:src="@drawable/tab_img_chat" />
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -115,12 +115,12 @@
                     android:orientation="vertical" >
 
                 <ImageView
-                        android:id="@+id/img_more"
+                        android:id="@+id/img_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:scaleType="matrix"
-                        android:src="@drawable/tab_img_more" />
+                        android:src="@drawable/tab_img_profile" />
 
                 <TextView
                         android:layout_width="wrap_content"

@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:scaleType="matrix"
-            android:src="@drawable/tab_img_about" />
+            android:src="@drawable/tab_img_chat" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
