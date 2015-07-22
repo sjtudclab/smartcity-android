@@ -129,12 +129,14 @@ public class HomeAct extends Activity {
                 R.drawable.announcement, R.drawable.community_act,
                 R.drawable.work_log, R.drawable.population_information,
                 R.drawable.data_management,R.drawable.housing_information,
-                R.drawable.resident_mailbox,R.drawable.resident_opnion
+                R.drawable.resident_mailbox,R.drawable.resident_opnion,
+                R.drawable.oriental_window, R.drawable.payment_record,
+                R.drawable.property_management, R.drawable.public_opinion_square
                 };
-        labels = new String[] { "东方之窗", "收款纪录", "物业管理", "民意广场",
-                                "个人信息", "社区公告", "社区活动", "工作日志",
-                                "人口信息", "人事管理", "房屋信息", "居民信箱",
-                                "舆情管理" };
+        labels = new String[] { "民政工作", "公益服务", "便民服务", "卫计工作",
+                                "安防工作", "社区综治", "信访调解", "文教宣传",
+                                "民意广场", "民意投票", "舆情管理", "公告管理",
+                                "人口信息","房屋信息","人事信息","周边设施" };
 
         serviceGridView = (GridView) view_home.findViewById(R.id.gview);
         System.out.println(serviceGridView == null);

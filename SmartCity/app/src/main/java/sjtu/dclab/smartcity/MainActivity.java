@@ -11,7 +11,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
+        //setContentView(R.layout.dangtuan_aty);
         startActivity(new Intent(getApplicationContext(),HomeAct.class));
         finish();
     }

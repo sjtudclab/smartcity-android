@@ -12,7 +12,7 @@
         android:src="@drawable/ic_launcher"
         android:id="@+id/itemIcon"
         android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
 
         />
 

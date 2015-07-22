@@ -8,4 +8,16 @@
     <string name="btm_title_service">服务</string>
     <string name="btm_title_person">个人</string>
     <string name="btm_title_more">更多</string>
+    <string name="dangtuan_aty">党建生活详情</string>
+    <string name="dangtuan_title">关于建设智慧社区</string>
+    <string name="dangtuan_time">时间：</string>
+    <string name="dangtuan_tm">1987-01-01</string>
+    <string name="dangtuan_didian">地点</string>
+    <string name="dangtuan_dd">中山公园</string>
+    <string name="dangtuan_yingdao">应到人数</string>
+    <string name="dangtuan_yd">20</string>
+    <string name="dangtuan_shidao">实到人数</string>
+    <string name="dangtuan_sd">20</string>
+    <string name="dangtuan_huodong">活动概要</string>
+    <string name="dangtuan_hd">1.XXX.......</string>
 </resources>
