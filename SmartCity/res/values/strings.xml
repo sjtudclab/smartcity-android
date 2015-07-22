@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartCity</string>
+
+    <string name="head_title_home">东方名城</string>
+
+    <string name="btm_title_home">主页</string>
+    <string name="btm_title_contacts">联系人</string>
+    <string name="btm_title_chat">聊天</string>
+    <string name="btm_title_profile">个人</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_clickme">Click me</string>
+    <string name="iv_contentd">Img describe.</string>
+
+    <!--login-->
+    <string name="login_title">东方名城智慧邻里登陆</string>
+    <string name="login_name">用户名</string>
+    <string name="login_passwd">密码</string>
+    <string name="login_btn">登陆</string>
+
+    <!--身份选择-->
+    <string name="identity_1">居委会工作</string>
+    <string name="identity_2">业委会工作</string>
+    <string name="identity_3">党建工作</string>
+    <string name="identity_4">居民生活</string>
+
+    <!--发布公告-->
+    <string name="pub_ann">发布公告</string>
+    <string name="ann_title">公告标题</string>
+    <string name="ann_text">公告正文</string>
+    <string name="upload_pic">上传照片</string>
+    <string name="upload_video">上传视频</string>
+
+    <!--公告详情-->
+    <string name="ann_det">公告详情</string>
+    <string name="ann_edit">编辑公告</string>
+    <string name="ann_del">删除公告</string>
+
+    <!--公告管理-->
+    <string name="ann_man">公告管理</string>
+    <string name="ann_list">公告列表</string>
+
+    <!--组织生活-->
+    <string name="org_life">组织生活</string>
+    <string name="org_life_details">组织生活详情</string>
+    <string name="org_life_title">组织生活标题</string>
+    <string name="org_life_summary">活动概要：</string>
+    <string name="org_life_sign">签到</string>
+
+    <!--item杂项-->
+    <string name="item_note">备用</string>
+    <string name="item_time">时间</string>
+    <string name="item_num">人数</string>
+    <string name="item_pos">地点</string>
+</resources>

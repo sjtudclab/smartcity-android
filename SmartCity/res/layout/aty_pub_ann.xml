@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffe2e2e2"
+        android:layout_weight="7">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/pub_ann"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="25dp" />
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#000000"  />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="2"
+            android:hint="@string/ann_title"
+            android:textSize="25dp"
+            android:background="@drawable/corner_pub_ann"
+            android:layout_margin="2dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="20"
+            android:hint="@string/ann_text"
+            android:textSize="25dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/corner_pub_ann"
+            android:layout_margin="2dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/upload_pic"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textSize="20dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/upload_video"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pub_ann"
+            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</LinearLayout>
