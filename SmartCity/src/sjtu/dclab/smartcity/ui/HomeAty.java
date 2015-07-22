@@ -1,14 +1,13 @@
 package sjtu.dclab.smartcity.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import sjtu.dclab.smartcity.R;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Yang on 2015/7/6.
  */
-public class HomeAty extends Activity {
+public class HomeAty extends FragmentActivity {
     private ViewPager tabPager;
     private ImageView tabCur;
     private ImageView tabHome, tabContacts, tabChat, tabProfile;    //依次为：主页、联系人、聊天、个人主页
@@ -25,9 +24,8 @@ public class HomeAty extends Activity {
     private int offset = 0;
     private int curTabIndex = 0;
 
-    private String labels[] = null;
     private int icons[] = null;
-    private GridView serviceGridView = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,27 +91,6 @@ public class HomeAty extends Activity {
             }
         };
         tabPager.setAdapter(pagerAdapter);
-
-        // second page
-//        icons = new int[] { R.drawable.item_icon_repair,
-//                R.drawable.item_icon_return, R.drawable.item_icon_change,
-//                R.drawable.item_icon_record, R.drawable.item_icon_comp };
-//        labels = new String[] { "����ά��", "�����˻�", "���뻻��", "ά�޼�¼", "Ͷ��" };
-//
-//        serviceGridView = (GridView) view_contacts.findViewById(R.id.serviceItems);
-//        System.out.println(serviceGridView == null);
-//        ArrayList<HashMap<String, Object>> serviceItems = new ArrayList<HashMap<String, Object>>();
-//        for (int i = 0; i < labels.length; i++) {
-//            HashMap<String, Object> map = new HashMap<String, Object>();
-//            map.put("itemIcon", icons[i]);
-//            map.put("itemLab", labels[i]);
-//            serviceItems.add(map);
-//        }
-//        SimpleAdapter itemsAdapter = new SimpleAdapter(this, serviceItems,
-//                R.layout.service_item, new String[] { "itemIcon", "itemLab" },
-//                new int[] { R.id.itemIcon, R.id.itemLab });
-//        serviceGridView.setAdapter(itemsAdapter);
-//        serviceGridView.setOnItemClickListener(new ServiceItemClickListener());
     }
 
     /**

@@ -31,4 +31,61 @@
     <string name="ann_text">公告正文</string>
     <string name="upload_pic">上传照片</string>
     <string name="upload_video">上传视频</string>
+
+    <!--公告详情-->
+    <string name="ann_det">公告详情</string>
+    <string name="ann_edit">编辑公告</string>
+    <string name="ann_del">删除公告</string>
+
+    <!--公告管理-->
+    <string name="ann_man">公告管理</string>
+    <string name="ann_list">公告列表</string>
+
+    <!--组织生活-->
+    <string name="org_life">组织生活</string>
+    <string name="org_life_details">组织生活详情</string>
+    <string name="org_life_title">组织生活标题</string>
+    <string name="org_life_summary">活动概要：</string>
+    <string name="org_life_sign">签到</string>
+
+    <!--item杂项-->
+    <string name="item_note">备用</string>
+    <string name="item_time">时间</string>
+    <string name="item_num">人数</string>
+    <string name="item_pos">地点</string>
+
+    <!--URL 相关-->
+    <string name="URLroot">http://202.120.40.111:8080/community-server/rest/</string>
+
+    <!--xx工作-->
+    <string name="minzheng">民政工作</string>
+    <string name="gongyi">公益服务</string>
+    <string name="bianmin">便民服务</string>
+    <string name="weiji">卫计工作</string>
+    <string name="anfang">安防工作</string>
+    <string name="zongzhi">社区综治</string>
+    <string name="xinfang">信访调解</string>
+    <string name="wenjiao">文教宣传</string>
+    <string name="minyiguangchang">民意广场</string>
+    <string name="minyitoupiao">民意投票</string>
+    <string name="yuqing">舆情管理</string>
+    <string name="gonggao">公告管理</string>
+    <string name="renkou">人口信息</string>
+    <string name="fangwu">房屋信息</string>
+    <string name="renshi">人事信息</string>
+    <string name="zhoubian">周边设施</string>
+
+    <!--党团信息-->
+    <string name="dangtuan_aty">党建生活详情</string>
+    <string name="dangtuan_title">关于建设智慧社区</string>
+    <string name="dangtuan_time">时间：</string>
+    <string name="dangtuan_tm">1987-01-01</string>
+    <string name="dangtuan_didian">地点</string>
+    <string name="dangtuan_dd">中山公园</string>
+    <string name="dangtuan_yingdao">应到人数</string>
+    <string name="dangtuan_yd">20</string>
+    <string name="dangtuan_shidao">实到人数</string>
+    <string name="dangtuan_sd">20</string>
+    <string name="dangtuan_huodong">活动概要</string>
+    <string name="dangtuan_hd">1.XXX.......</string>
 </resources>

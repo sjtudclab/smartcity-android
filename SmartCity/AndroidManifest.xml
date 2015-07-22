@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.HomeAty"/>
-        <activity android:name=".RESTTestAty" />
         <activity android:name=".ui.LoginAty"/>
+        <activity android:name=".ui.AnnouncementAty"/>
+        <activity android:name=".ui.OrgLifeAty"/>
 
     </application>
 
