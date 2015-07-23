@@ -1,5 +1,6 @@
 package sjtu.dclab.smartcity.ui.fragment;
 
+import android.app.ActivityManager;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -9,16 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
+import android.widget.*;
+import cn.edu.sjtu.se.dclab.config.Me;
 import cn.edu.sjtu.se.dclab.entity.Friend;
 import cn.edu.sjtu.se.dclab.talk.MyTalk;
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.*;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.chat.Friends;
+import sjtu.dclab.smartcity.chat.*;
 import sjtu.dclab.smartcity.entity.Contact;
 
 import java.util.ArrayList;
@@ -102,6 +102,8 @@ public class ContactsFragment extends Fragment {
 //        contactList.setAdapter(adapter);
 //        //contactList.setOnItemClickListener(new ItemOnClickListener());
         initList();
+        setUpMessageAdapters();
+        startMQTTService();
     }
 
     public void initList() {
@@ -139,79 +141,93 @@ public class ContactsFragment extends Fragment {
                         R.id.contact_id
                 });
         contactList.setAdapter(adapter);
+        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+
+                Intent intent = new Intent(getActivity().getApplicationContext(),
+                        ChatActivity.class);
+
+                intent.putExtra(String.valueOf(R.string.friend),
+                        friends.get(arg2));
+                startActivity(intent);
+            }
+        });
     }
 
-//    private void setUpMessageAdapters() {
-//        if (friends != null) {
-//            for (Friend f : friends) {
-//                String username = f.getName();
-//                MessageAdapter adapter = Messages.loadMessageAdapter(username);
-//                if (adapter == null) {
-//                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
-//                    adapter = new MessageAdapter(this, R.layout.chat_item,
-//                            R.id.messagedetail_row_text, msgEntities);
-//                    Messages.storeMessageAdapter(username, adapter);
-//                }
-//            }
-//        }
-//    }
-//
-//    private void startMQTTService() {
-//        MqttConnectOptions conOpt = new MqttConnectOptions();
-//
-//        client = new MqttAndroidClient(this, Configurations.uri, Configurations.clientId);
-//
-//        conOpt.setCleanSession(Configurations.cleanSession);
-//        conOpt.setConnectionTimeout(Configurations.timeout);
-//        conOpt.setKeepAliveInterval(Configurations.keepalive);
-//        conOpt.setUserName(Configurations.username);
-//        conOpt.setPassword(Configurations.password.toCharArray());
-//
-//        client.setCallback(new PushCallback(this));
-//
-//        try {
-//            client.connect(conOpt, null, new IMqttActionListener() {
-//
-//                @Override
-//                public void onSuccess(IMqttToken arg0) {
-//                    try {
-//                        client.subscribe(Configurations.subscribeTopicPrefix + Me.id, Configurations.qos);
-//                        Publisher.registe(client);
-//                        startHeartService();
-//                    } catch (MqttSecurityException e) {
+    private void setUpMessageAdapters() {
+        if (friends != null) {
+            for (Friend f : friends) {
+                String username = f.getName();
+                MessageAdapter adapter = Messages.loadMessageAdapter(username);
+                if (adapter == null) {
+                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
+                    adapter = new MessageAdapter(getActivity().getApplicationContext(), R.layout.chat_item,
+                            R.id.messagedetail_row_text, msgEntities);
+                    Messages.storeMessageAdapter(username, adapter);
+                }
+            }
+        }
+    }
+
+    private void startMQTTService() {
+        MqttConnectOptions conOpt = new MqttConnectOptions();
+
+        client = new MqttAndroidClient(getActivity().getApplicationContext(), Configurations.uri, Configurations.clientId);
+
+        conOpt.setCleanSession(Configurations.cleanSession);
+        conOpt.setConnectionTimeout(Configurations.timeout);
+        conOpt.setKeepAliveInterval(Configurations.keepalive);
+        conOpt.setUserName(Configurations.username);
+        conOpt.setPassword(Configurations.password.toCharArray());
+
+        client.setCallback(new PushCallback(getActivity().getApplicationContext()));
+
+        try {
+            client.connect(conOpt, null, new IMqttActionListener() {
+
+                @Override
+                public void onSuccess(IMqttToken arg0) {
+                    try {
+                        client.subscribe(Configurations.subscribeTopicPrefix + Me.id, Configurations.qos);
+                        Publisher.registe(client);
+                        startHeartService();
+                    } catch (MqttSecurityException e) {
 //                        Log.e("MqttAndroidClient subscribe", e.getMessage());
-//                        e.printStackTrace();
-//                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    } catch (MqttException e) {
 //                        Log.e("MqttAndroidClient subscribe", e.getMessage());
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(IMqttToken arg0, Throwable arg1) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(IMqttToken arg0, Throwable arg1) {
 //                    Log.e("MqttAndroidClient Connect", arg1.getMessage());
-//                }
-//            });
-//        } catch (MqttException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void startHeartService() {
-//        final Intent intent = new Intent(this, HeartbeatService.class);
-//        startService(intent);
-//    }
-//
-//    private boolean serviceIsRunning() {
-//        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-//        for (ActivityManager.RunningServiceInfo service : manager
-//                .getRunningServices(Integer.MAX_VALUE)) {
-//            if (SERVICE_CLASSNAME.equals(service.service.getClassName())) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void startHeartService() {
+        final Intent intent = new Intent(getActivity().getApplicationContext(), HeartbeatService.class);
+        getActivity().startService(intent);
+    }
+
+    private boolean serviceIsRunning() {
+        ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager
+                .getRunningServices(Integer.MAX_VALUE)) {
+            if (SERVICE_CLASSNAME.equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     class ContactAdapter extends SimpleAdapter {
         private int[] mTo;
