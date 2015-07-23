@@ -1,21 +1,27 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.ann_committee;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sjtu.dclab.smartcity.R;
+
 /**
  * Created by ¹Â¶ÀµÄ¹Û²âÕß on 2015/7/22.
  */
 public class AnnouncementAty extends Activity{
     private ListView list_View;
+    private ImageButton ibtnAdd;
     private SimpleAdapter simple_Adapter;
     private List<Map<String,Object>>data_List;
 
@@ -23,6 +29,15 @@ public class AnnouncementAty extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_ann_man);
+
+        ibtnAdd = (ImageButton) findViewById(R.id.ann_ibtn_add);
+        ibtnAdd.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AnnPublishAty.class));
+            }
+        });
+
         list_View =(ListView) findViewById(R.id.ann_listView);
 
         data_List = new ArrayList<Map<String,Object>>();
@@ -32,6 +47,14 @@ public class AnnouncementAty extends Activity{
                 new String[]{"ann_pic","ann_title","ann_text","ann_note"},
                 new int[]{R.id.ann_pic,R.id.ann_title,R.id.ann_text,R.id.ann_note});
         list_View.setAdapter(simple_Adapter);
+
+        list_View.setOnItemClickListener(new ListView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO 测试阶段：默认均跳转至AnnDetailAty
+                startActivity(new Intent(getApplicationContext(), AnnDetailAty.class));
+            }
+        });
     }
     //What need to be changed
     private List<Map<String,Object>> getData(){

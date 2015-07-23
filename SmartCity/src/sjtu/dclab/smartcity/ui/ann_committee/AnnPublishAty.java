@@ -1,18 +1,20 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.ann_committee;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import sjtu.dclab.smartcity.R;
 
 /**
- * Created by Yang on 2015/7/21.
+ * AnnPublishAty
+ *
+ * @author Jian Yang
+ * @date 2015/7/23
  */
-public class LoginAty extends Activity {
+public class AnnPublishAty extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aty_login);
-
-
+        setContentView(R.layout.aty_ann_pubish);
     }
 }

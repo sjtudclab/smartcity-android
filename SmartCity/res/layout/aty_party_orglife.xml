@@ -35,7 +35,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
-        <LinearLayout
+        <LinearLayout android:id="@+id/party_ll_policy1"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="150dp"

@@ -19,8 +19,12 @@
         </activity>
         <activity android:name=".ui.HomeAty"/>
         <activity android:name=".ui.LoginAty"/>
-        <activity android:name=".ui.AnnouncementAty"/>
-        <activity android:name=".ui.OrgLifeAty"/>
+        <activity android:name=".ui.ann_committee.AnnouncementAty"/>
+        <activity android:name=".ui.party.orglife.OrgLifeAty"/>
+        <activity android:name=".ui.LoginIdentityCommitteeAty" />
+        <activity android:name=".ui.ann_committee.AnnDetailAty" />
+        <activity android:name=".ui.ann_committee.AnnPublishAty" />
+        <activity android:name=".ui.party.orglife.OrgLifeDetailAty" />
 
     </application>
 
