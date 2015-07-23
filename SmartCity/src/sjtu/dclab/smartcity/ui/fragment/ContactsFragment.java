@@ -2,9 +2,9 @@ package sjtu.dclab.smartcity.ui.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +13,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import cn.edu.sjtu.se.dclab.entity.Friend;
+import cn.edu.sjtu.se.dclab.talk.MyTalk;
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.chat.Friends;
 import sjtu.dclab.smartcity.entity.Contact;
-import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,11 +36,21 @@ public class ContactsFragment extends Fragment {
 
     private ListView contactList;
     private ContactAdapter adapter;
-    private ArrayList<HashMap<String,Object>> items = new ArrayList<HashMap<String, Object>>();
+    private ArrayList<HashMap<String, Object>> items;
+
+    private GlobalApp globalApp;
+
+    // 长意的
+    final static String TOKEN = "cn.edu.sjtu.se.dclab.community_chat.ListActivity";
+    private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
+    private MyTalk talk;
+    private List<Friend> friends = null;
+    private ListView l1;
+    private ArrayList<HashMap<String, Object>> listItem;
+    private MqttAndroidClient client;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Fragment created");
@@ -45,7 +58,7 @@ public class ContactsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG,"Fragment created");
+        Log.i(TAG, "Fragment created");
         return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
 
@@ -53,20 +66,62 @@ public class ContactsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         //for network
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+//
+//        BasicWebService service = new BasicWebService();
+//        //TODO friendID需要作为参数的！！！
+//        globalApp = (GlobalApp)getActivity().getApplicationContext();
+//        String username = globalApp.getUsername();
+//        String url = getResources().getString(R.string.URLroot) + "friends/14/relations";
+//        String resp = service.sendGetRequest(url, null);
+//
+//        contacts = GsonTool.getFriendList(resp);
+//        for (Contact friend:contacts){
+//            HashMap<String,Object> map = new HashMap<String, Object>();
+//            map.put("icon",getResources().getDrawable(R.drawable.ic_launcher));
+//            map.put("name",friend.getName());
+//            map.put("id",friend.getContactId());
+//            items.add(map);
+//        }
+//
+//        adapter = new ContactAdapter(
+//                getActivity().getApplicationContext(),
+//                items,
+//                R.layout.item_contact,
+//                new String[]{
+//                        "icon",
+//                        "name",
+//                        "id"},
+//                new int[]{
+//                        R.id.contact_icon,
+//                        R.id.contact_name,
+//                        R.id.contact_id
+//                });
+//        contactList = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_contacts);
+//        contactList.setAdapter(adapter);
+//        //contactList.setOnItemClickListener(new ItemOnClickListener());
+        initList();
+    }
 
-        BasicWebService service = new BasicWebService();
-        //TODO friendID需要作为参数的！！！
-        String url = getResources().getString(R.string.URLroot) + "friends/14/relations";
-        String resp = service.sendGetRequest(url, null);
+    public void initList() {
+        Intent intent = getActivity().getIntent();
+        talk = (MyTalk) intent.getSerializableExtra(String
+                .valueOf(R.string.talk));
 
-        contacts = GsonTool.getFriendList(resp);
-        for (Contact friend:contacts){
-            HashMap<String,Object> map = new HashMap<String, Object>();
-            map.put("icon",getResources().getDrawable(R.drawable.ic_launcher));
-            map.put("name",friend.getName());
-            map.put("id",friend.getContactId());
+        friends = Friends.getFriends();
+        if (friends == null || friends.size() == 0) {
+            friends = (List<Friend>) talk.getFriends();
+            Friends.addFriends(friends);
+        }
+
+        contactList = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_contacts);
+        items = new ArrayList<HashMap<String, Object>>();
+        for (Friend friend : friends) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("icon", getResources().getDrawable(R.drawable.ic_launcher));
+            map.put("name", friend.getName());
+            map.put("id", 0);
             items.add(map);
         }
 
@@ -83,10 +138,80 @@ public class ContactsFragment extends Fragment {
                         R.id.contact_name,
                         R.id.contact_id
                 });
-        contactList = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_contacts);
         contactList.setAdapter(adapter);
-        //contactList.setOnItemClickListener(new ItemOnClickListener());
     }
+
+//    private void setUpMessageAdapters() {
+//        if (friends != null) {
+//            for (Friend f : friends) {
+//                String username = f.getName();
+//                MessageAdapter adapter = Messages.loadMessageAdapter(username);
+//                if (adapter == null) {
+//                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
+//                    adapter = new MessageAdapter(this, R.layout.chat_item,
+//                            R.id.messagedetail_row_text, msgEntities);
+//                    Messages.storeMessageAdapter(username, adapter);
+//                }
+//            }
+//        }
+//    }
+//
+//    private void startMQTTService() {
+//        MqttConnectOptions conOpt = new MqttConnectOptions();
+//
+//        client = new MqttAndroidClient(this, Configurations.uri, Configurations.clientId);
+//
+//        conOpt.setCleanSession(Configurations.cleanSession);
+//        conOpt.setConnectionTimeout(Configurations.timeout);
+//        conOpt.setKeepAliveInterval(Configurations.keepalive);
+//        conOpt.setUserName(Configurations.username);
+//        conOpt.setPassword(Configurations.password.toCharArray());
+//
+//        client.setCallback(new PushCallback(this));
+//
+//        try {
+//            client.connect(conOpt, null, new IMqttActionListener() {
+//
+//                @Override
+//                public void onSuccess(IMqttToken arg0) {
+//                    try {
+//                        client.subscribe(Configurations.subscribeTopicPrefix + Me.id, Configurations.qos);
+//                        Publisher.registe(client);
+//                        startHeartService();
+//                    } catch (MqttSecurityException e) {
+//                        Log.e("MqttAndroidClient subscribe", e.getMessage());
+//                        e.printStackTrace();
+//                    } catch (MqttException e) {
+//                        Log.e("MqttAndroidClient subscribe", e.getMessage());
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(IMqttToken arg0, Throwable arg1) {
+//                    Log.e("MqttAndroidClient Connect", arg1.getMessage());
+//                }
+//            });
+//        } catch (MqttException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void startHeartService() {
+//        final Intent intent = new Intent(this, HeartbeatService.class);
+//        startService(intent);
+//    }
+//
+//    private boolean serviceIsRunning() {
+//        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+//        for (ActivityManager.RunningServiceInfo service : manager
+//                .getRunningServices(Integer.MAX_VALUE)) {
+//            if (SERVICE_CLASSNAME.equals(service.service.getClassName())) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     class ContactAdapter extends SimpleAdapter {
         private int[] mTo;
@@ -96,7 +221,7 @@ public class ContactsFragment extends Fragment {
         private int mResource;
         private LayoutInflater mInflater;
 
-        public ContactAdapter(Context context,List<? extends Map<String, ?>> data, int resource, String[] from,int[] to) {
+        public ContactAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
             super(context, data, resource, from, to);
             mData = data;
             mResource = resource;

@@ -44,7 +44,7 @@
 
         <ViewFlipper
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="wrap_content"
             android:id="@+id/vflipper"
             android:flipInterval="2000"
             android:animateFirstView="true"
@@ -75,7 +75,6 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="0dp"
             android:columnWidth="90dp"
-
 
             android:verticalSpacing="0dp" />
 
