@@ -42,10 +42,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="1">
 
-        <Button
+        <Button android:id="@+id/identity_btn_partybuilding"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="@string/identity_3"
+            android:onClick="onClickProcess"
             android:background="@drawable/corner_id_ch"
             android:layout_margin="20dp"
             android:textSize="30dp" />
