@@ -29,6 +29,8 @@
         <activity android:name=".chat.ChatActivity"/>
         <activity android:name=".ui.chat.ChatGroupDetailsAty" />
         <activity android:name=".ui.chat.ChatGroupMsgAty" />
+        <activity android:name=".ui.MenuAty" />
+        <activity android:name=".ui.ResidentHomeAty" />
 
     </application>
 

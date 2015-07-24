@@ -114,4 +114,20 @@
     <string name="group_btn_110">举报群组</string>
     <string name="group_btn_del_group">删除群组</string>
 
+    <!--Huang adds-->
+    <string name="btm_title_service">服务</string>
+    <string name="btm_title_person">个人</string>
+    <string name="btm_title_more">更多</string>
+    <string name="juwei">居委会</string>
+    <string name="yehui">业委会</string>
+    <string name="wuye">物业报修</string>
+    <string name="linli">邻里之间</string>
+    <string name="minyi">民议广场</string>
+    <string name="shequ">社区公告</string>
+    <string name="shequhuo">社区活动</string>
+    <string name="dangyuan_mana">党员管理</string>
+    <string name="dangyuan_org">组织生活</string>
+    <string name="dangyuan_aty">党员活动</string>
+    <string name="dangfei_mana">党费管理</string>
+    <string name="dangjian">党建工作</string>
 </resources>
