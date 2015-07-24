@@ -1,15 +1,10 @@
 package sjtu.dclab.smartcity.chat;
 
-import java.util.List;
-
-import cn.edu.sjtu.se.dclab.config.Me;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningTaskInfo;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import cn.edu.sjtu.se.dclab.config.Me;
 
 /**
  * 2015年6月14日 下午12:48:38
@@ -54,7 +49,7 @@ public class HeartbeatService extends Service implements Runnable {
 				Publisher.publicHeart(heartbeat);
 				Thread.sleep(Configurations.heartbeatPeriod * 1000);
 			} catch (Exception e) {
-				Log.e("HeartbeatService thread exception", e.getMessage());
+				Log.e("HBS thread exception", e.getMessage());
 			}
 		}
 	}

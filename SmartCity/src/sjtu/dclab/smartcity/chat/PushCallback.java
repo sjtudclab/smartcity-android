@@ -47,7 +47,7 @@ public class PushCallback implements MqttCallback {
 				});
 		Friend friend = Friends.getFriend(msg.getFrom());
 		MessageEntity entity = new MessageEntity(friend.getName(), msg.getContent());
-
+		
 		Messages.storeMessageEntity(friend.getName(), entity, true);
 
 		// Hide the notification after its selected

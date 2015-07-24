@@ -13,7 +13,7 @@ public class Publisher {
 
 	private static MqttAndroidClient client;
 	
-	public static void registe(MqttAndroidClient mqttClient){
+	public static void register(MqttAndroidClient mqttClient){
 		client = mqttClient;
 	}
 

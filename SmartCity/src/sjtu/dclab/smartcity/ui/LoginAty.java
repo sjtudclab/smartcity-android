@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import cn.edu.sjtu.se.dclab.common.CommunityApp;
 import cn.edu.sjtu.se.dclab.login.MyLogin;
-import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 
 /**
@@ -22,7 +21,7 @@ public class LoginAty extends Activity {
     private CommunityApp app = new CommunityApp("http://202.120.40.111:8080/community-server");
     private MyLogin login = app.getLoginModule();
 
-    private GlobalApp globalApp;
+//    private GlobalApp globalApp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,8 +55,8 @@ public class LoginAty extends Activity {
 
                 String result = login.doLogin(username, password);
                 if (result.equals("success")) {
-                    globalApp = (GlobalApp)getApplicationContext();
-                    globalApp.setUsername(username);
+//                    globalApp = (GlobalApp)getApplicationContext();
+//                    globalApp.setUsername(username);
                     startActivity(intent);
                     finish();
                 } else {

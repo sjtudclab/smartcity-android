@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="10px"
-    android:orientation="horizontal" >
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="right"
+              android:layout_marginLeft="10px"
+              android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="249px"
         android:layout_height="wrap_content"
         android:background="@drawable/outgoing"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="22dip"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/messagedetail_row_name"
@@ -22,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="2px"
                 android:textColor="#000000"
-                android:textSize="16dip" />
+                android:textSize="16dip"/>
 
             <TextView
                 android:id="@+id/messagedetail_row_date"
@@ -31,7 +32,7 @@
                 android:layout_marginLeft="60dip"
                 android:paddingTop="2px"
                 android:textColor="#000000"
-                android:textSize="16dip" />
+                android:textSize="16dip"/>
         </LinearLayout>
 
         <TextView
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="2px"
             android:textColor="#0000DD"
-            android:textSize="16dip" />
+            android:textSize="16dip"/>
     </LinearLayout>
 
     <ImageView
@@ -48,6 +49,6 @@
         android:layout_width="42px"
         android:layout_height="42px"
         android:layout_gravity="bottom"
-        android:background="@drawable/retouxiang" />
+        android:background="@drawable/retouxiang"/>
 
 </LinearLayout>

@@ -20,14 +20,14 @@ import java.util.List;
 public class MessageAdapter extends ArrayAdapter<MessageEntity> implements Serializable {
 
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 3911252634913757203L;
 
 	private Context context;
 
 	private int resource;
-
+	
 	private List<MessageEntity> msgEntities;
 
 	public MessageAdapter(Context context, int resource,
@@ -55,7 +55,7 @@ public class MessageAdapter extends ArrayAdapter<MessageEntity> implements Seria
 
 		return view;
 	}
-
+	
 	public List<MessageEntity> getMsgEntities(){
 		return msgEntities;
 	}

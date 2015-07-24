@@ -11,21 +11,21 @@ import java.util.Map;
 public class Messages {
 	//username : messages
 	private static Map<String,MessageAdapter> msgs = new HashMap<String,MessageAdapter>();
-
+	
 	public static MessageAdapter loadMessageAdapter(String username){
 		return msgs.get(username);
 	}
-
+	
 	public static void storeMessageAdapter(String username,MessageAdapter adapter){
 		msgs.put(username, adapter);
 	}
-
+	
 	//必须在上面两个方法之后调用，可重构之处
 	public static List<MessageEntity> loadMessageEnities(String username){
 		MessageAdapter adapter = msgs.get(username);
 		return adapter.getMsgEntities();
 	}
-
+	
 	//flag是否通知adapter数据更改
 	public static void storeMessageEntity(String username, MessageEntity msgEntity, boolean flag){
 		MessageAdapter adapter = msgs.get(username);
@@ -34,5 +34,5 @@ public class Messages {
 		if(flag)
 			adapter.notifyDataSetChanged();
 	}
-
+	
 }
