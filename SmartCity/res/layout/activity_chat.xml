@@ -5,30 +5,32 @@
                 android:layout_height="fill_parent"
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MessageBox"
         android:layout_alignParentBottom="true"
-        >
+        android:weightSum="1">
 
         <EditText
             android:id="@+id/MessageText"
-            android:layout_width="200dip"
-            android:layout_height="50dip"
-            android:layout_marginLeft="50dip"
-            android:textSize="18dip"/>
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:textSize="18dip"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1.12"/>
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="50dip"
+            android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
             android:text="发送"
             android:textSize="18dip"
             android:id="@+id/MessageButton"
             />
-    </RelativeLayout>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/chat_list"

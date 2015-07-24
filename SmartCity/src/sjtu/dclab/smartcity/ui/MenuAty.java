@@ -34,8 +34,8 @@ public class MenuAty extends Activity implements OnClickListener {
 
 
             case R.id.btnSet:
-                AddPopWindow addPopWindow = new AddPopWindow(MenuAty.this);
-                addPopWindow.showPopupWindow(setButton);
+                MenuPopupWindow menuPopupWindow = new MenuPopupWindow(MenuAty.this);
+                menuPopupWindow.showPopupWindow(setButton);
                 break;
             default:
                 break;

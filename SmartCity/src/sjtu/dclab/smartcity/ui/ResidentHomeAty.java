@@ -4,24 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Display;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.ViewFlipper;
+import android.widget.*;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by Yang on 2015/7/6.
@@ -41,9 +31,6 @@ public class ResidentHomeAty extends Activity {
     private float touchDownX;
     // 左右滑动时手指松开的X坐标
     private float touchUpX;*/
-
-
-
 
     private int offset = 0;
     private int curTabIndex = 0;
