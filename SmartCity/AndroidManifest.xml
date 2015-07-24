@@ -31,6 +31,10 @@
         <activity android:name=".ui.ann_committee.AnnPublishAty" />
         <activity android:name=".ui.party.orglife.OrgLifeDetailAty" />
         <activity android:name=".chat.ChatActivity"/>
+        <activity android:name=".ui.chat.ChatGroupDetailsAty" />
+        <activity android:name=".ui.chat.ChatGroupMsgAty" />
+        <activity android:name=".ui.MenuAty" />
+        <activity android:name=".ui.ResidentHomeAty" />
 
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
