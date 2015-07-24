@@ -27,6 +27,8 @@
         <activity android:name=".ui.ann_committee.AnnPublishAty" />
         <activity android:name=".ui.party.orglife.OrgLifeDetailAty" />
         <activity android:name=".chat.ChatActivity"/>
+        <activity android:name=".ui.chat.ChatGroupDetailsAty" />
+        <activity android:name=".ui.chat.ChatGroupMsgAty" />
 
     </application>
 
