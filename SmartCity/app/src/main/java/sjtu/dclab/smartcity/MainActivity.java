@@ -11,8 +11,8 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.dangtuan_aty);
-        startActivity(new Intent(getApplicationContext(),HomeAct.class));
+        //setContentView(R.layout.dangjian_menu);
+        startActivity(new Intent(getApplicationContext(),MenuAct.class));
         finish();
     }
 }

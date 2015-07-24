@@ -33,8 +33,7 @@ public class HomeAct extends Activity {
     private ListView lview;
 
     // 图片数组
-    private int[] arrayPictures = { R.drawable.bg001, R.drawable.bg002,
-            R.drawable.bg003, R.drawable.bg004 };
+
     /*// 要显示的图片在图片数组中的Index
     private int pictureIndex = 0;
     // 左右滑动时手指按下的X坐标
@@ -122,8 +121,8 @@ public class HomeAct extends Activity {
 
 
 
-        // viewgrid
-        icons = new int[] { R.drawable.oriental_window,
+        // viewgrid for committee
+        /*icons = new int[] { R.drawable.oriental_window,
                 R.drawable.payment_record, R.drawable.property_management,
                 R.drawable.public_opinion_square, R.drawable.information,
                 R.drawable.announcement, R.drawable.community_act,
@@ -152,7 +151,7 @@ public class HomeAct extends Activity {
         SimpleAdapter itemsAdapter = new SimpleAdapter(this, serviceItems,
             R.layout.service_item, from,
                 to);
-        serviceGridView.setAdapter(itemsAdapter);
+        serviceGridView.setAdapter(itemsAdapter);*/
         //serviceGridView.setOnItemClickListener(new ServiceItemClickListener());
 
 
@@ -175,6 +174,34 @@ public class HomeAct extends Activity {
                 android.R.anim.slide_in_left));
         imageSwicher.setOutAnimation(AnimationUtils.loadAnimation(this,
                 android.R.anim.slide_out_right));*/
+
+    //grid for residents
+        icons = new int[] { R.drawable.oriental_window,
+                R.drawable.payment_record, R.drawable.property_management,
+                R.drawable.public_opinion_square, R.drawable.information,
+                R.drawable.announcement, R.drawable.community_act,
+                R.drawable.work_log
+        };
+        labels = new String[] { getString(R.string.juwei), getString(R.string.yehui), getString(R.string.wuye),
+                getString(R.string.bianmin), getString(R.string.linli),
+                getString(R.string.minyi), getString(R.string.shequ), getString(R.string.shequhuo),
+                };
+
+        serviceGridView = (GridView) view_home.findViewById(R.id.gview);
+        System.out.println(serviceGridView == null);
+        ArrayList<HashMap<String, Object>> serviceItems = new ArrayList<HashMap<String, Object>>();
+        for (int i = 0; i < labels.length; i++) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("itemIcon", icons[i]);
+            map.put("itemLab", labels[i]);
+            serviceItems.add(map);
+        }
+        String[] from = new String[] { "itemIcon", "itemLab"};
+        int[] to = new int[] { R.id.itemIcon, R.id.itemLab };
+        SimpleAdapter itemsAdapter = new SimpleAdapter(this, serviceItems,
+                R.layout.service_item, from,
+                to);
+        serviceGridView.setAdapter(itemsAdapter);
 
 
     //viewflipper

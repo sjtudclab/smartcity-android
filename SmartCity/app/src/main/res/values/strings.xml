@@ -20,4 +20,18 @@
     <string name="dangtuan_sd">20</string>
     <string name="dangtuan_huodong">活动概要</string>
     <string name="dangtuan_hd">1.XXX.......</string>
+    <string name="juwei">居委会</string>
+    <string name="yehui">业委会</string>
+    <string name="wuye">物业报修</string>
+    <string name="bianmin">便民服务</string>
+    <string name="linli">邻里之间</string>
+    <string name="minyi">民议广场</string>
+    <string name="shequ">社区公告</string>
+    <string name="shequhuo">社区活动</string>
+    <string name="dangyuan_mana">党员管理</string>
+    <string name="dangyuan_org">组织生活</string>
+    <string name="dangyuan_aty">党员活动</string>
+    <string name="dangfei_mana">党费管理</string>
+    <string name="dangjian">党建工作</string>
+
 </resources>

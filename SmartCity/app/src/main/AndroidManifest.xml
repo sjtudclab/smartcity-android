@@ -13,5 +13,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeAct"/>
+        <activity android:name=".MenuAct"/>
     </application>
 </manifest>
