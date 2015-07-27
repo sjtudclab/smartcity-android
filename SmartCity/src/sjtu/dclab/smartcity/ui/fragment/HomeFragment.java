@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.ui.ann_committee.AnnouncementAty;
 import sjtu.dclab.smartcity.ui.party.orglife.OrgLifeAty;
@@ -24,6 +25,8 @@ public class HomeFragment extends Fragment {
     private int labels[] = null;
     private GridView serviceGridView = null;
     private String status;
+
+    private GlobalApp globalApp;
 
     private int[] icons_committee = new int[]{
             R.drawable.oriental_window, R.drawable.payment_record,
@@ -59,6 +62,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        globalApp = (GlobalApp)getActivity().getApplication();
     }
 
     @Override
@@ -72,7 +77,8 @@ public class HomeFragment extends Fragment {
 
         serviceGridView = (GridView) getFragmentManager().findFragmentById(R.id.fragment_home).getView().findViewById(R.id.gv_service);
         ArrayList<HashMap<String, Object>> serviceItems = new ArrayList<HashMap<String, Object>>();
-        status = getActivity().getIntent().getStringExtra(getString(R.string.Status));
+        status = globalApp.getStatus();
+
         if (status.equals(getString(R.string.Committee))){
             icons = icons_committee;
             labels = labels_committee;

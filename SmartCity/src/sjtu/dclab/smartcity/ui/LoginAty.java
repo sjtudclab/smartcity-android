@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import cn.edu.sjtu.se.dclab.common.CommunityApp;
 import cn.edu.sjtu.se.dclab.login.MyLogin;
+import cn.edu.sjtu.se.dclab.talk.MyTalk;
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.entity.Role;
 import sjtu.dclab.smartcity.login.Login;
 import sjtu.dclab.smartcity.transfer.UserTransfer;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Created by Yang on 2015/7/21.
@@ -26,13 +29,16 @@ public class LoginAty extends Activity {
     private final String LOGIN = "LOGIN";
     private CommunityApp app = new CommunityApp("http://202.120.40.111:8080/community-server");
     private MyLogin login = app.getLoginModule();
+    private MyTalk talk = app.getTalkModule();
 
-//    private GlobalApp globalApp;
+    private GlobalApp globalApp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_login);
+
+        globalApp = (GlobalApp) getApplication();
     }
 
     @Override
@@ -62,22 +68,33 @@ public class LoginAty extends Activity {
                 UserTransfer ut = Login.login(username, password);
                 if (ut != null) {
                     Collection<Role> roles = ut.getRoles();
-                    Role[] rolesArray = null;
-                    roles.toArray(rolesArray);
-                    String type = rolesArray[0].getRoleType().getType();
-                    Intent i = new Intent(getApplicationContext(), HomeAty.class);
-                    if (type.equals("居民")) {
-                        i.putExtra(getString(R.string.Status), getString(R.string.Resident));
-                    } else if (type.equals("普通党员")) {
-                        i.putExtra(getString(R.string.Status), getString(R.string.NormalParty));
-                    } else if (type.equals("居委会")) {
-                        i.putExtra(getString(R.string.Status), getString(R.string.Committee));
+                    String type = null;
+
+                    if (!roles.isEmpty()) {
+                        Iterator iterator = roles.iterator();
+                        while (iterator.hasNext()) {
+                            type = ((Role) iterator.next()).getRoleType().getType().toString();
+                        }
+                    } else {
+                        type = getString(R.string.Resident);
+                    }
+
+                    Intent i;
+                    globalApp.setTalk(talk);
+                    globalApp.setStatus(type);
+                    globalApp.setUsername(username);
+
+                    if (type.equals(getString(R.string.NormalParty))) {
+                        i = new Intent(getApplicationContext(), LoginIdentityNormalParty.class);
+                    } else if (type.equals(getString(R.string.Committee))) {
+                        i = new Intent(getApplicationContext(), LoginIdentityCommitteeAty.class);
                     } else {
                         //default value
-                        i.putExtra(getString(R.string.Status), getString(R.string.Resident));
+                        i = new Intent(getApplicationContext(), HomeAty.class);
                     }
                     startActivity(i);
                     finish();
+
                 } else {
                     Dialog alertDialog = new AlertDialog.Builder(
                             LoginAty.this)

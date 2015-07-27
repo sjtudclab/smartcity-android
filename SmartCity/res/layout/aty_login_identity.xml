@@ -13,6 +13,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:id="@+id/identity_btn_juweihui"
             android:text="@string/identity_1"
             android:background="@drawable/corner_id_ch"
             android:layout_margin="20dp"
@@ -29,6 +30,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:id="@+id/identity_btn_yeweihui"
             android:text="@string/identity_2"
             android:background="@drawable/corner_id_ch"
             android:layout_margin="20dp"
@@ -62,6 +64,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:id="@+id/identity_btn_jumin"
             android:text="@string/identity_4"
             android:background="@drawable/corner_id_ch"
             android:layout_margin="20dp"
