@@ -21,12 +21,12 @@ public class LoginIdentityCommitteeAty extends Activity {
 
     }
 
-    /**Buttonµ¥»÷ÊÂ¼þ´¦Àíº¯Êý
+    /**Buttonï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param v
      */
     public void onClickProcess(View v){
         if(v.getId() == R.id.identity_btn_partybuilding){
-            startActivity(new Intent(this, CommitteeHomeAty.class));
+            startActivity(new Intent(this, HomeAty.class));
             finish();
         }
     }

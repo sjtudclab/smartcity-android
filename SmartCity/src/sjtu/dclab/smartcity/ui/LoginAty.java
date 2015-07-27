@@ -10,15 +10,14 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.util.Collection;
-
 import cn.edu.sjtu.se.dclab.common.CommunityApp;
 import cn.edu.sjtu.se.dclab.login.MyLogin;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.entity.Role;
 import sjtu.dclab.smartcity.login.Login;
 import sjtu.dclab.smartcity.transfer.UserTransfer;
+
+import java.util.Collection;
 
 /**
  * Created by Yang on 2015/7/21.
@@ -63,19 +62,22 @@ public class LoginAty extends Activity {
                 UserTransfer ut = Login.login(username, password);
                 if (ut != null) {
                     Collection<Role> roles = ut.getRoles();
-                    Role [] rolesArray = null;
+                    Role[] rolesArray = null;
                     roles.toArray(rolesArray);
                     String type = rolesArray[0].getRoleType().getType();
-                    if(type == "居民"){
-                        startActivity(new Intent(getApplicationContext(), ResidentHomeAty.class));
-                        finish();
-                    }else if(type == "普通党员"){
-                        startActivity(new Intent(getApplicationContext(), LoginIdentityNormalParty.class));
-                        finish();
-                    }else if(type == "居委会"){
-                        startActivity(new Intent(getApplicationContext(), LoginIdentityCommitteeAty.class));
-                        finish();
+                    Intent i = new Intent(getApplicationContext(), HomeAty.class);
+                    if (type.equals("居民")) {
+                        i.putExtra(getString(R.string.Status), getString(R.string.Resident));
+                    } else if (type.equals("普通党员")) {
+                        i.putExtra(getString(R.string.Status), getString(R.string.NormalParty));
+                    } else if (type.equals("居委会")) {
+                        i.putExtra(getString(R.string.Status), getString(R.string.Committee));
+                    } else {
+                        //default value
+                        i.putExtra(getString(R.string.Status), getString(R.string.Resident));
                     }
+                    startActivity(i);
+                    finish();
                 } else {
                     Dialog alertDialog = new AlertDialog.Builder(
                             LoginAty.this)

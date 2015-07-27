@@ -19,6 +19,12 @@
     <string name="login_passwd">密码</string>
     <string name="login_btn">登陆</string>
 
+    <!--status-->
+    <string name="Status">Status</string>
+    <string name="Resident">Resident</string>
+    <string name="Committee">Committee</string>
+    <string name="NormalParty">NormalParty</string>
+
     <!--chat-->
     <string name="talk">talk</string>
     <string name="friend">friend</string>
