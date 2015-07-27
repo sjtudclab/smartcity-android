@@ -1,18 +1,32 @@
 package sjtu.dclab.smartcity.ui;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+//import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.*;
+import android.view.Display;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.fragment.ContactsFragment;
+import sjtu.dclab.smartcity.utility.SerializableMap;
+
 
 /**
  * Created by Yang on 2015/7/6.
@@ -94,6 +108,15 @@ public class HomeAty extends Activity {
         };
         tabPager.setAdapter(pagerAdapter);
 
+            //setting view_contacts
+        view_contacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+
+
         // second page
 //        icons = new int[] { R.drawable.item_icon_repair,
 //                R.drawable.item_icon_return, R.drawable.item_icon_change,
@@ -116,6 +139,59 @@ public class HomeAty extends Activity {
 //        serviceGridView.setOnItemClickListener(new ServiceItemClickListener());
     }
 
+
+    private void getData() {
+        Map<String,Object> questMap = new HashMap<String,Object>();
+        Map<String,Object> groupMap = new HashMap<String,Object>();
+        Map<String,Object> friendMap = new HashMap<String,Object>();
+
+        //simulate data
+        questMap.put("小明",1000001);
+
+        groupMap.put("党建群",1000001);
+        groupMap.put("小区居民群A3",1000002);
+        groupMap.put("我的家庭",1000003);
+        groupMap.put("小区居委会群",1000004);
+        groupMap.put("A5201",1105201);
+
+        friendMap.put("张三",1000001);
+        friendMap.put("李四",1000002);
+        friendMap.put("王五",1000003);
+        friendMap.put("儿子",1000004);
+        friendMap.put("爸爸",1000005);
+        friendMap.put("妈妈",1000006);
+        friendMap.put("老婆",1000007);
+        friendMap.put("居委会主任", 1001001);
+
+        Bundle bundle = new Bundle();
+
+        //set data Serializable
+        SerializableMap sQuestMap = new SerializableMap();
+        sQuestMap.setMap(questMap);
+
+        SerializableMap sGroupMap = new SerializableMap();
+        sGroupMap.setMap(groupMap);
+
+        SerializableMap sFriendMap = new SerializableMap();
+        sFriendMap.setMap(friendMap);
+
+        //put into bundle
+        bundle.putSerializable("questMap", sQuestMap);
+        bundle.putSerializable("groupMap", sGroupMap);
+        bundle.putSerializable("friendMap", sFriendMap);
+
+        //transfer to fragment
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fTransaction = fragmentManager.beginTransaction();
+        ContactsFragment cfragment = new ContactsFragment();
+        cfragment.setArguments(bundle);
+        //fTransaction.addToBackStack(null);
+        //fTransaction.commitAllowingStateLoss();
+        //fTransaction.add(cfragment, "1234567");
+        fTransaction.replace(R.id.fragment_contacts, cfragment);
+        fTransaction.commit();
+
+    }
     /**
      *
      */

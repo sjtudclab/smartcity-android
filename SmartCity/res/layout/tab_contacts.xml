@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -22,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
-                android:text="@string/head_title_home"
+                android:text="@string/btm_title_contacts"
                 android:textColor="#fff"
                 android:textSize="20sp" />
 
@@ -34,8 +35,18 @@
                 android:layout_marginRight="5dp"/>
     </RelativeLayout>
 
-    <FrameLayout android:id="@+id/frame_mailbox"
+    <!-- FrameLayout android:id="@+id/frame_mailbox"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent" /-->
 
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:name = "sjtu.dclab.smartcity.fragment.ContactsFragment"
+        android:id = "@+id/farg_contacts">
+    </fragment>
+    <FrameLayout
+        android:id = "@+id/fragment_contacts"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
 </LinearLayout>

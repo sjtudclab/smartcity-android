@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_infomation_title"
+        android:gravity="center_horizontal"
+        android:textSize="24sp"
+        android:layout_weight="0.05" />
+
+    <ImageView
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.24" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_infomation_name"
+        android:textSize="20sp"
+        android:layout_weight="0.03" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:gravity="center" >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/name_infomation_sex"
+            android:textSize="20sp"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvCodeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/name_infomation_nation"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

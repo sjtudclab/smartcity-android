@@ -31,4 +31,37 @@
     <string name="ann_text">公告正文</string>
     <string name="upload_pic">上传照片</string>
     <string name="upload_video">上传视频</string>
+
+    <!--联系人-->
+    <string name="contacts_quest">好友请求</string>
+    <string name="contacts_friend">好友</string>
+    <string name="contacts_group">群组</string>
+
+    <!--信息卡-->
+    <string name="web_infomation_title">网络信息卡</string>
+    <string name="web_infomation_nickname">昵称</string>
+    <string name="web_infomation_id">社区用户号</string>
+    <string name="web_infomation_namecard">社区二维码</string>
+
+    <string name="name_infomation_title">实名信息卡</string>
+    <string name="name_infomation_name">姓名</string>
+    <string name="name_infomation_sex">性别</string>
+    <string name="name_infomation_nation">民族</string>
+
+    <string name="liveing_infomation_title">居住信息卡</string>
+    <string name="liveing_infomation_name">小区名称</string>
+    <string name="liveing_infomation_address">小区地址</string>
+    <string name="liveing_infomation_mailcode">邮编</string>
+    <string name="liveing_infomation_id">门牌号</string>
+
+    <string name="party_infomation_title">党员信息卡</string>
+    <string name="party_infomation_organization">组织关系</string>
+    <string name="party_infomation_branch">流动支部</string>
+    <string name="party_infomation_job">党内职务</string>
+    <string name="party_infomation_kind">党员类别</string>
+    <string name="party_infomation_membership">党籍状态</string>
+    <string name="party_infomation_joindate">入党日期</string>
+    <string name="party_infomation_confirmationdate">转正日期</string>
+    <string name="party_infomation_inspection">考察人</string>
+    <string name="party_infomation_bookid">入党志愿书编号</string>
 </resources>
