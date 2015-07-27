@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import sjtu.dclab.smartcity.R;
 
@@ -16,16 +15,13 @@ import java.util.ArrayList;
 /**
  * Created by Yang on 2015/7/6.
  */
-public class HomeAty extends FragmentActivity {
+public class CommitteeHomeAty extends FragmentActivity {
     private ViewPager tabPager;
     private ImageView tabCur;
     private ImageView tabHome, tabContacts, tabChat, tabProfile;    //依次为：主页、联系人、聊天、个人主页
 
     private int offset = 0;
     private int curTabIndex = 0;
-
-    private int icons[] = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,40 +175,6 @@ public class HomeAty extends FragmentActivity {
             animation.setFillAfter(true);
             animation.setDuration(150);
             tabCur.startAnimation(animation);
-        }
-
-    }
-
-    class ServiceItemClickListener implements AdapterView.OnItemClickListener {
-
-        @Override
-        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                long arg3) {
-            // TODO Auto-generated method stub
-            switch (icons[arg2]) {
-//                case R.drawable.item_icon_repair:
-//                    startActivity(new Intent(MainPage.this,
-//                            ApplyRepairActivity.class));
-//                    break;
-//
-//                case R.drawable.item_icon_return:
-//                    startActivity(new Intent(MainPage.this,
-//                            ApplyReturnActivity.class));
-//                    break;
-//
-//                case R.drawable.item_icon_change:
-//                    startActivity(new Intent(MainPage.this,
-//                            ApplyChangeActivity.class));
-//                    break;
-//
-//                case R.drawable.item_icon_comp:
-//                    startActivity(new Intent(MainPage.this,
-//                            ApplyComplaintActivity.class));
-//                    break;
-
-                default:
-                    break;
-            }
         }
 
     }

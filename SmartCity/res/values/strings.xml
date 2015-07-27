@@ -19,6 +19,10 @@
     <string name="login_passwd">密码</string>
     <string name="login_btn">登陆</string>
 
+    <!--chat-->
+    <string name="talk">talk</string>
+    <string name="friend">friend</string>
+
     <!--身份选择-->
     <string name="identity_1">居委会工作</string>
     <string name="identity_2">业委会工作</string>
@@ -53,9 +57,13 @@
     <string name="item_time">时间</string>
     <string name="item_num">人数</string>
     <string name="item_pos">地点</string>
+    <string name="item_test">Hello World!</string>
+    <string name="item_me">我</string>
 
     <!--URL 相关-->
     <string name="URLroot">http://202.120.40.111:8080/community-server/rest/</string>
+    <string name="URLChat">http://202.120.40.111:8080/community-server</string>
+    <string name="URLLogin">users/login</string>
 
     <!--xx工作-->
     <string name="minzheng">民政工作</string>
@@ -88,4 +96,39 @@
     <string name="dangtuan_sd">20</string>
     <string name="dangtuan_huodong">活动概要</string>
     <string name="dangtuan_hd">1.XXX.......</string>
+
+    <!--微信-->
+    <string name="group_name">我的家庭</string>
+    <string name="send_msg">发送</string>
+
+    <!--群组详情-->
+    <string name="group_details">详细信息</string>
+    <string name="group_file">资料</string>
+    <string name="group_chat_name">群聊名称：</string>
+    <string name="group_my_nickname">我在本群的昵称：</string>
+    <string name="group_note_up">备注：</string>
+    <string name="group_btn_send_msg">发消息</string>
+    <string name="group_btn_no_bother">消息免打扰</string>
+    <string name="group_btn_stickie">置顶聊天</string>
+    <string name="group_btn_chat_rocord">查找聊天记录</string>
+    <string name="group_btn_del_record">清空聊天记录</string>
+    <string name="group_btn_110">举报群组</string>
+    <string name="group_btn_del_group">删除群组</string>
+
+    <!--Huang adds-->
+    <string name="btm_title_service">服务</string>
+    <string name="btm_title_person">个人</string>
+    <string name="btm_title_more">更多</string>
+    <string name="juwei">居委会</string>
+    <string name="yehui">业委会</string>
+    <string name="wuye">物业报修</string>
+    <string name="linli">邻里之间</string>
+    <string name="minyi">民议广场</string>
+    <string name="shequ">社区公告</string>
+    <string name="shequhuo">社区活动</string>
+    <string name="dangyuan_mana">党员管理</string>
+    <string name="dangyuan_org">组织生活</string>
+    <string name="dangyuan_aty">党员活动</string>
+    <string name="dangfei_mana">党费管理</string>
+    <string name="dangjian">党建工作</string>
 </resources>

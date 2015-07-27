@@ -1,43 +1,48 @@
 package sjtu.dclab.smartcity.ui.fragment;
 
+import android.app.ActivityManager;
 import android.app.Fragment;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
+import cn.edu.sjtu.se.dclab.config.Me;
+import cn.edu.sjtu.se.dclab.entity.Friend;
+import cn.edu.sjtu.se.dclab.talk.MyTalk;
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.*;
 import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.entity.Contact;
-import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.webservice.BasicWebService;
+import sjtu.dclab.smartcity.chat.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Yang on 2015/7/22.
  */
 public class ContactsFragment extends Fragment {
-    final private String TAG = "fragment";
+    final private String TAG = "ContactFragment";
 
-    private List<Contact> contacts;
-
-    private ListView contactList;
-    private ContactAdapter adapter;
-    private ArrayList<HashMap<String,Object>> items = new ArrayList<HashMap<String, Object>>();
+    // 长意的
+    final static String TOKEN = "cn.edu.sjtu.se.dclab.community_chat.ListActivity";
+    //	private static final String SERVICE_CLASSNAME = "cn.edu.sjtu.se.dclab.community_chat.MQTTService";
+    private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
+    private MyTalk talk;
+    private List<Friend> friends = null;
+    private ListView lv;
+    private ArrayList<HashMap<String, Object>> items;
+    private MqttAndroidClient client;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Fragment created");
@@ -45,139 +50,127 @@ public class ContactsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG,"Fragment created");
+        Log.i(TAG, "Fragment created");
         return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        initList();
+        setUpMessageAdapters();
+        startMQTTService();
+    }
+
+    public void initList() {
+        Intent intent = getActivity().getIntent();
+        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
+
         //for network
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        friends = Friends.getFriends();
+        if (friends == null || friends.size() == 0) {
+            friends = (List<Friend>) talk.getFriends();
+            Friends.addFriends(friends);
+        }
 
-        BasicWebService service = new BasicWebService();
-        //TODO friendID需要作为参数的！！！
-        String url = getResources().getString(R.string.URLroot) + "friends/14/relations";
-        String resp = service.sendGetRequest(url, null);
+        lv = (ListView) getFragmentManager()
+                .findFragmentById(R.id.fragment_contact)
+                .getView().findViewById(R.id.lv_contacts);
+        items = new ArrayList<HashMap<String, Object>>();
 
-        contacts = GsonTool.getFriendList(resp);
-        for (Contact friend:contacts){
-            HashMap<String,Object> map = new HashMap<String, Object>();
-            map.put("icon",getResources().getDrawable(R.drawable.ic_launcher));
-            map.put("name",friend.getName());
-            map.put("id",friend.getContactId());
+        for (Friend friend : friends) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("name", friend.getName());
             items.add(map);
         }
 
-        adapter = new ContactAdapter(
-                getActivity().getApplicationContext(),
-                items,
-                R.layout.item_contact,
-                new String[]{
-                        "icon",
-                        "name",
-                        "id"},
-                new int[]{
-                        R.id.contact_icon,
-                        R.id.contact_name,
-                        R.id.contact_id
-                });
-        contactList = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_contacts);
-        contactList.setAdapter(adapter);
-        //contactList.setOnItemClickListener(new ItemOnClickListener());
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(),
+                items, R.layout.list_friend,
+                new String[] { "name" },
+                new int[] { R.id.list_friend_name});
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                intent.putExtra(String.valueOf(R.string.friend), friends.get(arg2));
+                getActivity().startActivity(intent);
+            }
+        });
     }
 
-    class ContactAdapter extends SimpleAdapter {
-        private int[] mTo;
-        private String[] mFrom;
-        private ViewBinder mViewBinder;
-        protected List<? extends Map<String, ?>> mData;
-        private int mResource;
-        private LayoutInflater mInflater;
-
-        public ContactAdapter(Context context,List<? extends Map<String, ?>> data, int resource, String[] from,int[] to) {
-            super(context, data, resource, from, to);
-            mData = data;
-            mResource = resource;
-            mFrom = from;
-            mTo = to;
-            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return createViewFromResource(position, convertView, parent, mResource);
-        }
-
-        private View createViewFromResource(int position, View convertView,
-                                            ViewGroup parent, int resource) {
-            View v;
-            if (convertView == null) {
-                v = mInflater.inflate(resource, parent, false);
-
-                final int[] to = mTo;
-                final int count = to.length;
-                final View[] holder = new View[count];
-
-                for (int i = 0; i < count; i++) {
-                    holder[i] = v.findViewById(to[i]);
-                }
-                v.setTag(holder);
-            } else {
-                v = convertView;
-            }
-            bindView(position, v);
-            return v;
-        }
-
-        private void bindView(int position, View view) {
-            final Map dataSet = mData.get(position);
-            if (dataSet == null) {
-                return;
-            }
-
-            final ViewBinder binder = mViewBinder;
-            final View[] holder = (View[]) view.getTag();
-            final String[] from = mFrom;
-            final int[] to = mTo;
-            final int count = to.length;
-
-            for (int i = 0; i < count; i++) {
-                final View v = holder[i];
-                if (v != null) {
-                    final Object data = dataSet.get(from[i]);
-                    String text = data == null ? "" : data.toString();
-                    if (text == null) {
-                        text = "";
-                    }
-
-                    boolean bound = false;
-                    if (binder != null) {
-                        bound = binder.setViewValue(v, data, text);
-                    }
-
-                    if (!bound) {
-                        //自定义适配器，关键在这里，根据传过来的控件类型以及值的数据类型，执行相应的方法
-                        //可以根据自己需要自行添加if语句。另CheckBox等继承自TextView的控件也会被识别成TextView， 这就需要判断值的类型了
-                        if (v instanceof TextView) {
-                            //如果是TextView控件
-                            setViewText((TextView) v, text);
-                            //调用SimpleAdapter自带的方法，设置文本
-                        } else if (v instanceof ImageView) {//如果是ImageView控件
-                            setViewImage((ImageView) v, (Drawable) data);
-                            //调用下面自己写的方法，设置图片
-                        } else {
-                            throw new IllegalStateException(v.getClass().getName() + " is not a " +
-                                    " view that can be bounds by this SimpleAdapter");
-                        }
-                    }
+    private void setUpMessageAdapters() {
+        if (friends != null) {
+            for (Friend f : friends) {
+                String username = f.getName();
+                MessageAdapter adapter = Messages.loadMessageAdapter(username);
+                if (adapter == null) {
+                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
+                    adapter = new MessageAdapter(getActivity(), R.layout.chat_item,
+                            R.id.messagedetail_row_text, msgEntities);
+                    Messages.storeMessageAdapter(username, adapter);
                 }
             }
         }
+    }
 
-        public void setViewImage(ImageView v, Drawable value) {
-            v.setImageDrawable(value);
+    private void startMQTTService() {
+        MqttConnectOptions conOpt = new MqttConnectOptions();
+
+        client = new MqttAndroidClient(getActivity(), Configurations.uri, Configurations.clientId);
+
+        conOpt.setCleanSession(Configurations.cleanSession);
+        conOpt.setConnectionTimeout(Configurations.timeout);
+        conOpt.setKeepAliveInterval(Configurations.keepalive);
+        conOpt.setUserName(Configurations.username);
+        conOpt.setPassword(Configurations.password.toCharArray());
+
+        client.setCallback(new PushCallback(getActivity()));
+
+        try {
+            client.connect(conOpt, null, new IMqttActionListener() {
+
+                @Override
+                public void onSuccess(IMqttToken arg0) {
+                    try {
+                        client.subscribe(Configurations.subscribeTopicPrefix + Me.id, Configurations.qos);
+                        Publisher.register(client);
+                        startHeartService();
+                    } catch (MqttSecurityException e) {
+                        Log.e(TAG, e.getMessage());
+                        e.printStackTrace();
+                    } catch (MqttException e) {
+                        Log.e(TAG, e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(IMqttToken arg0, Throwable arg1) {
+                    Log.e(TAG+" Failure", arg1.getMessage());
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
         }
+    }
 
+    private void startHeartService() {
+        final Intent intent = new Intent(getActivity(), HeartbeatService.class);
+        getActivity().startService(intent);
+    }
+
+    private boolean serviceIsRunning() {
+        ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager
+                .getRunningServices(Integer.MAX_VALUE)) {
+            if (SERVICE_CLASSNAME.equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

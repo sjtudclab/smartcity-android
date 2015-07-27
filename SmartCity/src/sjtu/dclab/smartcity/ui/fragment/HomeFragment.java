@@ -1,6 +1,7 @@
 package sjtu.dclab.smartcity.ui.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
-import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.ui.ann_committee.AnnouncementAty;
+import sjtu.dclab.smartcity.ui.party.orglife.OrgLifeAty;
 
 /**
  * Created by Yang on 2015/7/22.
@@ -69,7 +73,16 @@ public class HomeFragment extends Fragment {
     class ItemClickListener implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            switch (icons[i]) {
+                case R.drawable.announcement://暂时用来测试组织生活
+                    startActivity(new Intent(getActivity(), OrgLifeAty.class));
+                    break;
+                case  R.drawable.resident_mailbox://暂时用来测试公告管理
+                    startActivity(new Intent(getActivity(), AnnouncementAty.class));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
