@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HomeAty"/>
+        <activity android:name=".ui.CommitteeHomeAty"/>
         <activity android:name=".ui.LoginAty"/>
         <activity android:name=".ui.ann_committee.AnnouncementAty"/>
         <activity android:name=".ui.party.orglife.OrgLifeAty"/>
@@ -35,6 +35,7 @@
         <activity android:name=".ui.chat.ChatGroupMsgAty" />
         <activity android:name=".ui.MenuAty" />
         <activity android:name=".ui.ResidentHomeAty" />
+        <activity android:name=".ui.LoginIdentityNormalParty" />
 
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />

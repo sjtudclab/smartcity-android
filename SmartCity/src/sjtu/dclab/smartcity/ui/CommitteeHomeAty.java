@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Yang on 2015/7/6.
  */
-public class HomeAty extends FragmentActivity {
+public class CommitteeHomeAty extends FragmentActivity {
     private ViewPager tabPager;
     private ImageView tabCur;
     private ImageView tabHome, tabContacts, tabChat, tabProfile;    //依次为：主页、联系人、聊天、个人主页

@@ -26,7 +26,7 @@ public class LoginIdentityCommitteeAty extends Activity {
      */
     public void onClickProcess(View v){
         if(v.getId() == R.id.identity_btn_partybuilding){
-            startActivity(new Intent(this, HomeAty.class));
+            startActivity(new Intent(this, CommitteeHomeAty.class));
             finish();
         }
     }
