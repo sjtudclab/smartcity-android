@@ -21,7 +21,12 @@
         <activity android:name=".ui.LoginAty"/>
         <activity android:name=".ui.AnnouncementAty"/>
         <activity android:name=".ui.OrgLifeAty"/>
-
+        <activity android:name=".ui.MinyiAty"/>
+        <activity android:name=".ui.Minadd"/>
+        <activity android:name=".ui.Minsearch"/>
+        <activity android:name=".ui.BianminAty"/>
+        <activity android:name=".ui.Bianadd"/>
+        <activity android:name=".ui.Biansearch"/>
     </application>
 
 </manifest>
