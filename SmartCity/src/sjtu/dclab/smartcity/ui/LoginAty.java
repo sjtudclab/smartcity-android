@@ -13,11 +13,14 @@ import android.widget.EditText;
 import cn.edu.sjtu.se.dclab.common.CommunityApp;
 import cn.edu.sjtu.se.dclab.login.MyLogin;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.login.Login;
+import sjtu.dclab.smartcity.transfer.UserTransfer;
 
 /**
  * Created by Yang on 2015/7/21.
  */
 public class LoginAty extends Activity {
+    private final String LOGIN = "LOGIN";
     private CommunityApp app = new CommunityApp("http://202.120.40.111:8080/community-server");
     private MyLogin login = app.getLoginModule();
 
@@ -42,7 +45,7 @@ public class LoginAty extends Activity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginAty.this, HomeAty.class);
+                Intent intent = new Intent(LoginAty.this, LoginIdentityCommitteeAty.class);
 
                 intent.putExtra(String.valueOf(R.string.talk), app.getTalkModule());
 
@@ -53,12 +56,9 @@ public class LoginAty extends Activity {
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
 
-                String result = login.doLogin(username, password);
-                if (result.equals("success")) {
-//                    globalApp = (GlobalApp)getApplicationContext();
-//                    globalApp.setUsername(username);
-                    startActivity(intent);
-                    finish();
+                UserTransfer ut = Login.login(username, password);
+                if (ut != null) {
+
                 } else {
                     Dialog alertDialog = new AlertDialog.Builder(
                             LoginAty.this)
