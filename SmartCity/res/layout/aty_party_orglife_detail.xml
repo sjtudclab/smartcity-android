@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffe2e2e2"
+        android:layout_weight="7">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/org_life_details"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="25dp" />
+
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#000000"  />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25dp"
+            android:text="@string/org_life_title"
+            android:id="@+id/textView1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#000000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:text="@string/item_time"
+            android:id="@+id/textView2"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#ff1c1c1c"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:text="@string/item_pos"
+            android:id="@+id/textView3"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#ff1c1c1c"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:text="@string/item_num"
+            android:id="@+id/textView4"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#ff1c1c1c"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="@string/org_life_summary"
+            android:id="@+id/textView5"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text="@string/ann_text"
+            android:id="@+id/textView6"
+            android:textSize="15dp"
+            android:layout_marginLeft="25sp"
+            android:layout_marginRight="25sp"
+            android:layout_marginTop="15sp" />
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/org_life_sign"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
