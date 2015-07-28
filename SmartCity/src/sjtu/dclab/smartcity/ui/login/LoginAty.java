@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.login;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,7 +16,7 @@ import cn.edu.sjtu.se.dclab.talk.MyTalk;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.entity.Role;
-import sjtu.dclab.smartcity.login.Login;
+import sjtu.dclab.smartcity.ui.HomeAty;
 import sjtu.dclab.smartcity.transfer.UserTransfer;
 
 import java.util.Collection;

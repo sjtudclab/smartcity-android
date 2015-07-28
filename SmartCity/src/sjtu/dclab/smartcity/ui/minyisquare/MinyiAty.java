@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.minyisquare;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.login;
 
 import android.app.Activity;
 import android.os.Bundle;

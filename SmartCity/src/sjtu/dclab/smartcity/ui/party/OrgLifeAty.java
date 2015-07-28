@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui.party.orglife;
+package sjtu.dclab.smartcity.ui.party;
 
 import android.app.Activity;
 import android.content.Intent;
