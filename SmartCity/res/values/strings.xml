@@ -102,6 +102,27 @@
     <string name="dangtuan_sd">20</string>
     <string name="dangtuan_huodong">活动概要</string>
     <string name="dangtuan_hd">1.XXX.......</string>
+    <string name="org_relationship">组织关系</string>
+    <string name="org_rel_name">姓名：李明</string>
+    <string name="org_rel_date">转出日期：2515-03-01</string>
+    <string name="org_rel_type">转出类别：</string>
+    <string name="org_rel_destination">转出去向：</string>
+    <string name="org_rel_code">接收单位党组织代码：</string>
+    <string name="org_rel_com">接收单位党组织名称：</string>
+    <string name="commit_info">提交转出信息</string>
+    <string name="pty_session_checkout">季度考察</string>
+    <string name="thought_report">思想汇报</string>
+    <string name="thought_report_comment">撰写评论</string>
+    <string name="thought_report_no">不通过</string>
+    <string name="thought_report_yes">通过</string>
+    <string name="personal_info_name">李小明</string>
+    <string name="personal_info_gender">男</string>
+    <string name="personal_info_num">社区用户号：XXXXXX</string>
+    <string name="personal_info_real_name">实名信息</string>
+    <string name="personal_info_living">居住信息</string>
+    <string name="personal_info_party">党员信息</string>
+    <string name="policy_statement_detail">政策/说明详情</string>
+
 
     <!--微信-->
     <string name="group_name">我的家庭</string>

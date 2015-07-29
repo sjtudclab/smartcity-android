@@ -17,7 +17,7 @@ import java.util.Map;
 import sjtu.dclab.smartcity.R;
 
 /**
- * Created by ¹Â¶ÀµÄ¹Û²âÕß on 2015/7/22.
+ * Created by theGODofws on 2015/7/22.
  */
 public class AnnouncementAty extends Activity{
     private ListView list_View;
