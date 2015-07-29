@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 import cn.edu.sjtu.se.dclab.config.Me;
 import cn.edu.sjtu.se.dclab.entity.Friend;
 import cn.edu.sjtu.se.dclab.entity.Message;
@@ -17,77 +18,81 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ChatActivity extends Activity {
-	// private static final String TAG = ChatActivity.class.getSimpleName();;
+    // private static final String TAG = ChatActivity.class.getSimpleName();;
 
-	private ChatActivity chat = this;
-	
-	private ListView listView;
+    private ChatActivity chat = this;
 
-	private MessageAdapter adapter;
+    private ListView listView;
 
-	private Button messageButton;
+    private MessageAdapter adapter;
 
-	private EditText messageText;
+    private Button messageButton;
 
-	private Friend friend;
+    private EditText messageText;
 
-	public void onCreate(Bundle savedInstanceState) {
-		// Log.v(TAG, "onCreate >>>>>>");
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chat);
+    private Friend friend;
 
-	}
-	
-	@Override
-	protected void onStart() {
-		super.onStart();
-		
-		listView = (ListView) findViewById(R.id.chat_list);
+    public void onCreate(Bundle savedInstanceState) {
+        // Log.v(TAG, "onCreate >>>>>>");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat);
 
-		Intent intent = getIntent();
-		friend = (Friend) intent.getSerializableExtra(String
-				.valueOf(R.string.friend));
-		adapter = Messages.loadMessageAdapter(friend.getName());
+    }
 
-		// 接收消息
-		listView.setAdapter(adapter);
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-		// 发送消息
-		messageButton = (Button) findViewById(R.id.MessageButton);
-		messageText = (EditText) findViewById(R.id.MessageText);
-		messageButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String content = getText();
-				Message msg = new Message();
-				msg.setContent(content);
-				msg.setFrom(Me.id);
-				msg.setTo(friend.getId());
-				msg.setName(friend.getName());
-				msg.setType(1);
-				Publisher.publishMessage(msg);
-				Messages.storeMessageEntity(friend.getName(),
-						new MessageEntity(Me.username, content), true);
-				messageText.setText("");
-			}
-		});
-	}
+        listView = (ListView) findViewById(R.id.chat_list);
 
-	private String getText() {
-		return messageText.getText().toString();
-	}
+        Intent intent = getIntent();
+        friend = (Friend) intent.getSerializableExtra(String
+                .valueOf(R.string.friend));
+        adapter = Messages.loadMessageAdapter(friend.getName());
 
-	private class ChatListener implements PropertyChangeListener{
-		@Override
-		public void propertyChange(PropertyChangeEvent event) {
-			chat.runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					adapter.notifyDataSetChanged();
-				}
-			});
-		}
-		
-	}
-	
+        // 接收消息
+        listView.setAdapter(adapter);
+
+        // 发送消息
+        messageButton = (Button) findViewById(R.id.MessageButton);
+        messageText = (EditText) findViewById(R.id.MessageText);
+        messageButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = getText();
+                if (content.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "请输入内容", Toast.LENGTH_SHORT).show();
+                } else {
+                    Message msg = new Message();
+                    msg.setContent(content);
+                    msg.setFrom(Me.id);
+                    msg.setTo(friend.getId());
+                    msg.setName(friend.getName());
+                    msg.setType(1);
+                    Publisher.publishMessage(msg);
+                    Messages.storeMessageEntity(friend.getName(),
+                            new MessageEntity(Me.username, content), true);
+                    messageText.setText("");
+                }
+            }
+        });
+    }
+
+    private String getText() {
+        return messageText.getText().toString();
+    }
+
+    private class ChatListener implements PropertyChangeListener {
+        @Override
+        public void propertyChange(PropertyChangeEvent event) {
+            chat.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }
+
+    }
+
 }

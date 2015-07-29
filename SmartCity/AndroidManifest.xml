@@ -25,8 +25,6 @@
         <activity android:name=".ui.HomeAty"/>
         <activity android:name=".ui.LoginAty"/>
 
-        <activity android:name=".ui.AnnouncementAty"/>
-        <activity android:name=".ui.OrgLifeAty"/>
         <activity android:name=".ui.MinyiAty"/>
         <activity android:name=".ui.Minadd"/>
         <activity android:name=".ui.Minsearch"/>
@@ -49,7 +47,6 @@
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".chat.HeartbeatService" />
-
 
     </application>
 
