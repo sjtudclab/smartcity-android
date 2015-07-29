@@ -2,6 +2,7 @@ package sjtu.dclab.smartcity.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.ui.minyisquare.Minsearch;
+import sjtu.dclab.smartcity.ui.yuqing.YqDSH;
+import sjtu.dclab.smartcity.ui.yuqing.YuqingAty;
 
 /**
  * 
@@ -32,26 +37,10 @@ public class MenuPopupWindow extends PopupWindow {
 		this.setFocusable(true);
 		this.setOutsideTouchable(true);
 		this.update();
-
 		ColorDrawable dw = new ColorDrawable(0000000000);
 		this.setBackgroundDrawable(dw);
 		this.setAnimationStyle(R.style.AnimationPreview);
-		LinearLayout addTaskLayout = (LinearLayout) conentView.findViewById(R.id.add_task_layout);
-		LinearLayout teamMemberLayout = (LinearLayout) conentView.findViewById(R.id.team_member_layout);
-		addTaskLayout.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View arg0) {
-				MenuPopupWindow.this.dismiss();
-			}
-		});
-		teamMemberLayout.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				MenuPopupWindow.this.dismiss();
-			}
-		});
 	}
 
 	/**

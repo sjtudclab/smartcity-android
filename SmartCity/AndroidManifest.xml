@@ -22,30 +22,33 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CommitteeHomeAty"/>
-        <activity android:name=".ui.LoginAty"/>
+        <activity android:name=".ui.HomeAty"/>
+        <activity android:name=".ui.login.LoginAty"/>
 
-        <activity android:name=".ui.AnnouncementAty"/>
-        <activity android:name=".ui.OrgLifeAty"/>
-        <activity android:name=".ui.MinyiAty"/>
-        <activity android:name=".ui.Minadd"/>
-        <activity android:name=".ui.Minsearch"/>
-        <activity android:name=".ui.BianminAty"/>
-        <activity android:name=".ui.Bianadd"/>
-        <activity android:name=".ui.Biansearch"/>
+        <activity android:name=".ui.minyisquare.MinyiAty"/>
+        <activity android:name=".ui.minyisquare.Minadd"/>
+        <activity android:name=".ui.minyisquare.Minsearch"/>
+        <activity android:name=".ui.bianminservice.BianminAty"/>
+        <activity android:name=".ui.bianminservice.Bianadd"/>
+        <activity android:name=".ui.bianminservice.Biansearch"/>
+
+        <activity android:name=".ui.yuqing.YuqingAty"/>
+        <activity android:name=".ui.yuqing.YqDSH"/>
+        <activity android:name=".ui.yuqing.YqYPB"/>
+        <activity android:name=".ui.yuqing.Yqdetail"/>
+
 
         <activity android:name=".ui.ann_committee.AnnouncementAty"/>
-        <activity android:name=".ui.party.orglife.OrgLifeAty"/>
-        <activity android:name=".ui.LoginIdentityCommitteeAty" />
+        <activity android:name=".ui.party.OrgLifeAty"/>
+        <activity android:name=".ui.login.LoginIdentityCommitteeAty" />
         <activity android:name=".ui.ann_committee.AnnDetailAty" />
         <activity android:name=".ui.ann_committee.AnnPublishAty" />
-        <activity android:name=".ui.party.orglife.OrgLifeDetailAty" />
+        <activity android:name=".ui.party.OrgLifeDetailAty" />
         <activity android:name=".chat.ChatActivity"/>
         <activity android:name=".ui.chat.ChatGroupDetailsAty" />
         <activity android:name=".ui.chat.ChatGroupMsgAty" />
         <activity android:name=".ui.MenuAty" />
-        <activity android:name=".ui.ResidentHomeAty" />
-        <activity android:name=".ui.LoginIdentityNormalParty" />
+        <activity android:name=".ui.login.LoginIdentityNormalParty" />
 
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
