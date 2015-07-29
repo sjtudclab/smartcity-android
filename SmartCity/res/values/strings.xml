@@ -64,4 +64,32 @@
     <string name="party_infomation_confirmationdate">转正日期</string>
     <string name="party_infomation_inspection">考察人</string>
     <string name="party_infomation_bookid">入党志愿书编号</string>
+
+    <string name="property_repair">物业报修</string>
+    <string name="repair_check_head">查看报修</string>
+    <string name="repair_add_head">添加报修</string>
+    <string name="repair_assess_head">报修评价</string>
+
+    <string name="repair_add_name">维修项目</string>
+    <string name="repair_add_address">维修地址</string>
+    <string name="repair_add_customer_name">客户姓名</string>
+    <string name="repair_add_telephone">联系电话</string>
+    <string name="repair_add_number">人员数量</string>
+    <string name="repair_decide">确定</string>
+    <string name="repair_cancel">取消</string>
+    <string name="repair_assess_name">维修项目</string>
+    <string name="repair_assess_rate">满意度</string>
+    <string name="repair_assess_inst">说明</string>
+
+    <string name="civil_affair_home">民政工作</string>
+    <string name="civil_affair_edit_report">编辑述职报告</string>
+    <string name="civil_affair_report_title">标题</string>
+    <string name="civil_affair_report_content">内容</string>
+    <string name="civil_affair_report_photo">上传照片</string>
+    <string name="civil_affair_report_video">上传视频</string>
+    <string name="civil_affair_report_public">发布报告</string>
+
+    <string name="person_info_home">个人信息</string>
+    <string name="person_info_edit">设置</string>
+
 </resources>

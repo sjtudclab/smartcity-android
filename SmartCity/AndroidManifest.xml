@@ -20,7 +20,19 @@
         <activity android:name=".ui.HomeAty"/>
         <activity android:name=".RESTTestAty" />
         <activity android:name=".ui.LoginAty"/>
+        <activity android:name=".ui.PropertyRepairAty"/>
+        <activity android:name=".ui.PropertyRepairCheckAty"/>
+        <activity android:name=".ui.PropertyRepairAddAty"/>
+        <activity android:name=".ui.PropertyRepairAssessAty"/>
 
+        <activity android:name=".ui.NameInformationActivity"/>
+        <activity android:name=".ui.NetInformationActivity"/>
+        <activity android:name=".ui.PartyInformationActivity"/>
+        <activity android:name=".ui.PartyPersonInfomation"/>
+        <activity android:name=".ui.CivilAffairHomeAty"/>
+        <activity android:name=".ui.CivilAffairEditAty"/>
+        <activity android:name=".ui.PersonInfoHomeAty"/>
+        <activity android:name=".ui.PersonInfoEditAty"/>
     </application>
 
 </manifest>

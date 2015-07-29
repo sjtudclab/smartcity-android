@@ -5,10 +5,13 @@ import android.os.Bundle;
 
 import sjtu.dclab.smartcity.R;
 
-public class PartyPersonInfomation extends Activity {
+/**
+ * Created by hp on 2015/7/29.
+ */
+public class PropertyRepairAssessAty extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.party_person_information);
+        setContentView(R.layout.property_repair_assess);
     }
 }
