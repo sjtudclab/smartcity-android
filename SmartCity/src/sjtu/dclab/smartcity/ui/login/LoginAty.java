@@ -108,7 +108,7 @@ public class LoginAty extends Activity {
                                         public void onClick(
                                                 DialogInterface dialog,
                                                 int which) {
-                                            name.setText("resident_test3");
+                                            name.setText("zhangzhizhong");
                                             passwd.setText("admin");
                                         }
                                     }).create();
