@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.chat;
+package sjtu.dclab.smartcity.ui.chat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,10 @@ import cn.edu.sjtu.se.dclab.config.Me;
 import cn.edu.sjtu.se.dclab.entity.Friend;
 import cn.edu.sjtu.se.dclab.entity.Message;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.chat.MessageAdapter;
+import sjtu.dclab.smartcity.chat.MessageEntity;
+import sjtu.dclab.smartcity.chat.Messages;
+import sjtu.dclab.smartcity.chat.Publisher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

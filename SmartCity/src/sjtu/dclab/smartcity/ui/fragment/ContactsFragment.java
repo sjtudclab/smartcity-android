@@ -21,6 +21,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.*;
+import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
