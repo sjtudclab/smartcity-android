@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffe2e2e2"
+        android:layout_weight="0">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="查找换物信息"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="25dp" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0">
+
+        <EditText
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:hint="请输入关键字" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="search"
+            android:id="@+id/button"
+            android:layout_marginLeft="30dp" />
+    </LinearLayout>
+
+</LinearLayout>
