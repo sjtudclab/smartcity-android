@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.view.View;
 
 import android.widget.Button;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.ui.HomeAty;
 
 /**
  * LoginIdentityCommitteeAty

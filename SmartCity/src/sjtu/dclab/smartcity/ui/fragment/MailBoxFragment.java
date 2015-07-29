@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui;
+package sjtu.dclab.smartcity.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;

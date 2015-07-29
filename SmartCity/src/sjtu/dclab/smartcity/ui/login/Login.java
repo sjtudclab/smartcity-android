@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.login;
+package sjtu.dclab.smartcity.ui.login;
 
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.UserTransfer;

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffe2e2e2"
+        android:layout_weight="7">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/hr_change"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="25dp" />
+
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#000000"  />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/hr_details"
+            android:id="@+id/textView1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#000000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="@string/hr_name"
+            android:id="@+id/textView2"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#ff1c1c1c"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="@string/hr_pos_now"
+            android:id="@+id/textView3"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#ff1c1c1c"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/hr_change_pos"
+            android:id="@+id/textView4"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#ff1c1c1c"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_dzzsj"
+                    android:id="@+id/checkBox" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_wszr"
+                    android:id="@+id/checkBox2"
+                    android:checked="false" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_jwhzr"
+                    android:id="@+id/checkBox3" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_wjzr"
+                    android:id="@+id/checkBox4" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_mzllzr"
+                    android:id="@+id/checkBox5" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_jyyzy"
+                    android:id="@+id/checkBox6" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_zbzr"
+                    android:id="@+id/checkBox7" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_sqmj"
+                    android:id="@+id/checkBox8" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_tjzr"
+                    android:id="@+id/checkBox9" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_syyzy"
+                    android:id="@+id/checkBox10" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_jszr"
+                    android:id="@+id/checkBox11" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_sqba"
+                    android:id="@+id/checkBox12" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_fdzr"
+                    android:id="@+id/checkBox13" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hr_cb_ywhwy"
+                    android:id="@+id/checkBox14" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hr_change_confirm"
+            android:id="@+id/button9"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="20sp"
+            android:background="@drawable/corner_pub_ann"
+            android:layout_margin="10dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

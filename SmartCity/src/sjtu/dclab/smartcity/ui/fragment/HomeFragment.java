@@ -12,7 +12,7 @@ import android.widget.SimpleAdapter;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.ui.ann_committee.AnnouncementAty;
-import sjtu.dclab.smartcity.ui.party.orglife.OrgLifeAty;
+import sjtu.dclab.smartcity.ui.party.OrgLifeAty;
 
 import java.util.ArrayList;
 import java.util.HashMap;

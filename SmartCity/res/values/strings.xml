@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartCity</string>
 
@@ -120,6 +120,48 @@
     <string name="group_btn_del_record">清空聊天记录</string>
     <string name="group_btn_110">举报群组</string>
     <string name="group_btn_del_group">删除群组</string>
+
+    <!--人事模块-->
+    <string name="hr_info">人事信息</string>
+    <string name="hr_name_test">小明</string>
+    <string name="hr_pos_test">工会主席</string>
+    <string name="hr_blank"> </string>
+    <string name="hr_cadre_info">干部信息</string>
+    <string name="hr_details">详细信息</string>
+    <string name="hr_name">姓名：</string>
+    <string name="hr_pos">职务：</string>
+    <string name="hr_politic_face">政治面貌：</string>
+    <string name="hr_phone_num">联系方式：</string>
+    <string name="hr_addr">居住地址：</string>
+    <string name="hr_change">人事调整</string>
+    <string name="hr_pos_now">当前职务：</string>
+    <string name="hr_change_pos">调整职务</string>
+    <string name="hr_cb_dzzsj">党总支书记</string>
+    <string name="hr_cb_wszr">卫生主任</string>
+    <string name="hr_cb_jwhzr">居委会主任</string>
+    <string name="hr_cb_wjzr">文教主任</string>
+    <string name="hr_cb_mzllzr">民政老龄主任</string>
+    <string name="hr_cb_jyyzy">就业援助员</string>
+    <string name="hr_cb_zbzr">治保主任</string>
+    <string name="hr_cb_sqmj">社区民警</string>
+    <string name="hr_cb_tjzr">调解主任</string>
+    <string name="hr_cb_jszr">计生主任</string>
+    <string name="hr_cb_sqba">社区保安</string>
+    <string name="hr_cb_fdzr">妇代主任</string>
+    <string name="hr_cb_ywhwy">业委会委员</string>
+    <string name="hr_cb_syyzy">失业援助员</string>
+    <string name="hr_change_confirm">确认</string>
+
+    <!--民意投票-->
+    <string name="vote_yes">赞成</string>
+    <string name="vote_no">反对</string>
+    <string name="vote_title">投票标题</string>
+    <string name="vote_starter">发起人：</string>
+    <string name="vote_start_time">起始时间</string>
+    <string name="vote_end_time">结束时间</string>
+    <string name="vote">民意投票</string>
+    <string name="vote_list">投票列表</string>
+    <string name="vote_start">发起投票</string>
 
     <!--Huang adds-->
     <string name="btm_title_service">服务</string>

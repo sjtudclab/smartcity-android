@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import sjtu.dclab.smartcity.ui.login.LoginAty;
+
 public class MainAty extends Activity {
     /**
      * Called when the activity is first created.
