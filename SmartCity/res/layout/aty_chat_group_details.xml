@@ -53,7 +53,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:id="@+id/messagegedetail_rov_icon1"
-                    android:background="@drawable/ic_launcher"
+                    android:background="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -76,7 +76,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:id="@+id/messagegedetail_rov_icon2"
-                    android:background="@drawable/ic_launcher"
+                    android:background="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -99,7 +99,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:id="@+id/messagegedetail_rov_icon3"
-                    android:background="@drawable/ic_launcher"
+                    android:background="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -122,7 +122,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:id="@+id/messagegedetail_rov_icon4"
-                    android:background="@drawable/ic_launcher"
+                    android:background="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -147,7 +147,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:id="@+id/messagegedetail_rov_icon5"
-                    android:background="@drawable/ic_launcher"
+                    android:background="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
