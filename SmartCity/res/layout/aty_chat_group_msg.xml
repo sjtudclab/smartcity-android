@@ -60,7 +60,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:id="@+id/imageView"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -102,7 +102,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:id="@+id/messagegedetail_rov_icon"
-                    android:background="@drawable/ic_launcher"
+                    android:background="@drawable/portrait"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView

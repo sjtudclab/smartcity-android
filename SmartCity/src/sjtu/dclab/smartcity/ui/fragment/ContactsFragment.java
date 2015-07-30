@@ -18,8 +18,10 @@ import cn.edu.sjtu.se.dclab.entity.Friend;
 import cn.edu.sjtu.se.dclab.talk.MyTalk;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*;
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.*;
+import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,7 +66,8 @@ public class ContactsFragment extends Fragment {
 
     public void initList() {
         Intent intent = getActivity().getIntent();
-        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
+//        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
+        talk = ((GlobalApp)getActivity().getApplication()).getTalk();
 
         //for network
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="邻里之间"
+        android:id="@+id/textView42"
+        android:textIsSelectable="false"
+        android:textSize="30dp"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#000000"  />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="right">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/editText8"
+            android:hint="楼号"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="号楼"
+            android:id="@+id/textView43"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/editText9"
+            android:hint="层数"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="层"
+            android:id="@+id/textView44"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/editText10"
+            android:hint="单元号"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="单元"
+            android:id="@+id/textView45"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="search"
+            android:id="@+id/search_linli"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView4"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

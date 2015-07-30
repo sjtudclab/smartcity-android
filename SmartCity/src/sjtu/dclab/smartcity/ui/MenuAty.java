@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-
 import sjtu.dclab.smartcity.R;
 
 /**
@@ -36,7 +35,15 @@ public class MenuAty extends Activity implements OnClickListener {
             case R.id.btnSet:
                 MenuPopupWindow menuPopupWindow = new MenuPopupWindow(MenuAty.this);
                 menuPopupWindow.showPopupWindow(setButton);
-                break;
+//                menuPopupWindow.getContentView().findViewById(R.id.add_task_layout).setOnClickListener(
+//                        new OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                startActivity(new Intent(getApplicationContext(),LoginAty.class));
+//                            }
+//                        }
+//                );
+//                break;
             default:
                 break;
         }
