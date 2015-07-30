@@ -52,7 +52,18 @@
         <activity android:name=".ui.chat.ChatGroupDetailsAty" />
         <activity android:name=".ui.chat.ChatGroupMsgAty" />
         <activity android:name=".ui.chat.ChatActivity"/>
-        
+
+        <activity android:name=".ui.minzheng.CivilAffairEditAty"/>
+        <activity android:name=".ui.minzheng.CivilAffairHomeAty"/>
+
+        <activity android:name=".ui.infocard.NameInformationActivity"/>
+        <activity android:name=".ui.infocard.NetInformationActivity"/>
+        <activity android:name=".ui.infocard.PartyInformationActivity"/>
+        <activity android:name=".ui.infocard.PartyPersonInfomation"/>
+        <activity android:name=".ui.infocard.PersonInfoEditAty"/>
+        <activity android:name=".ui.infocard.PersonInfoHomeAty"/>
+        <activity android:name=".ui.infocard.LivingInformationActivity"/>
+
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".chat.HeartbeatService" />
