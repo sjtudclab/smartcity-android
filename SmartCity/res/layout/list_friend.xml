@@ -20,6 +20,7 @@
         android:layout_weight="13"
         android:gravity="left|center_horizontal"
         android:text="Large Text"
+        android:textColor="#0E0E0E"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

@@ -14,7 +14,7 @@ public class CitizenResident {
 
     @Override
     public String toString() {
-        return "CitizenResident{}";
+        return "{" + "name=" + name + ", id=" + id + ", apartment=" + apartment + "}";
     }
 
     public int getId() {

@@ -10,17 +10,18 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.Collection;
+import java.util.Iterator;
+
 import cn.edu.sjtu.se.dclab.common.CommunityApp;
 import cn.edu.sjtu.se.dclab.login.MyLogin;
 import cn.edu.sjtu.se.dclab.talk.MyTalk;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.entity.Role;
-import sjtu.dclab.smartcity.ui.HomeAty;
 import sjtu.dclab.smartcity.transfer.UserTransfer;
-
-import java.util.Collection;
-import java.util.Iterator;
+import sjtu.dclab.smartcity.ui.HomeAty;
 
 /**
  * Created by Yang on 2015/7/21.
@@ -48,7 +49,7 @@ public class LoginAty extends Activity {
         final EditText name = (EditText) findViewById(R.id.login_name_edittext);
         final EditText passwd = (EditText) findViewById(R.id.login_passwd_edittext);
 
-        name.setText("resident_test3");
+        name.setText("zhangzhizhong");
         passwd.setText("admin");
 
         loginBtn.setOnClickListener(new View.OnClickListener() {

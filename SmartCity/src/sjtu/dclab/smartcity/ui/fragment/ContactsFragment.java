@@ -11,21 +11,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import cn.edu.sjtu.se.dclab.config.Me;
-import cn.edu.sjtu.se.dclab.entity.Friend;
-import cn.edu.sjtu.se.dclab.talk.MyTalk;
+
 import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.*;
-import sjtu.dclab.smartcity.GlobalApp;
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.chat.*;
-import sjtu.dclab.smartcity.ui.chat.ChatActivity;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import cn.edu.sjtu.se.dclab.config.Me;
+import cn.edu.sjtu.se.dclab.entity.Friend;
+import cn.edu.sjtu.se.dclab.talk.MyTalk;
+import sjtu.dclab.smartcity.GlobalApp;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.chat.Configurations;
+import sjtu.dclab.smartcity.chat.Friends;
+import sjtu.dclab.smartcity.chat.HeartbeatService;
+import sjtu.dclab.smartcity.chat.MessageAdapter;
+import sjtu.dclab.smartcity.chat.MessageEntity;
+import sjtu.dclab.smartcity.chat.Messages;
+import sjtu.dclab.smartcity.chat.Publisher;
+import sjtu.dclab.smartcity.chat.PushCallback;
+import sjtu.dclab.smartcity.ui.chat.AddContactsAty;
+import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 /**
  * Created by Yang on 2015/7/22.
@@ -39,7 +54,9 @@ public class ContactsFragment extends Fragment {
     private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
     private MyTalk talk;
     private List<Friend> friends = null;
+    private View view;
     private ListView lv;
+    private ImageButton ibtnAddContact;
     private ArrayList<HashMap<String, Object>> items;
     private MqttAndroidClient client;
 
@@ -53,12 +70,23 @@ public class ContactsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i(TAG, "Fragment created");
-        return inflater.inflate(R.layout.fragment_contacts, container, false);
+        view = inflater.inflate(R.layout.fragment_contacts, container, false);
+
+        ibtnAddContact = (ImageButton) view.findViewById(R.id.ibtn_addNewContacts);
+        ibtnAddContact.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AddContactsAty.class));
+            }
+        });
+
+        return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         initList();
         setUpMessageAdapters();
         startMQTTService();
