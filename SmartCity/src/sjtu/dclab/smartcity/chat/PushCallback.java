@@ -13,6 +13,7 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 public class PushCallback implements MqttCallback {
 
