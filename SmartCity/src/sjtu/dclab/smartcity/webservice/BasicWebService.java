@@ -8,11 +8,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -103,6 +105,34 @@ public class BasicWebService {
             e.printStackTrace();
         }
 //        return Message.NETWORK_FAIL;
+        return ERRORMSG;
+    }
+
+    // TODO: TEST
+    public String sendPutRequest(String url, Map<String, String> args) {
+        try {
+            HttpPut httpPut = new HttpPut(url);
+            if (args != null) {
+                List<BasicNameValuePair> putData = new ArrayList<BasicNameValuePair>();
+                for (Map.Entry<String, String> entry : args.entrySet()) {
+                    putData.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+                }
+                UrlEncodedFormEntity entity = new UrlEncodedFormEntity(putData, HTTP.UTF_8);
+                httpPut.setEntity(entity);
+            }
+            HttpResponse response = httpclient.execute(httpPut);
+            HttpEntity entity = response.getEntity();
+            if (entity == null) {
+                return null;
+            }
+            String result = EntityUtils.toString(entity, HTTP.UTF_8);
+            return result;
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            return ERRORMSG;
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
         return ERRORMSG;
     }
 }
