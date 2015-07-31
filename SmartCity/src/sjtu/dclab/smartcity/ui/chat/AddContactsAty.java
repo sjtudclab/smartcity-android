@@ -74,12 +74,13 @@ public class AddContactsAty extends Activity {
             for (FriendApplication friendApplication : friendApplications) {
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("name", friendApplication.getName());
+                map.put("applicationId", friendApplication.getApplicationId());
                 itemsRequest.add(map);
             }
         }
         if(itemsRequest != null && itemsRequest.size() != 0){
             final SimpleAdapter adapter = new SimpleAdapter(getApplication(), itemsRequest, R.layout.list_friend,
-                    new String[] { "name" }, new int[] { R.id.list_friend_name});
+                    new String[] { "name", "applicationId" }, new int[] { R.id.list_friend_name});
             lvRequest.setAdapter(adapter);
             lvRequest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -87,9 +88,13 @@ public class AddContactsAty extends Activity {
                     Adapter curAdapter = parent.getAdapter();
                     HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(position);
                     String name = map.get("name");
-                    Log.i(TAG, name);
+                    String applicationId = map.get("applicationId");
+                    Log.i(TAG, "name=" + name + ", applicationId=" + applicationId);
                     //TODO 此处发送PUT请求接收好友请求
-
+                    String curUserId = "3";//TODO 测试阶段
+                    //完整示例http://202.120.40.111:8080/community-server/rest/friends/3/applications/223
+                    String result = new BasicWebService().sendPutRequest(URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + applicationId, null);
+                    Toast.makeText(getApplication(), "确认添加好友结果：" + result, Toast.LENGTH_SHORT).show();
                 }
             });
         }
