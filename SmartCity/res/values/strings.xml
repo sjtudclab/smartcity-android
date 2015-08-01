@@ -90,15 +90,15 @@
     <string name="zhoubian">周边设施</string>
 
     <!--党团信息-->
-    <string name="dangtuan_aty">党建生活详情</string>
+    <string name="dangtuan_aty">党员生活详情</string>
     <string name="dangtuan_title">关于建设智慧社区</string>
     <string name="dangtuan_time">时间：</string>
     <string name="dangtuan_tm">1987-01-01</string>
-    <string name="dangtuan_didian">地点</string>
+    <string name="dangtuan_didian">地点：</string>
     <string name="dangtuan_dd">中山公园</string>
-    <string name="dangtuan_yingdao">应到人数</string>
+    <string name="dangtuan_yingdao">应到人数：</string>
     <string name="dangtuan_yd">20</string>
-    <string name="dangtuan_shidao">实到人数</string>
+    <string name="dangtuan_shidao">实到人数：</string>
     <string name="dangtuan_sd">20</string>
     <string name="dangtuan_huodong">活动概要</string>
     <string name="dangtuan_hd">1.XXX.......</string>
@@ -122,6 +122,23 @@
     <string name="personal_info_living">居住信息</string>
     <string name="personal_info_party">党员信息</string>
     <string name="policy_statement_detail">政策/说明详情</string>
+    
+    <!--思想汇报-->
+    <string name="thought_report_list">思想汇报</string>
+    <string name="thought_report_statement">思想汇报说明</string>
+    <string name="thought_report_publish">提交报告</string>
+    <string name="thought_report_rewrite">修改报告</string>
+    <string name="thought_report_write">撰写思想汇报</string>
+    <string name="thought_report_title">报告标题</string>
+    <string name="thought_report_text">报告正文</string>
+    <string name="thought_report_save">保存报告</string>
+    
+    <!--党费缴纳-->
+    <string name="party_expense_pay">党费缴纳</string>
+    <string name="party_expense_policy">党费缴纳政策说明</string>
+    <string name="party_expense_date">党费交至日期：</string>
+    <string name="party_expense_amount">请输入缴纳金额</string>
+    <string name="party_expense_commite">确认缴纳</string>
 
 
     <!--微信-->

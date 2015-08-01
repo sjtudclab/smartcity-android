@@ -13,6 +13,7 @@
             android:layout_width="67dp"
             android:layout_height="match_parent"
             android:src="@drawable/left_arrow"
+            android:id="@+id/hr_det_rtn"
             android:background="#00000000" />
 
         <TextView

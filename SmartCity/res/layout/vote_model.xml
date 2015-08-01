@@ -18,7 +18,7 @@ android:weightSum="1">
         android:layout_weight="5">
 
         <ImageView
-            android:id="@+id/org_life_pic"
+            android:id="@+id/vote_pic"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/portrait"
@@ -34,7 +34,7 @@ android:weightSum="1">
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/vote_title"
-                android:id="@+id/org_life_title"
+                android:id="@+id/vote_title"
                 android:layout_weight="5"
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp"
@@ -43,6 +43,7 @@ android:weightSum="1">
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/vote_rg"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -73,7 +74,7 @@ android:weightSum="1">
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/vote_starter"
-            android:id="@+id/org_life_num"
+            android:id="@+id/vote_starter"
             android:layout_weight="1"
             android:textSize="12sp"
             android:layout_marginLeft="5dp" />
@@ -82,14 +83,14 @@ android:weightSum="1">
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/vote_start_time"
-            android:id="@+id/org_life_time"
+            android:id="@+id/vote_start_time"
             android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/vote_end_time"
-            android:id="@+id/textView38"
+            android:id="@+id/vote_end_time"
             android:layout_marginRight="5dp"
             android:layout_weight="1" />
     </LinearLayout>
