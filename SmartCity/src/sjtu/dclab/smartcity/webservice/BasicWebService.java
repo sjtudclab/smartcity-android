@@ -47,7 +47,7 @@ public class BasicWebService {
     public String sendPostRequest(String url, Map<String, String> args) {
         try {
             HttpPost httpPost = new HttpPost(url);
-            httpPost.addHeader("Content-Type", "application/json");
+//            httpPost.addHeader("Content-Type", "application/json");
             if (args != null) {
                 List<BasicNameValuePair> postData = new ArrayList<BasicNameValuePair>();
                 for (Map.Entry<String, String> entry : args.entrySet()) {

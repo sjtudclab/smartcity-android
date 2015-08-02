@@ -7,20 +7,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.entity.ApplicationTransfer;
 import sjtu.dclab.smartcity.model.CitizenResident;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * AddContactsAty
@@ -157,9 +164,9 @@ public class AddContactsAty extends Activity {
                             Map<String, String> map = new HashMap<String, String>();
                             map.put("message", String.valueOf(et_msg.getText()));
                             //TODO 此处需采用POST json方式发送
-                            String result = new BasicWebService().sendPostRequest(url, map);
-                            Log.i(TAG, result);
-                            Toast.makeText(getApplication(), "好友请求结果：" + result, Toast.LENGTH_SHORT).show();
+//                            String result = new BasicWebService().sendPostRequest(url, map);
+//                            Log.i(TAG, result);
+//                            Toast.makeText(getApplication(), "好友请求结果：" + result, Toast.LENGTH_SHORT).show();
                         }
                     });
                     builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
