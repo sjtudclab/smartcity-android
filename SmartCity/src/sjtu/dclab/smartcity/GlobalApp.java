@@ -7,8 +7,18 @@ import sjtu.dclab.smartcity.community.talk.MyTalk;
  * Created by Yang on 2015/7/23.
  */
 public class GlobalApp extends Application {
+    private String userId;
     private String username;
     private String status;
+    private MyTalk talk;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getStatus() {
         return status;
@@ -17,8 +27,6 @@ public class GlobalApp extends Application {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    private MyTalk talk;
 
     public MyTalk getTalk() {
         return talk;

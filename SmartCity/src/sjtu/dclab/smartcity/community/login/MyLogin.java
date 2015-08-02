@@ -5,9 +5,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import sjtu.dclab.smartcity.community.config.Config;
 import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.community.entity.User;
 import sjtu.dclab.smartcity.community.util.JsonUtil;
 import sjtu.dclab.smartcity.community.util.NetUtilWithHttpClient;
-import sjtu.dclab.smartcity.community.entity.User;
 
 import java.io.IOException;
 import java.util.HashMap;
