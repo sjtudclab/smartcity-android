@@ -1,13 +1,11 @@
 package sjtu.dclab.smartcity.chat;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import cn.edu.sjtu.se.dclab.entity.Message;
-import cn.edu.sjtu.se.dclab.util.JsonUtil;
+import sjtu.dclab.smartcity.community.util.JsonUtil;
+import sjtu.dclab.smartcity.community.entity.Message;
 
 public class Publisher {
 

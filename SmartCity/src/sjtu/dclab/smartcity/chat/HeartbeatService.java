@@ -4,7 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import cn.edu.sjtu.se.dclab.config.Me;
+import sjtu.dclab.smartcity.community.config.Me;
 
 /**
  * 2015年6月14日 下午12:48:38

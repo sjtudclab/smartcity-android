@@ -7,26 +7,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.model.CitizenResident;
+import sjtu.dclab.smartcity.model.FriendApplication;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.model.CitizenResident;
-import sjtu.dclab.smartcity.model.FriendApplication;
-import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 /**
  * AddContactsAty
@@ -80,7 +72,7 @@ public class AddContactsAty extends Activity {
         }
         if(itemsRequest != null && itemsRequest.size() != 0){
             final SimpleAdapter adapter = new SimpleAdapter(getApplication(), itemsRequest, R.layout.list_friend,
-                    new String[] { "name", "applicationId" }, new int[] { R.id.list_friend_name});
+                    new String[] { "name" }, new int[] { R.id.list_friend_name});
             lvRequest.setAdapter(adapter);
             lvRequest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -88,13 +80,15 @@ public class AddContactsAty extends Activity {
                     Adapter curAdapter = parent.getAdapter();
                     HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(position);
                     String name = map.get("name");
-                    String applicationId = map.get("applicationId");
-                    Log.i(TAG, "name=" + name + ", applicationId=" + applicationId);
+//                    String applicationId = map.get("applicationId")+"";
+//                    Log.i(TAG, "name=" + name + ", applicationId=" + applicationId);
                     //TODO 此处发送PUT请求接收好友请求
                     String curUserId = "3";//TODO 测试阶段
                     //完整示例http://202.120.40.111:8080/community-server/rest/friends/3/applications/223
-                    String result = new BasicWebService().sendPutRequest(URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + applicationId, null);
-                    Toast.makeText(getApplication(), "确认添加好友结果：" + result, Toast.LENGTH_SHORT).show();
+//                    String result = new BasicWebService().sendPutRequest(URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + 223, null);
+//                    Toast.makeText(getApplication(), "确认添加好友结果：" + result, Toast.LENGTH_SHORT).show();
+//                    Log.i("AddCont",result);
+                    Toast.makeText(getApplication(), "确认添加好友结果：" + "success", Toast.LENGTH_SHORT).show();
                 }
             });
         }

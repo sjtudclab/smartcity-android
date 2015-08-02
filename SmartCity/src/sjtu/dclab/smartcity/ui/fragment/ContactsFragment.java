@@ -14,33 +14,20 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.IMqttActionListener;
-import org.eclipse.paho.client.mqttv3.IMqttToken;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.eclipse.paho.client.mqttv3.*;
+import sjtu.dclab.smartcity.GlobalApp;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.chat.*;
+import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.community.talk.MyTalk;
+import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.ui.chat.AddContactsAty;
+import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import cn.edu.sjtu.se.dclab.config.Me;
-import cn.edu.sjtu.se.dclab.entity.Friend;
-import cn.edu.sjtu.se.dclab.talk.MyTalk;
-import sjtu.dclab.smartcity.GlobalApp;
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.chat.Configurations;
-import sjtu.dclab.smartcity.chat.Friends;
-import sjtu.dclab.smartcity.chat.HeartbeatService;
-import sjtu.dclab.smartcity.chat.MessageAdapter;
-import sjtu.dclab.smartcity.chat.MessageEntity;
-import sjtu.dclab.smartcity.chat.Messages;
-import sjtu.dclab.smartcity.chat.Publisher;
-import sjtu.dclab.smartcity.chat.PushCallback;
-import sjtu.dclab.smartcity.ui.chat.AddContactsAty;
-import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 /**
  * Created by Yang on 2015/7/22.

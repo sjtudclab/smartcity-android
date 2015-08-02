@@ -10,18 +10,17 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.util.Collection;
-import java.util.Iterator;
-
-import cn.edu.sjtu.se.dclab.common.CommunityApp;
-import cn.edu.sjtu.se.dclab.login.MyLogin;
-import cn.edu.sjtu.se.dclab.talk.MyTalk;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.community.common.CommunityApp;
+import sjtu.dclab.smartcity.community.login.MyLogin;
+import sjtu.dclab.smartcity.community.talk.MyTalk;
 import sjtu.dclab.smartcity.entity.Role;
 import sjtu.dclab.smartcity.transfer.UserTransfer;
 import sjtu.dclab.smartcity.ui.HomeAty;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Created by Yang on 2015/7/21.

@@ -1,7 +1,7 @@
 package sjtu.dclab.smartcity;
 
 import android.app.Application;
-import cn.edu.sjtu.se.dclab.talk.MyTalk;
+import sjtu.dclab.smartcity.community.talk.MyTalk;
 
 /**
  * Created by Yang on 2015/7/23.
