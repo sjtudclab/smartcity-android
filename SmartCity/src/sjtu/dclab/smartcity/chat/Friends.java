@@ -1,6 +1,7 @@
 package sjtu.dclab.smartcity.chat;
 
-import cn.edu.sjtu.se.dclab.entity.Friend;
+
+import sjtu.dclab.smartcity.community.entity.Friend;
 
 import java.util.ArrayList;
 import java.util.HashMap;

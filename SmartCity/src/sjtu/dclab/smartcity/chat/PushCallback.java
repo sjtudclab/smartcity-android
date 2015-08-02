@@ -5,14 +5,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import cn.edu.sjtu.se.dclab.entity.Friend;
-import cn.edu.sjtu.se.dclab.entity.Message;
-import cn.edu.sjtu.se.dclab.util.JsonUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.community.util.JsonUtil;
+import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 
 public class PushCallback implements MqttCallback {

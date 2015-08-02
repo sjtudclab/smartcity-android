@@ -2,7 +2,9 @@ package sjtu.dclab.smartcity.tools;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import sjtu.dclab.smartcity.entity.ApplicationTransfer;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -86,22 +88,21 @@ public class GsonTool {
         return list;
     }
 
-//    public static List<Contact> getFriendList(String content) {
-//        Gson gson = new Gson();
-//        try {
-//            Type type = new TypeToken<List<Contact>>() {
-//            }.getType();
-//            if (content != null) {
-//                List<Contact> record = gson.fromJson(content, type);
-//                return record;
-//            } else {
-//                return null;
-//            }
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//            e.printStackTrace();
-//            return null;
-//        }
-//
-//    }
+    public static List<ApplicationTransfer> getFriendApplicationTransferList(String content) {
+        Gson gson = new Gson();
+        try {
+            Type type = new TypeToken<List<ApplicationTransfer>>() {
+            }.getType();
+            if (content != null) {
+                List<ApplicationTransfer> record = gson.fromJson(content, type);
+                return record;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

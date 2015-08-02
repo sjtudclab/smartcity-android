@@ -1,7 +1,6 @@
 package sjtu.dclab.smartcity.webservice;
 
 import android.util.Log;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -48,7 +47,7 @@ public class BasicWebService {
     public String sendPostRequest(String url, Map<String, String> args) {
         try {
             HttpPost httpPost = new HttpPost(url);
-            httpPost.addHeader("Accept", "application/json");
+            httpPost.addHeader("Content-Type", "application/json");
             if (args != null) {
                 List<BasicNameValuePair> postData = new ArrayList<BasicNameValuePair>();
                 for (Map.Entry<String, String> entry : args.entrySet()) {

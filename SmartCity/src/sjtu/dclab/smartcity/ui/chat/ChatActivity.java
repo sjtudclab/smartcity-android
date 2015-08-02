@@ -9,14 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import cn.edu.sjtu.se.dclab.config.Me;
-import cn.edu.sjtu.se.dclab.entity.Friend;
-import cn.edu.sjtu.se.dclab.entity.Message;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.MessageAdapter;
 import sjtu.dclab.smartcity.chat.MessageEntity;
 import sjtu.dclab.smartcity.chat.Messages;
 import sjtu.dclab.smartcity.chat.Publisher;
+import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.community.entity.Message;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
