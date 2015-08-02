@@ -2,46 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/name_infomation_title"
-        android:gravity="center_horizontal"
-        android:textSize="24sp"
-        android:layout_weight="0.05" />
+    android:weightSum="10">
 
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffe2e2e2"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="@string/name_infomation_title"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="30dp" />
+
+    </FrameLayout>
+
+
+
+    <!--抬头图片，activity中调用添加-->
     <ImageView
-        android:layout_width="137dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.24" />
+        android:layout_weight="3"
+        />
 
-    <TextView
-        android:layout_width="match_parent"
+    <TableLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/name_infomation_name"
-        android:textSize="20sp"
-        android:layout_weight="0.03" />
+        android:layout_weight="1.6"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+        <View
+            android:layout_height="6dp"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_infomation_name"
+                android:layout_gravity="center"
+                android:textSize="24sp" />
+            <!--姓名内容,待添加-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <TableRow
+            android:layout_weight="0.8">
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_infomation_sex"
+                    android:textSize="24sp" />
+                <!--性别内容,待添加-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_infomation_nation"
+                    android:layout_gravity="center"
+                    android:textSize="24sp" />
+                <!--民族内容,待添加-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:gravity="center" >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/name_infomation_sex"
-            android:textSize="20sp"
-            android:layout_weight="1" />
-        <TextView
-            android:id="@+id/tvCodeName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/name_infomation_nation"
-            android:textSize="20sp"
-            android:layout_weight="1"/>
-    </LinearLayout>
+    </TableLayout>
+
 </LinearLayout>

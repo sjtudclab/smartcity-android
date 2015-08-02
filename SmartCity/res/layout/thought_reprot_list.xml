@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
 
     <FrameLayout
         android:orientation="horizontal"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="@string/org_life"
+            android:text="@string/thought_report_list"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="25dp" />
 
@@ -35,7 +35,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
-        <LinearLayout android:id="@+id/party_ll_policy1"
+        <LinearLayout android:id="@+id/party_ll_policy3"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -63,7 +63,7 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/ann_title"
+                            android:text="@string/thought_report_statement"
                             android:id="@+id/org_life_title"
                             android:layout_weight="5"
                             android:textSize="20sp"
@@ -109,7 +109,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/org_life_listView"
+            android:id="@+id/thought_report_list_listView"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

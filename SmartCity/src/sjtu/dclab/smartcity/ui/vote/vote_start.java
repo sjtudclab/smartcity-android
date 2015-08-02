@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui.ann_committee;
+package sjtu.dclab.smartcity.ui.vote;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,26 +7,24 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.ui.party.ThoughtReportListAty;
+import sjtu.dclab.smartcity.ui.vote.vote;
 
 /**
- * AnnPublishAty
- *
- * @author Jian Yang
- * @date 2015/7/23
+ * Created by 孤独的观测者 on 2015/7/30.
  */
-public class AnnPublishAty extends Activity {
+public class vote_start extends Activity{
     private ImageButton rtnbutton;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aty_ann_pubish);
+        setContentView(R.layout.vote_start);
 
-        rtnbutton = (ImageButton) findViewById(R.id.ann_publish_rtn);
+        rtnbutton = (ImageButton) findViewById(R.id.vote_start_rtn);
         rtnbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AnnouncementAty.class));
+                startActivity(new Intent(getApplicationContext(), vote.class));
             }
         });
     }

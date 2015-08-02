@@ -16,28 +16,28 @@ import java.util.Map;
 import sjtu.dclab.smartcity.R;
 
 /**
- * Created by theGODofws on 2015/7/22.
+ * Created by theGODofws on 2015/8/1.
  */
-public class OrgLifeAty extends Activity{
+public class PartyLifeAty extends Activity{
     private ListView list_View;
     private LinearLayout llPolicy;
     private SimpleAdapter simple_Adapter;
-    private List<Map<String,Object>>data_List;
+    private List<Map<String,Object>> data_List;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aty_party_orglife);
+        setContentView(R.layout.aty_party_partylife);
 
-        llPolicy = (LinearLayout) findViewById(R.id.party_ll_policy1);
+        llPolicy = (LinearLayout) findViewById(R.id.party_ll_policy2);
         llPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 组织生活政策详情
+                //TODO 党员活动指导详情
             }
         });
 
-        list_View =(ListView) findViewById(R.id.org_life_listView);
+        list_View =(ListView) findViewById(R.id.party_life_listView);
 
         data_List = new ArrayList<Map<String,Object>>();
         simple_Adapter = new SimpleAdapter(
@@ -50,8 +50,8 @@ public class OrgLifeAty extends Activity{
         list_View.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO 测试阶段：默认均跳转至OrgLifeDetailAty
-                startActivity(new Intent(getApplicationContext(), OrgLifeDetailAty.class));
+                //TODO
+                startActivity(new Intent(getApplicationContext(), PartyLifeDetailAty.class));
             }
         });
     }

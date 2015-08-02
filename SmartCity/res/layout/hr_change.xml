@@ -12,6 +12,7 @@
         <ImageButton
             android:layout_width="67dp"
             android:layout_height="match_parent"
+            android:id="@+id/hr_change_rtn"
             android:src="@drawable/left_arrow"
             android:background="#00000000" />
 

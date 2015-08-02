@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui.ann_committee;
+package sjtu.dclab.smartcity.ui.human_resource_info;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,26 +7,23 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.ui.party.ThoughtReportListAty;
 
 /**
- * AnnPublishAty
- *
- * @author Jian Yang
- * @date 2015/7/23
+ * Created by theGODofws on 2015/7/30.
  */
-public class AnnPublishAty extends Activity {
+public class hr_det extends Activity{
     private ImageButton rtnbutton;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aty_ann_pubish);
+        setContentView(R.layout.hr_det);
 
-        rtnbutton = (ImageButton) findViewById(R.id.ann_publish_rtn);
+        rtnbutton = (ImageButton) findViewById(R.id.hr_det_rtn);
         rtnbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AnnouncementAty.class));
+                startActivity(new Intent(getApplicationContext(), hr_info.class));
             }
         });
     }
