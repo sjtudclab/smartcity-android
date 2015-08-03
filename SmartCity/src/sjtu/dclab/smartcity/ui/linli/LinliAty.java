@@ -30,7 +30,7 @@ public class LinliAty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_linli);
 
-        icons = new int[] { R.drawable.oriental_window,
+        icons = new int[] { R.drawable.minzhen,
                 R.drawable.payment_record};
         time = new String[] {"19:00 2015-07-12","20:00 2015-07-12"};
         titles = new String[] {"5306","5312"};

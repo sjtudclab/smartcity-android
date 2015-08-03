@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui.vote;
+package sjtu.dclab.smartcity.ui.human_resource_info;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,25 +7,25 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.ui.vote.vote;
 
 /**
- * Created by 孤独的观测者 on 2015/7/30.
+ * Created by theGODofws on 2015/7/30.
  */
-public class vote_start extends Activity{
+public class RenshiChanged extends Activity{
     private ImageButton rtnbutton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vote_start);
+        setContentView(R.layout.hr_change);
 
-        rtnbutton = (ImageButton) findViewById(R.id.vote_start_rtn);
+        rtnbutton = (ImageButton) findViewById(R.id.hr_change_rtn);
         rtnbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), vote.class));
+                startActivity(new Intent(getApplicationContext(), RenshiAty.class));
             }
         });
     }
+    //TODO:checkbox事件以及确认按钮事件的增加
 }

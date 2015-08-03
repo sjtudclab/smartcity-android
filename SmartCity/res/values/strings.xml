@@ -209,9 +209,8 @@
     <string name="yehui">业委会</string>
     <string name="wuye">物业报修</string>
     <string name="linli">邻里之间</string>
-    <string name="minyi">民议广场</string>
-    <string name="shequ">社区公告</string>
-    <string name="shequhuo">社区活动</string>
+    <string name="minyi">民意广场</string>
+    <string name="huodong">社区活动</string>
     <string name="dangyuan_mana">党员管理</string>
     <string name="dangyuan_org">组织生活</string>
     <string name="dangyuan_aty">党员活动</string>

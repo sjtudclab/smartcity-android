@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.ui.human_resource_info;
+package sjtu.dclab.smartcity.ui.vote;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,21 +9,21 @@ import android.widget.ImageButton;
 import sjtu.dclab.smartcity.R;
 
 /**
- * Created by theGODofws on 2015/7/30.
+ * Created by 孤独的观测者 on 2015/7/30.
  */
-public class hr_det extends Activity{
+public class NewvoteAty extends Activity{
     private ImageButton rtnbutton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hr_det);
+        setContentView(R.layout.vote_start);
 
-        rtnbutton = (ImageButton) findViewById(R.id.hr_det_rtn);
+        rtnbutton = (ImageButton) findViewById(R.id.vote_start_rtn);
         rtnbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), hr_info.class));
+                startActivity(new Intent(getApplicationContext(), MinyivoteAty.class));
             }
         });
     }

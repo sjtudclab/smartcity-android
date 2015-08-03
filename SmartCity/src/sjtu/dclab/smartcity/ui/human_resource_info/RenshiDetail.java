@@ -11,21 +11,20 @@ import sjtu.dclab.smartcity.R;
 /**
  * Created by theGODofws on 2015/7/30.
  */
-public class hr_changed extends Activity{
+public class RenshiDetail extends Activity{
     private ImageButton rtnbutton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hr_change);
+        setContentView(R.layout.hr_det);
 
-        rtnbutton = (ImageButton) findViewById(R.id.hr_change_rtn);
+        rtnbutton = (ImageButton) findViewById(R.id.hr_det_rtn);
         rtnbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), hr_info.class));
+                startActivity(new Intent(getApplicationContext(), RenshiAty.class));
             }
         });
     }
-    //TODO:checkbox事件以及确认按钮事件的增加
 }

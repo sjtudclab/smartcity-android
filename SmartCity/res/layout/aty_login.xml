@@ -33,6 +33,7 @@
             android:layout_height="50dp"
             android:id="@+id/login_passwd_edittext"
             android:text="@string/login_passwd"
+            android:inputType="textPassword"
             android:background="@drawable/corner_bg"
             android:textSize="20dp"
             android:layout_below="@+id/login_name_edittext"

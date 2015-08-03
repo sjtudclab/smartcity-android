@@ -31,7 +31,7 @@ public class YqYPB extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_ypb_yq);
 
-        icons = new int[] { R.drawable.oriental_window,
+        icons = new int[] { R.drawable.minzhen,
                 R.drawable.payment_record};
         context = new String[] {"关于小区路灯修建问题","关于A501随意放置XX问题"};
         titles = new String[] {"关于小区路灯修建问题","关于A501随意放置XX问题"};

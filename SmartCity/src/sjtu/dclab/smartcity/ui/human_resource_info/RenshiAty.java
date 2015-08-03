@@ -18,7 +18,7 @@ import sjtu.dclab.smartcity.R;
 /**
  * Created by theGODofws on 2015/7/30.
  */
-public class hr_info extends Activity {
+public class RenshiAty extends Activity {
     private ListView list_View;
     private SimpleAdapter simple_Adapter;
     private List<Map<String,Object>> data_List;
@@ -42,7 +42,7 @@ public class hr_info extends Activity {
         list_View.setOnItemClickListener(new ListView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getApplicationContext(), hr_det.class));
+                startActivity(new Intent(getApplicationContext(), RenshiDetail.class));
             }
         });
     }

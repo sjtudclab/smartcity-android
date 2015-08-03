@@ -7,18 +7,17 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import sjtu.dclab.smartcity.R;
-
 /**
  * Created by theGODofws on 2015/7/30.
  */
-public class vote extends Activity{
+public class MinyivoteAty extends Activity{
     //private RadioGroup rg;
     private ListView list_View;
     private ImageButton ibtnAdd;
@@ -34,7 +33,7 @@ public class vote extends Activity{
         ibtnAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), vote_start.class));
+                startActivity(new Intent(getApplicationContext(), NewvoteAty.class));
             }
         });
 

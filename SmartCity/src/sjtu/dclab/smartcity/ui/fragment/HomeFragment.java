@@ -12,7 +12,12 @@ import android.widget.SimpleAdapter;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.ui.ann_committee.AnnouncementAty;
-import sjtu.dclab.smartcity.ui.party.OrgLifeAty;
+import sjtu.dclab.smartcity.ui.bianminservice.BianminAty;
+import sjtu.dclab.smartcity.ui.human_resource_info.RenshiAty;
+import sjtu.dclab.smartcity.ui.minyisquare.MinyiAty;
+import sjtu.dclab.smartcity.ui.minzheng.CivilAffairHomeAty;
+import sjtu.dclab.smartcity.ui.vote.MinyivoteAty;
+import sjtu.dclab.smartcity.ui.yuqing.YuqingAty;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,15 +34,10 @@ public class HomeFragment extends Fragment {
     private GlobalApp globalApp;
 
     private int[] icons_committee = new int[]{
-            R.drawable.oriental_window, R.drawable.payment_record,
-            R.drawable.property_management,
-            R.drawable.public_opinion_square, R.drawable.information,
-            R.drawable.announcement, R.drawable.community_act,
-            R.drawable.work_log, R.drawable.population_information,
-            R.drawable.data_management, R.drawable.housing_information,
-            R.drawable.resident_mailbox, R.drawable.resident_opnion,
-            R.drawable.oriental_window, R.drawable.payment_record,
-            R.drawable.property_management, R.drawable.public_opinion_square
+            R.drawable.minzhen, R.drawable.gongyi, R.drawable.bianmin,R.drawable.weiji,
+            R.drawable.anfang, R.drawable.zongzhi, R.drawable.xinfang, R.drawable.wenjiao,
+            R.drawable.minyisquare, R.drawable.minyivote,R.drawable.yuqing, R.drawable.gonggao,
+            R.drawable.peopleinfo, R.drawable.houseinfo, R.drawable.renshi, R.drawable.zhoubian
     };
 
     private int[] labels_committee = new int[]{
@@ -47,16 +47,12 @@ public class HomeFragment extends Fragment {
             R.string.renkou, R.string.fangwu, R.string.renshi, R.string.zhoubian};
 
     private int[] icons_resident = new int[]{
-            R.drawable.oriental_window,
-            R.drawable.payment_record, R.drawable.property_management,
-            R.drawable.public_opinion_square, R.drawable.information,
-            R.drawable.announcement, R.drawable.community_act,
-            R.drawable.work_log
+            R.drawable.juweihui, R.drawable.yeweihui, R.drawable.wuye, R.drawable.bianmin,
+            R.drawable.linli, R.drawable.minyisquare, R.drawable.gonggao, R.drawable.huodong
     };
     private int[] labels_resident = new int[]{
-            R.string.juwei, R.string.yehui, R.string.wuye,
-            R.string.bianmin, R.string.linli,
-            R.string.minyi, R.string.shequ, R.string.shequhuo
+            R.string.juwei, R.string.yehui, R.string.wuye, R.string.bianmin,
+            R.string.linli, R.string.minyi, R.string.gonggao, R.string.huodong
     };
 
     @Override
@@ -108,12 +104,69 @@ public class HomeFragment extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             switch (icons[i]) {
-                case R.drawable.announcement://��ʱ����������֯����
-                    startActivity(new Intent(getActivity(), OrgLifeAty.class));
+                //居委会工作部分
+                case R.drawable.minzhen:
+                    startActivity(new Intent(getActivity().getApplicationContext(), CivilAffairHomeAty.class));
                     break;
-                case R.drawable.resident_mailbox://��ʱ�������Թ������
-                    startActivity(new Intent(getActivity(), AnnouncementAty.class));
+                case R.drawable.gongyi:
                     break;
+                case R.drawable.bianmin:
+                    startActivity(new Intent(getActivity().getApplicationContext(), BianminAty.class));
+                    break;
+                case R.drawable.weiji:
+                     break;
+
+                case R.drawable.anfang:
+                     break;
+                case R.drawable.zongzhi:
+                    break;
+                case R.drawable.xinfang:
+                    break;
+                case R.drawable.wenjiao:
+                    break;
+
+                case R.drawable.minyisquare:
+                    startActivity(new Intent(getActivity().getApplicationContext(), MinyiAty.class));
+                    break;
+                case R.drawable.minyivote:
+                    startActivity(new Intent(getActivity().getApplicationContext(), MinyivoteAty.class));
+                    break;
+                case R.drawable.yuqing:
+                    startActivity(new Intent(getActivity().getApplicationContext(), YuqingAty.class));
+                    break;
+                case R.drawable.gonggao:
+                    startActivity(new Intent(getActivity().getApplicationContext(), AnnouncementAty.class));
+                    break;
+
+                case R.drawable.peopleinfo:
+                    break;
+                case R.drawable.houseinfo:
+                    break;
+                case R.drawable.renshi:
+                    startActivity(new Intent(getActivity().getApplicationContext(), RenshiAty.class));
+                    break;
+                case R.drawable.zhoubian:
+                    break;
+
+                //居民部分
+                case R.drawable.juweihui:
+                    break;
+                case R.drawable.yeweihui:
+                    break;
+                case R.drawable.wuye:
+                    break;
+//                case R.drawable.bianmin:
+//                    break;
+
+                case R.drawable.linli:
+                    break;
+//                case R.drawable.minyisquare:
+//                    break;
+//                case R.drawable.gonggao:
+//                    break;
+                case R.drawable.huodong:
+                    break;
+
                 default:
                     break;
             }

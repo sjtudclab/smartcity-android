@@ -7,11 +7,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by HuangZhenyu on 15/7/27.
@@ -29,7 +28,7 @@ public class MinyiAty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_minyi);
 
-        icons = new int[] { R.drawable.oriental_window,
+        icons = new int[] { R.drawable.minzhen,
                 R.drawable.payment_record};
         labels = new String[] {"眉眼如初soar","眉眼如初soar"};
         titles = new String[] {"没错，感情贴","没错，感情贴"};

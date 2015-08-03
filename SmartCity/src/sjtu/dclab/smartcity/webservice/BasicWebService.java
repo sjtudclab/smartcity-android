@@ -109,7 +109,6 @@ public class BasicWebService {
         return ERRORMSG;
     }
 
-    // TODO: TEST
     public String sendPutRequest(String url, Map<String,String> args){
         try {
             HttpPut httpPut = new HttpPut(url);

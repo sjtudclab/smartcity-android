@@ -28,7 +28,7 @@ public class BianminAty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_bianmin);
 
-        icons = new int[] { R.drawable.oriental_window,
+        icons = new int[] { R.drawable.minzhen,
                 R.drawable.payment_record};
         labels = new String[] {"玩具熊","自行车"};
         titles = new String[] {"电话:131112345678","电话:11113456789"};

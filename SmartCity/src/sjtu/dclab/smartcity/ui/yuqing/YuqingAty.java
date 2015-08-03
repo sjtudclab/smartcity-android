@@ -8,14 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.ui.MenuPopupWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.ui.MenuPopupWindow;
-import sjtu.dclab.smartcity.ui.bianminservice.Bianadd;
-import sjtu.dclab.smartcity.ui.bianminservice.Biansearch;
 
 /**
  * Created by HuangZhenyu on 15/7/28.
@@ -34,7 +31,7 @@ public class YuqingAty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_yuqing);
 
-        icons = new int[] { R.drawable.oriental_window,
+        icons = new int[] { R.drawable.minzhen,
                 R.drawable.payment_record};
         context = new String[] {"关于小区路灯修建问题","关于A501随意放置XX问题"};
         titles = new String[] {"关于小区路灯修建问题","关于A501随意放置XX问题"};
