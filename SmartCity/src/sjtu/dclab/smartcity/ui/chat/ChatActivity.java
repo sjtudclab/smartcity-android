@@ -72,7 +72,7 @@ public class ChatActivity extends Activity {
                     msg.setFrom(Me.id);
                     msg.setTo(friend.getId());
                     msg.setName(friend.getName());
-                    msg.setType(1);
+                    msg.setType(1); //TODO
                     Publisher.publishMessage(msg);
                     Messages.storeMessageEntity(friend.getName(),
                             new MessageEntity(Me.username, content), true);

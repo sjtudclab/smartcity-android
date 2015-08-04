@@ -154,6 +154,8 @@
     <!--微信-->
     <string name="group_name">我的家庭</string>
     <string name="send_msg">发送</string>
+    <string name="mygroup">我的组群</string>
+    <string name="myfriends">我的好友</string>
 
     <!--群组详情-->
     <string name="group_details">详细信息</string>

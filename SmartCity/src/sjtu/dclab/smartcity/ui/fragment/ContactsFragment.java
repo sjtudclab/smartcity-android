@@ -20,10 +20,13 @@ import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.*;
 import sjtu.dclab.smartcity.community.config.Me;
-import sjtu.dclab.smartcity.community.talk.MyTalk;
 import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.community.talk.MyTalk;
+import sjtu.dclab.smartcity.tools.GsonTool;
+import sjtu.dclab.smartcity.transfer.GroupTransfer;
 import sjtu.dclab.smartcity.ui.chat.AddContactsAty;
 import sjtu.dclab.smartcity.ui.chat.ChatActivity;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,14 +40,16 @@ public class ContactsFragment extends Fragment {
 
     // 长意的
     final static String TOKEN = "cn.edu.sjtu.se.dclab.community_chat.ListActivity";
-    //	private static final String SERVICE_CLASSNAME = "cn.edu.sjtu.se.dclab.community_chat.MQTTService";
     private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
     private MyTalk talk;
     private List<Friend> friends = null;
+    private List<GroupTransfer> groups = null;
     private View view;
-    private ListView lv;
+    private ListView lv_groups;
+    private ListView lv_contacts;
     private ImageButton ibtnAddContact;
-    private ArrayList<HashMap<String, Object>> items;
+    private ArrayList<HashMap<String, Object>> items_contacts;
+    private ArrayList<HashMap<String,Object>> items_groups;
     private MqttAndroidClient client;
 
     @Override
@@ -60,7 +65,7 @@ public class ContactsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_contacts, container, false);
 
         ibtnAddContact = (ImageButton) view.findViewById(R.id.ibtn_addNewContacts);
-        ibtnAddContact.setOnClickListener(new View.OnClickListener(){
+        ibtnAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), AddContactsAty.class));
@@ -80,36 +85,38 @@ public class ContactsFragment extends Fragment {
     }
 
     public void initList() {
-        Intent intent = getActivity().getIntent();
+//        Intent intent = getActivity().getIntent();
 //        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
-        talk = ((GlobalApp)getActivity().getApplication()).getTalk();
+        talk = ((GlobalApp) getActivity().getApplication()).getTalk();
 
         //for network
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        // init friend list
         friends = Friends.getFriends();
         if (friends == null || friends.size() == 0) {
             friends = (List<Friend>) talk.getFriends();
             Friends.addFriends(friends);
         }
 
-        lv = (ListView) getFragmentManager()
+        lv_contacts = (ListView) getFragmentManager()
                 .findFragmentById(R.id.fragment_contact)
                 .getView().findViewById(R.id.lv_contacts);
-        items = new ArrayList<HashMap<String, Object>>();
+        items_contacts = new ArrayList<HashMap<String, Object>>();
 
         for (Friend friend : friends) {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("name", friend.getName());
-            items.add(map);
+            items_contacts.add(map);
         }
 
-        SimpleAdapter adapter = new SimpleAdapter(getActivity(),
-                items, R.layout.list_friend,
-                new String[] { "name" },
-                new int[] { R.id.list_friend_name});
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        SimpleAdapter adapterFriend = new SimpleAdapter(getActivity(),
+                items_contacts, R.layout.list_friend,
+                new String[]{"name"},
+                new int[]{R.id.list_friend_name});
+        lv_contacts.setAdapter(adapterFriend);
+        lv_contacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -118,6 +125,32 @@ public class ContactsFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
+        //init group list
+        lv_groups = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_groups);
+        items_groups = new ArrayList<HashMap<String, Object>>();
+        String url = getString(R.string.URLroot) + "groups/0/users/" + Me.id;
+        String groupStr = new BasicWebService().sendGetRequest(url, null);
+        groups = GsonTool.getGroupList(groupStr);
+
+        for (GroupTransfer gt: groups){
+            HashMap<String,Object> map = new HashMap<String, Object>();
+            map.put("name",gt.getName());
+            items_groups.add(map);
+        }
+        SimpleAdapter adapterGroup = new SimpleAdapter(getActivity(),
+                items_groups, R.layout.list_friend,
+                new String[]{"name"},
+                new int[]{R.id.list_friend_name});
+        lv_groups.setAdapter(adapterGroup);
+        lv_groups.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        //TODO
+                    }
+                }
+        );
     }
 
     private void setUpMessageAdapters() {
@@ -168,7 +201,7 @@ public class ContactsFragment extends Fragment {
 
                 @Override
                 public void onFailure(IMqttToken arg0, Throwable arg1) {
-                    Log.e(TAG+" Failure", arg1.getMessage());
+                    Log.e(TAG + " Failure", arg1.getMessage());
                 }
             });
         } catch (MqttException e) {

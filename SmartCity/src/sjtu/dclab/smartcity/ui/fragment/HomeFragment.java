@@ -96,7 +96,6 @@ public class HomeFragment extends Fragment {
             labels = labels_resident;
         }
 
-
         for (int i = 0; i < labels.length; i++) {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("itemIcon", icons[i]);
