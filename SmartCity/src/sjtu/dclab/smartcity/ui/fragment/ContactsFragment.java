@@ -21,11 +21,13 @@ import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.*;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.talk.MyTalk;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.GroupTransfer;
 import sjtu.dclab.smartcity.ui.chat.AddContactsAty;
 import sjtu.dclab.smartcity.ui.chat.ChatActivity;
+import sjtu.dclab.smartcity.ui.chat.GroupChatAty;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
@@ -43,13 +45,13 @@ public class ContactsFragment extends Fragment {
     private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
     private MyTalk talk;
     private List<Friend> friends = null;
-    private List<GroupTransfer> groups = null;
+    private List<Group> groups = new ArrayList<Group>();
     private View view;
     private ListView lv_groups;
     private ListView lv_contacts;
     private ImageButton ibtnAddContact;
     private ArrayList<HashMap<String, Object>> items_contacts;
-    private ArrayList<HashMap<String,Object>> items_groups;
+    private ArrayList<HashMap<String, Object>> items_groups;
     private MqttAndroidClient client;
 
     @Override
@@ -131,13 +133,20 @@ public class ContactsFragment extends Fragment {
         items_groups = new ArrayList<HashMap<String, Object>>();
         String url = getString(R.string.URLroot) + "groups/0/users/" + Me.id;
         String groupStr = new BasicWebService().sendGetRequest(url, null);
-        groups = GsonTool.getGroupList(groupStr);
+        List<GroupTransfer> gts = GsonTool.getGroupList(groupStr);
 
-        for (GroupTransfer gt: groups){
-            HashMap<String,Object> map = new HashMap<String, Object>();
-            map.put("name",gt.getName());
+        for (GroupTransfer gt : gts) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("name", gt.getName());
             items_groups.add(map);
+
+            Group g = new Group();
+            g.setId(gt.getGroupId());
+            g.setName(gt.getName());
+//            g.setImage("");
+            groups.add(g);
         }
+
         SimpleAdapter adapterGroup = new SimpleAdapter(getActivity(),
                 items_groups, R.layout.list_friend,
                 new String[]{"name"},
@@ -147,7 +156,10 @@ public class ContactsFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        //TODO
+                        //TODO group talk
+                        Intent intent = new Intent(getActivity(), GroupChatAty.class);
+                        intent.putExtra(String.valueOf(R.string.group), groups.get(i));
+                        getActivity().startActivity(intent);
                     }
                 }
         );
@@ -163,6 +175,20 @@ public class ContactsFragment extends Fragment {
                     adapter = new MessageAdapter(getActivity(), R.layout.chat_item,
                             R.id.messagedetail_row_text, msgEntities);
                     Messages.storeMessageAdapter(username, adapter);
+                }
+            }
+        }
+
+        // TODO test group
+        if (groups != null) {
+            for (Group g:groups){
+                String groupname = g.getName();
+                MessageAdapter adapter = Messages.loadMessageAdapter(groupname);
+                if (adapter == null){
+                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
+                    adapter = new MessageAdapter(getActivity(), R.layout.chat_item,
+                            R.id.messagedetail_row_text, msgEntities);
+                    Messages.storeMessageAdapter(groupname, adapter);
                 }
             }
         }
@@ -183,7 +209,6 @@ public class ContactsFragment extends Fragment {
 
         try {
             client.connect(conOpt, null, new IMqttActionListener() {
-
                 @Override
                 public void onSuccess(IMqttToken arg0) {
                     try {

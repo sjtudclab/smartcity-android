@@ -64,6 +64,7 @@
         <activity android:name=".ui.infocard.PersonInfoHomeAty"/>
         <activity android:name=".ui.infocard.LivingInformationActivity"/>
         <activity android:name=".ui.chat.AddContactsAty" />
+        <activity android:name=".ui.chat.GroupChatAty"/>
 
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />

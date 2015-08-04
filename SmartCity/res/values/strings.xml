@@ -28,6 +28,7 @@
     <!--chat-->
     <string name="talk">talk</string>
     <string name="friend">friend</string>
+    <string name="group">group</string>
 
     <!--身份选择-->
     <string name="identity_1">居委会工作</string>
