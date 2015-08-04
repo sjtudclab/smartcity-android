@@ -7,27 +7,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.json.JSONObject;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.entity.ApplicationTransfer;
 import sjtu.dclab.smartcity.model.CitizenResident;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * AddContactsAty
@@ -95,7 +88,7 @@ public class AddContactsAty extends Activity {
                     final ApplicationTransfer at = friendApplications.get(position);
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddContactsAty.this);
                     builder.setMessage("提示");
-                    builder.setMessage("确认添加"+at.getName()+"为好友么？");
+                    builder.setMessage("确认添加" + at.getName() + "为好友么？");
                     builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -103,10 +96,10 @@ public class AddContactsAty extends Activity {
                             String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + at.getApplicationId();
                             String res = new BasicWebService().sendPutRequest(url, null);
                             Log.i(TAG, res);
-                            if (res.equals("success")){
-                                Toast.makeText(AddContactsAty.this,"添加成功",Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(AddContactsAty.this,"添加失败",Toast.LENGTH_SHORT).show();
+                            if (res.equals("success")) {
+                                Toast.makeText(AddContactsAty.this, "添加成功", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(AddContactsAty.this, "添加失败", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -148,31 +141,34 @@ public class AddContactsAty extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddContactsAty.this);
                     LayoutInflater factory = LayoutInflater.from(AddContactsAty.this);
                     final View textEntryView = factory.inflate(R.layout.dialog_friend_req, null);
                     builder.setTitle("请求xxx为联系人");
                     builder.setView(textEntryView);
                     builder.setPositiveButton("发送", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            EditText et_msg = (EditText) textEntryView.findViewById(R.id.et_msg_dialog_fiendreq);
-                            Toast.makeText(getApplication(), "发送联系人请求消息：" + et_msg.getText(), Toast.LENGTH_SHORT).show();
-                            //发送请求到服务器
-                            String friendId = "18";//TODO 测试阶段
-                            String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + friendId;
-                            Map<String, String> map = new HashMap<String, String>();
-                            map.put("message", String.valueOf(et_msg.getText()));
-                            //TODO 此处需采用POST json方式发送
-//                            String result = new BasicWebService().sendPostRequest(url, map);
-//                            Log.i(TAG, result);
-//                            Toast.makeText(getApplication(), "好友请求结果：" + result, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    EditText et_msg = (EditText) textEntryView.findViewById(R.id.et_msg_dialog_fiendreq);
+                                    //发送请求到服务器
+                                    String friendId = "18";//TODO 测试阶段
+                                    String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + friendId;
+                                    JSONObject jsonObject = new JSONObject();
+                                    try {
+                                        jsonObject.put("message", et_msg.getText().toString());
+                                        String res = new BasicWebService().sendPostRequestWithRawJson(url, jsonObject);
+                                        if (res.equals("success")){
+                                            Toast.makeText(getApplicationContext(),"请求已成功发送",Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(getApplicationContext(),"请求失败",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                    );
                     builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                        }
-                    });
+                                public void onClick(DialogInterface dialog, int whichButton) {}
+                            });
                     builder.create().show();
                 }
             });

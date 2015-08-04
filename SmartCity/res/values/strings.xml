@@ -89,6 +89,16 @@
     <string name="renshi">人事信息</string>
     <string name="zhoubian">周边设施</string>
 
+    <!--党建系统-->
+    <string name="zuzhishenghuo">组织生活</string>
+    <string name="dangyuanhuodong">党员活动</string>
+    <string name="sixianghuibao">思想汇报</string>
+    <string name="dangfeijiaona">党费缴纳</string>
+    <string name="ziwopingjia">自我评价</string>
+    <string name="dangyuanhuping">党员互评</string>
+    <string name="zuzhiguanxi">组织关系</string>
+    <string name="jidukaocha">季度考察</string>
+
     <!--党团信息-->
     <string name="dangtuan_aty">党员生活详情</string>
     <string name="dangtuan_title">关于建设智慧社区</string>

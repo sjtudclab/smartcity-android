@@ -33,19 +33,30 @@ public class HomeFragment extends Fragment {
 
     private GlobalApp globalApp;
 
+    //居委会
     private int[] icons_committee = new int[]{
             R.drawable.minzhen, R.drawable.gongyi, R.drawable.bianmin,R.drawable.weiji,
             R.drawable.anfang, R.drawable.zongzhi, R.drawable.xinfang, R.drawable.wenjiao,
             R.drawable.minyisquare, R.drawable.minyivote,R.drawable.yuqing, R.drawable.gonggao,
             R.drawable.peopleinfo, R.drawable.houseinfo, R.drawable.renshi, R.drawable.zhoubian
     };
-
     private int[] labels_committee = new int[]{
             R.string.minzheng, R.string.gongyi, R.string.bianmin, R.string.weiji,
             R.string.anfang, R.string.zongzhi, R.string.xinfang, R.string.wenjiao,
             R.string.minyiguangchang, R.string.minyitoupiao, R.string.yuqing, R.string.gonggao,
             R.string.renkou, R.string.fangwu, R.string.renshi, R.string.zhoubian};
 
+    //党建
+    private int[] icons_dangjian = new int[]{
+            R.drawable.zuzhishenghuo,R.drawable.dangyuanhuodong, R.drawable.sixianghuibao, R.drawable.dangfeijiaona,
+            R.drawable.ziwopingjia, R.drawable.dangyuanhuping, R.drawable.zuzhiguanxi, R.drawable.jidukaocha
+    };
+    private int[] labels_dangjian = new int[]{
+            R.string.zuzhishenghuo, R.string.dangyuanhuodong, R.string.sixianghuibao, R.string.dangfeijiaona,
+            R.string.ziwopingjia, R.string.dangyuanhuping, R.string.zuzhiguanxi, R.string.jidukaocha
+    };
+
+    //居民
     private int[] icons_resident = new int[]{
             R.drawable.juweihui, R.drawable.yeweihui, R.drawable.wuye, R.drawable.bianmin,
             R.drawable.linli, R.drawable.minyisquare, R.drawable.gonggao, R.drawable.huodong
@@ -148,6 +159,24 @@ public class HomeFragment extends Fragment {
                 case R.drawable.zhoubian:
                     break;
 
+                //TODO:党建部分
+                case R.drawable.zuzhishenghuo:
+                    break;
+                case R.drawable.dangyuanhuodong:
+                    break;
+                case R.drawable.sixianghuibao:
+                    break;
+                case R.drawable.dangfeijiaona:
+                    break;
+                case R.drawable.ziwopingjia:
+                    break;
+                case R.drawable.dangyuanhuping:
+                    break;
+                case R.drawable.zuzhiguanxi:
+                    break;
+                case R.drawable.jidukaocha:
+                    break;
+
                 //居民部分
                 case R.drawable.juweihui:
                     break;
@@ -157,7 +186,6 @@ public class HomeFragment extends Fragment {
                     break;
 //                case R.drawable.bianmin:
 //                    break;
-
                 case R.drawable.linli:
                     break;
 //                case R.drawable.minyisquare:
