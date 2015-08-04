@@ -51,6 +51,7 @@
         <LinearLayout
             android:layout_weight="0.8">
             <TextView
+                android:id="@+id/net_information_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/web_infomation_nickname"

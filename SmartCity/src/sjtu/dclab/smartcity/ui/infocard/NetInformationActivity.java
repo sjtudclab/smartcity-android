@@ -11,5 +11,6 @@ public class NetInformationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.net_infomation_table);
+
     }
 }
