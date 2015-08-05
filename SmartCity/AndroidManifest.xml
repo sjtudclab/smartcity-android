@@ -60,8 +60,7 @@
         <activity android:name=".ui.infocard.NetInformationActivity"/>
         <activity android:name=".ui.infocard.PartyInformationActivity"/>
         <activity android:name=".ui.infocard.PartyPersonInfomation"/>
-        <activity android:name=".ui.infocard.PersonInfoEditAty"/>
-        <activity android:name=".ui.infocard.PersonInfoHomeAty"/>
+        <activity android:name=".ui.infocard.SettingAty"/>
         <activity android:name=".ui.infocard.LivingInformationActivity"/>
         <activity android:name=".ui.chat.AddContactsAty" />
         <activity android:name=".ui.chat.GroupChatAty"/>
