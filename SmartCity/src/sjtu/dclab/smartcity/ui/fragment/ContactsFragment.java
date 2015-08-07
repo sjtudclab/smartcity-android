@@ -40,6 +40,8 @@ import java.util.List;
 public class ContactsFragment extends Fragment {
     final private String TAG = "ContactFragment";
 
+    private GlobalApp globalApp;
+
     // 长意的
     final static String TOKEN = "cn.edu.sjtu.se.dclab.community_chat.ListActivity";
     private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
@@ -59,6 +61,7 @@ public class ContactsFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Fragment created");
+        globalApp = (GlobalApp) getActivity().getApplication();
     }
 
     @Override
@@ -147,6 +150,11 @@ public class ContactsFragment extends Fragment {
             groups.add(g);
         }
 
+        //  TODO test
+        if (groups != null && !groups.isEmpty()) {
+            Groups.addGroups(groups);
+        }
+
         SimpleAdapter adapterGroup = new SimpleAdapter(getActivity(),
                 items_groups, R.layout.list_friend,
                 new String[]{"name"},
@@ -181,10 +189,10 @@ public class ContactsFragment extends Fragment {
 
         // TODO test group
         if (groups != null) {
-            for (Group g:groups){
+            for (Group g : groups) {
                 String groupname = g.getName();
                 MessageAdapter adapter = Messages.loadMessageAdapter(groupname);
-                if (adapter == null){
+                if (adapter == null) {
                     List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
                     adapter = new MessageAdapter(getActivity(), R.layout.chat_item,
                             R.id.messagedetail_row_text, msgEntities);
