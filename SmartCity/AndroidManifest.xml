@@ -48,6 +48,14 @@
 
         <activity android:name=".ui.party.OrgLifeAty"/>
         <activity android:name=".ui.party.OrgLifeDetailAty" />
+        <activity android:name=".ui.party.PartyExpensePayAty"/>
+        <activity android:name=".ui.party.PartyLifeAty"/>
+        <activity android:name=".ui.party.PartyLifeDetailAty"/>
+        <activity android:name=".ui.party.SeasonCheck"/>
+        <activity android:name=".ui.party.ThouhtReportAty"/>
+        <activity android:name=".ui.party.ThoughtReportListAty"/>
+        <activity android:name=".ui.party.ThoughtReportDetailAty"/>
+        <activity android:name=".ui.party.ThoughtReportPublishAty"/>
 
         <activity android:name=".ui.chat.ChatGroupDetailsAty" />
         <activity android:name=".ui.chat.ChatGroupMsgAty" />
@@ -64,6 +72,23 @@
         <activity android:name=".ui.infocard.LivingInformationActivity"/>
         <activity android:name=".ui.chat.AddContactsAty" />
         <activity android:name=".ui.chat.GroupChatAty"/>
+
+        <activity android:name=".ui.vote.MinyivoteAty"/>
+        <activity android:name=".ui.vote.NewvoteAty"/>
+
+        <activity android:name=".ui.human_resource_info.RenshiAty"/>
+        <activity android:name=".ui.human_resource_info.RenshiChanged"/>
+        <activity android:name=".ui.human_resource_info.RenshiDetail"/>
+
+        <activity android:name=".ui.wuyerepair.PropertyRepairAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAddAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAssessAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairCheckAty"/>
+
+        <activity android:name=".ui.linli.LinliAty"/>
+        <activity android:name=".ui.linli.Linlichat"/>
+        <activity android:name=".ui.linli.Linlisearch"/>
+        <activity android:name=".ui.linli.Linlichatdetail"/>
 
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />

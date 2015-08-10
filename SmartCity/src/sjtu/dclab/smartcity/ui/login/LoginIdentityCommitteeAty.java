@@ -30,29 +30,47 @@ public class LoginIdentityCommitteeAty extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        juweihui = (Button)findViewById(R.id.identity_btn_juweihui);
+        final Intent intent = new Intent(getApplicationContext(), HomeAty.class);
+        final String statusKey = getString(R.string.StatusKey);
+
+        juweihui = (Button) findViewById(R.id.identity_btn_juweihui);
         juweihui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), HomeAty.class));
+                intent.putExtra(statusKey, getString(R.string.Committee));
+                startActivity(intent);
             }
         });
 
-        yeweihui = (Button)findViewById(R.id.identity_btn_yeweihui);
+        yeweihui = (Button) findViewById(R.id.identity_btn_yeweihui);
         yeweihui.setOnClickListener(null);
 
-        dangjian = (Button)findViewById(R.id.identity_btn_partybuilding);
-        dangjian.setOnClickListener(null);
+        dangjian = (Button) findViewById(R.id.identity_btn_partybuilding);
+        dangjian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent.putExtra(statusKey, getString(R.string.NormalParty));
+                startActivity(intent);
+            }
+        });
 
-        jumin = (Button)findViewById(R.id.identity_btn_jumin);
-        jumin.setOnClickListener(null);
+        jumin = (Button) findViewById(R.id.identity_btn_jumin);
+        jumin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent.putExtra(statusKey, getString(R.string.Resident));
+                startActivity(intent);
+            }
+        });
     }
 
-    /**Button�����¼�������
+    /**
+     * Button�����¼�������
+     *
      * @param v
      */
-    public void onClickProcess(View v){
-        if(v.getId() == R.id.identity_btn_partybuilding){
+    public void onClickProcess(View v) {
+        if (v.getId() == R.id.identity_btn_partybuilding) {
             startActivity(new Intent(this, HomeAty.class));
             finish();
         }

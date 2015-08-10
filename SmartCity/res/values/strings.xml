@@ -20,9 +20,10 @@
     <string name="login_btn">登陆</string>
 
     <!--status-->
-    <string name="Status">Status</string>
+    <string name="StatusKey">StatusKey</string>
     <string name="Resident">居民</string>
     <string name="Committee">居委会</string>
+    <string name="Yeweihu">业委会</string>
     <string name="NormalParty">普通党员</string>
 
     <!--chat-->

@@ -23,7 +23,7 @@ public class ThouhtReportAty extends Activity{
         rtnbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SessionCheck.class));
+                startActivity(new Intent(getApplicationContext(), SeasonCheck.class));
             }
         });
     }
