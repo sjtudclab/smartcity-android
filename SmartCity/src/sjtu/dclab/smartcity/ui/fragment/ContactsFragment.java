@@ -1,10 +1,14 @@
 package sjtu.dclab.smartcity.ui.fragment;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Fragment;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,8 +44,6 @@ import java.util.List;
 public class ContactsFragment extends Fragment {
     final private String TAG = "ContactFragment";
 
-    private GlobalApp globalApp;
-
     // 长意的
     final static String TOKEN = "cn.edu.sjtu.se.dclab.community_chat.ListActivity";
     private static final String SERVICE_CLASSNAME = "org.eclipse.paho.android.service.MqttService";
@@ -56,12 +58,29 @@ public class ContactsFragment extends Fragment {
     private ArrayList<HashMap<String, Object>> items_groups;
     private MqttAndroidClient client;
 
+    private HeartbeatService hbSvc;
+    private ServiceConnection conn;
+    private Activity curAty;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Fragment created");
-        globalApp = (GlobalApp) getActivity().getApplication();
+
+        curAty = getActivity();
+
+        conn = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                hbSvc = ((HeartbeatService.HeartBeatBinder) iBinder).getService();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+                hbSvc = null;
+            }
+        };
     }
 
     @Override
@@ -87,6 +106,12 @@ public class ContactsFragment extends Fragment {
         initList();
         setUpMessageAdapters();
         startMQTTService();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        curAty.unbindService(conn);
     }
 
     public void initList() {
@@ -243,8 +268,9 @@ public class ContactsFragment extends Fragment {
     }
 
     private void startHeartService() {
-        final Intent intent = new Intent(getActivity(), HeartbeatService.class);
-        getActivity().startService(intent);
+        Intent heartbeatSvc = new Intent(curAty, HeartbeatService.class);
+        curAty.bindService(heartbeatSvc, conn, Context.BIND_AUTO_CREATE);
+        curAty.startService(heartbeatSvc);
     }
 
     private boolean serviceIsRunning() {

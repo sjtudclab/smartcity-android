@@ -2,6 +2,7 @@ package sjtu.dclab.smartcity.chat;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 import sjtu.dclab.smartcity.community.config.Me;
@@ -14,12 +15,20 @@ import sjtu.dclab.smartcity.community.config.Me;
 public class HeartbeatService extends Service implements Runnable {
 
 	private Heartbeat heartbeat = null;
-	
 	private Thread thread = null;
+
+	private final IBinder binder = new HeartBeatBinder();
+
+	public class HeartBeatBinder extends Binder{
+		public HeartbeatService getService(){
+			return HeartbeatService.this;
+		}
+	}
+
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		return null;
+		return binder;
 	}
 
 	@Override
@@ -53,7 +62,4 @@ public class HeartbeatService extends Service implements Runnable {
 			}
 		}
 	}
-	
-	
-
 }
