@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,25 +14,23 @@ import sjtu.dclab.smartcity.chat.MessageEntity;
 import sjtu.dclab.smartcity.chat.Messages;
 import sjtu.dclab.smartcity.chat.Publisher;
 import sjtu.dclab.smartcity.community.config.Me;
-import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.entity.Message;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-public class ChatActivity extends Activity {
-    private ChatActivity chat = this;
+/**
+ * Created by Yang on 2015/8/4.
+ */
+public class GroupChatAty extends Activity {
+    private GroupChatAty chat = this;
     private ListView listView;
     private MessageAdapter adapter;
     private Button messageButton;
     private EditText messageText;
-    private Friend friend;
+    private Group group;
 
     public void onCreate(Bundle savedInstanceState) {
-        // Log.v(TAG, "onCreate >>>>>>");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
     }
 
     @Override
@@ -43,9 +40,9 @@ public class ChatActivity extends Activity {
         listView = (ListView) findViewById(R.id.chat_list);
 
         Intent intent = getIntent();
-        friend = (Friend) intent.getSerializableExtra(String
-                .valueOf(R.string.friend));
-        adapter = Messages.loadMessageAdapter(friend.getName());
+        group = (Group) intent.getSerializableExtra(String
+                .valueOf(R.string.group));
+        adapter = Messages.loadMessageAdapter(group.getName());
 
         // 接收消息
         listView.setAdapter(adapter);
@@ -53,7 +50,7 @@ public class ChatActivity extends Activity {
         // 发送消息
         messageButton = (Button) findViewById(R.id.MessageButton);
         messageText = (EditText) findViewById(R.id.MessageText);
-        messageButton.setOnClickListener(new OnClickListener() {
+        messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String content = messageText.getText().toString();
@@ -63,29 +60,14 @@ public class ChatActivity extends Activity {
                     Message msg = new Message();
                     msg.setContent(content);
                     msg.setFrom(Me.id);
-                    msg.setTo(friend.getId());
-                    msg.setName(friend.getName());
-                    msg.setType(1); //TODO
+                    msg.setTo(group.getId());
+                    msg.setName(group.getName());
+                    msg.setType(2); //group msg type
                     Publisher.publishMessage(msg);
-                    Messages.storeMessageEntity(friend.getName(),
-                            new MessageEntity(Me.username, content), true);
+                    Messages.storeMessageEntity(group.getName(), new MessageEntity(Me.username, content), true);
                     messageText.setText("");
                 }
             }
         });
     }
-
-    private class ChatListener implements PropertyChangeListener {
-        @Override
-        public void propertyChange(PropertyChangeEvent event) {
-            chat.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    adapter.notifyDataSetChanged();
-                }
-            });
-        }
-
-    }
-
 }

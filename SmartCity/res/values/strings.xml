@@ -20,14 +20,16 @@
     <string name="login_btn">登陆</string>
 
     <!--status-->
-    <string name="Status">Status</string>
+    <string name="StatusKey">StatusKey</string>
     <string name="Resident">居民</string>
     <string name="Committee">居委会</string>
+    <string name="Yeweihu">业委会</string>
     <string name="NormalParty">普通党员</string>
 
     <!--chat-->
     <string name="talk">talk</string>
     <string name="friend">friend</string>
+    <string name="group">group</string>
 
     <!--身份选择-->
     <string name="identity_1">居委会工作</string>
@@ -89,6 +91,16 @@
     <string name="renshi">人事信息</string>
     <string name="zhoubian">周边设施</string>
 
+    <!--党建系统-->
+    <string name="zuzhishenghuo">组织生活</string>
+    <string name="dangyuanhuodong">党员活动</string>
+    <string name="sixianghuibao">思想汇报</string>
+    <string name="dangfeijiaona">党费缴纳</string>
+    <string name="ziwopingjia">自我评价</string>
+    <string name="dangyuanhuping">党员互评</string>
+    <string name="zuzhiguanxi">组织关系</string>
+    <string name="jidukaocha">季度考察</string>
+
     <!--党团信息-->
     <string name="dangtuan_aty">党员生活详情</string>
     <string name="dangtuan_title">关于建设智慧社区</string>
@@ -144,6 +156,8 @@
     <!--微信-->
     <string name="group_name">我的家庭</string>
     <string name="send_msg">发送</string>
+    <string name="mygroup">我的组群</string>
+    <string name="myfriends">我的好友</string>
 
     <!--群组详情-->
     <string name="group_details">详细信息</string>

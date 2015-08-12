@@ -18,7 +18,7 @@ public class Message {
 	@JsonProperty
 	private long to;
 	@JsonProperty
-	private int type;
+	private int type;	//1个人，2组群
 	@JsonProperty
 	private int contentType;
 	@JsonProperty("messageId")

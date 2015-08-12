@@ -8,10 +8,10 @@ import sjtu.dclab.smartcity.R;
 /**
  * Created by hp on 2015/7/30.
  */
-public class PersonInfoEditAty extends Activity {
+public class SettingAty extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.person_info_edit);
+        setContentView(R.layout.aty_setting);
     }
 }

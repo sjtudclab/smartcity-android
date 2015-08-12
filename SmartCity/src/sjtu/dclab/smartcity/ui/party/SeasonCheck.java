@@ -7,18 +7,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import sjtu.dclab.smartcity.R;
-
 /**
  * Created by theGODofws on 2015/7/29.
  */
-public class SessionCheck extends Activity{
+public class SeasonCheck extends Activity{
     private ListView list_View;
     private SimpleAdapter simple_Adapter;
     private List<Map<String,Object>> data_List;
@@ -26,7 +25,7 @@ public class SessionCheck extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.party_session_checkout);
+        setContentView(R.layout.party_season_checkout);
 
         list_View =(ListView) findViewById(R.id.ses_check_listView);
 
