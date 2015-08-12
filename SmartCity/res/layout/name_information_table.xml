@@ -34,6 +34,7 @@
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:id="@+id/info_namecard_image"
         android:layout_weight="3"
         />
 
@@ -52,6 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="@string/name_infomation_name"
                 android:layout_gravity="center"
                 android:textSize="24sp" />
@@ -59,6 +61,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:id="@+id/info_namecard_name"
                 android:layout_gravity="center"
                 android:textSize="24sp"
                 />
@@ -74,12 +78,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/name_infomation_sex"
                     android:textSize="24sp" />
                 <!--性别内容,待添加-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:id="@+id/info_namecard_sex"
                     android:layout_gravity="center"
                     android:textSize="24sp"
                     />
@@ -91,12 +98,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/name_infomation_nation"
+
                     android:layout_gravity="center"
                     android:textSize="24sp" />
                 <!--民族内容,待添加-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/info_namecard_race"
+                    android:paddingLeft="20dp"
                     android:layout_gravity="center"
                     android:textSize="24sp"
                     />

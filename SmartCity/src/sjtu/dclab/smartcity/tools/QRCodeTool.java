@@ -24,6 +24,7 @@ public class QRCodeTool {
     //返回的图片对象为BitMap,默认大小定义在类中,默认为200x200
     public static Bitmap createQRBitmap(String src)
     {
+        Bitmap bitmap = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT, Bitmap.Config.ARGB_8888);
         try
         {
             //简单判断src合法性
@@ -52,15 +53,16 @@ public class QRCodeTool {
                 }
             }
             //生成二维码图片的格式，使用ARGB_8888
-            Bitmap bitmap = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT, Bitmap.Config.ARGB_8888);
+
             bitmap.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);
 
-            return bitmap;
+
         }
         catch (WriterException e)
         {
             e.printStackTrace();
         }
+        return bitmap;
 
     }
 }
