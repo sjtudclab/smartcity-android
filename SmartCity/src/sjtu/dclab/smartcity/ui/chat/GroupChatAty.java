@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.MessageAdapter;
 import sjtu.dclab.smartcity.chat.MessageEntity;
@@ -30,7 +27,7 @@ public class GroupChatAty extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.aty_chat);
     }
 
     @Override
@@ -43,6 +40,10 @@ public class GroupChatAty extends Activity {
         group = (Group) intent.getSerializableExtra(String
                 .valueOf(R.string.group));
         adapter = Messages.loadMessageAdapter(group.getName());
+
+        // 设置聊天名称
+        TextView chatTitle = (TextView)findViewById(R.id.tv_chat_title);
+        chatTitle.setText(group.getName());
 
         // 接收消息
         listView.setAdapter(adapter);

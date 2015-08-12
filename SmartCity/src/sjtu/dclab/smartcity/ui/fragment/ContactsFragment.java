@@ -109,9 +109,16 @@ public class ContactsFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        curAty.unbindService(conn);
+        Log.i(TAG, "unbindService");    // not work
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        curAty.unbindService(conn);
+//        curAty.unbindService(conn);
     }
 
     public void initList() {

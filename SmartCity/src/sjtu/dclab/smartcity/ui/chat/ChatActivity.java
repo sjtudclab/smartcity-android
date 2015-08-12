@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.chat.MessageAdapter;
 import sjtu.dclab.smartcity.chat.MessageEntity;
@@ -32,8 +29,7 @@ public class ChatActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         // Log.v(TAG, "onCreate >>>>>>");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-
+        setContentView(R.layout.aty_chat);
     }
 
     @Override
@@ -46,6 +42,10 @@ public class ChatActivity extends Activity {
         friend = (Friend) intent.getSerializableExtra(String
                 .valueOf(R.string.friend));
         adapter = Messages.loadMessageAdapter(friend.getName());
+
+        // 设置聊天名称
+        TextView chatTitle = (TextView) findViewById(R.id.tv_chat_title);
+        chatTitle.setText(friend.getName());
 
         // 接收消息
         listView.setAdapter(adapter);
@@ -85,7 +85,5 @@ public class ChatActivity extends Activity {
                 }
             });
         }
-
     }
-
 }

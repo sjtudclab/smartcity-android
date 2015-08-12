@@ -31,6 +31,7 @@ public class LoginAty extends Activity {
     private MyLogin login = app.getLoginModule();
     private MyTalk talk = app.getTalkModule();
 
+    private String statusKey;
     private GlobalApp globalApp;
 
     @Override
@@ -39,6 +40,7 @@ public class LoginAty extends Activity {
         setContentView(R.layout.aty_login);
 
         globalApp = (GlobalApp) getApplication();
+        statusKey = getString(R.string.StatusKey);
     }
 
     @Override
@@ -82,7 +84,7 @@ public class LoginAty extends Activity {
 
                     Intent i;
                     globalApp.setTalk(talk);
-                    globalApp.setStatus(type);
+//                    globalApp.setStatus(type);
                     globalApp.setUsername(username);
 
                     if (type.equals(getString(R.string.NormalParty))) {
@@ -92,6 +94,7 @@ public class LoginAty extends Activity {
                     } else {
                         //default value
                         i = new Intent(getApplicationContext(), HomeAty.class);
+                        i.putExtra(statusKey,getString(R.string.Resident));
                     }
                     startActivity(i);
                     finish();

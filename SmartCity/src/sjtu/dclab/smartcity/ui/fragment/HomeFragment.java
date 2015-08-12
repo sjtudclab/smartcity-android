@@ -194,6 +194,7 @@ public class HomeFragment extends Fragment {
 
                 //居民部分
                 case R.drawable.juweihui:
+                    startActivity(new Intent(context, RenshiAty.class));
                     break;
                 case R.drawable.yeweihui:
                     break;

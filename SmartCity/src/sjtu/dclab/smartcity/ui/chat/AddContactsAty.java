@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
-import sjtu.dclab.smartcity.entity.ApplicationTransfer;
+import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
 import sjtu.dclab.smartcity.model.CitizenResident;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;

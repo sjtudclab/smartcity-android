@@ -1,4 +1,4 @@
-package sjtu.dclab.smartcity.entity;
+package sjtu.dclab.smartcity.transfer;
 
 /**
  *2015年4月2日 上午10:35:48

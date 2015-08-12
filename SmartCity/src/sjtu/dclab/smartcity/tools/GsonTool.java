@@ -2,8 +2,9 @@ package sjtu.dclab.smartcity.tools;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import sjtu.dclab.smartcity.entity.ApplicationTransfer;
+import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
 import sjtu.dclab.smartcity.transfer.GroupTransfer;
+import sjtu.dclab.smartcity.transfer.ManagementCitizenTransfer;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -114,6 +115,24 @@ public class GsonTool {
             }.getType();
             if (content != null) {
                 List<GroupTransfer> record = gson.fromJson(content, type);
+                return record;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<ManagementCitizenTransfer> getCommittee(String content){
+        Gson gson = new Gson();
+        try {
+            Type type = new TypeToken<List<ManagementCitizenTransfer>>() {
+            }.getType();
+            if (content != null) {
+                List<ManagementCitizenTransfer> record = gson.fromJson(content, type);
                 return record;
             } else {
                 return null;

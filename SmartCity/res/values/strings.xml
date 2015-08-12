@@ -72,6 +72,7 @@
     <string name="URLroot">http://202.120.40.111:8080/community-server/rest/</string>
     <string name="URLChat">http://202.120.40.111:8080/community-server</string>
     <string name="URLLogin">users/login</string>
+    <string name="URLCommittee">managementCitizens/committee</string>
 
     <!--xx工作-->
     <string name="minzheng">民政工作</string>
