@@ -40,11 +40,19 @@ public class NameInformationActivity extends Activity {
                    content = GsonTool.getListMaps(citizen_content);
 
                    for (Map<String,Object> people : content) {
-                       if (people.get("id") == curUserId){
+                       int userid_int = ((Double)people.get("user")).intValue();
+
+                       String userid = userid_int + "";
+                       //text_race.setText(userid);
+                       if (userid.equals(curUserId)){
                            text_name.setText((String) people.get("name"));
+                           text_sex.setText((String)people.get("gender"));
+                           text_race.setText((String)people.get("nation"));
+                           break;
                        }
                    }
-                   text_race.setText(curUserId);
+                   //text_sex.setText(curUserId);
+
 
                }
 

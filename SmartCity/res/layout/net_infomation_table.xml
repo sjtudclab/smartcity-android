@@ -33,6 +33,7 @@
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:id="@+id/info_netcard_image"
         android:layout_weight="3"
         />
 
@@ -62,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="24sp"
+                android:id="@+id/info_netcard_nickname"
                 android:hint="@string/web_information_inputnamehint"
                 android:drawableEnd="@drawable/edit_pen"
                 />
@@ -83,6 +85,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
+                android:id="@+id/info_netcard_webid"
                 android:layout_gravity="center"/>
         </LinearLayout>
         <View
@@ -101,6 +104,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
+                android:id="@+id/info_netcard_qrcode"
                 android:layout_gravity="right"/>
         </LinearLayout>
         <View
