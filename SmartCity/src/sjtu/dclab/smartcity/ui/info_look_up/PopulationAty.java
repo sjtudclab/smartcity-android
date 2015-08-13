@@ -42,7 +42,6 @@ public class PopulationAty extends Activity{
     private String career_choice;
     private String marriage_choice;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,9 +172,14 @@ public class PopulationAty extends Activity{
         button_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:上传搜索条件，并获取搜索结果
-                String url = "202.120.40.111:8080/community-server/information/search/"+"?"+gender_choice+"&"+income_choice+"&"+career_choice+"&"+marriage_choice;
-                startActivity(new Intent(getApplicationContext(), SearchResult.class));
+                Intent intent=new Intent();
+                intent.putExtra("mode","Population");
+                intent.putExtra("gender", gender_choice);
+                intent.putExtra("career", career_choice);
+                intent.putExtra("income", income_choice);
+                intent.putExtra("marriage", marriage_choice);
+                intent.setClass(PopulationAty.this, SearchResult.class);
+                startActivity(intent);
             }
         });
     }
