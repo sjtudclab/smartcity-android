@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffe2e2e2"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="@string/liveing_infomation_title"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="30dp" />
+
+    </FrameLayout>
+
+
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        >
+        <View
+            android:layout_height="6dp"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liveing_infomation_name"
+                android:layout_gravity="center"
+                android:textSize="24sp" />
+            <!--小区名内容,待添加-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_name"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liveing_infomation_address"
+                android:layout_gravity="center"
+                android:textSize="24sp" />
+            <!--小区地址内容,待添加-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_address"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liveing_infomation_mailcode"
+                android:layout_gravity="center"
+                android:textSize="24sp" />
+            <!--邮编内容,待添加-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_mailcode"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liveing_infomation_id"
+                android:layout_gravity="center"
+                android:textSize="24sp" />
+            <!--门牌号内容,待添加-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_doorid"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+
+    </TableLayout>
+
+</LinearLayout>

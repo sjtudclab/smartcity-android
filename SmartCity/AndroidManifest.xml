@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="sjtu.dclab.smartcity"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="17"/>
+
+    <!-- 访问网络的权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
+        android:theme="@android:style/Theme.Light.NoTitleBar"
+                 android:name=".GlobalApp">
+        <activity android:name=".ui.MainAty"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.HomeAty"/>
+        <activity android:name=".ui.MenuAty" />
+
+        <activity android:name=".ui.login.LoginAty"/>
+        <activity android:name=".ui.login.LoginIdentityCommitteeAty" />
+        <activity android:name=".ui.login.LoginIdentityNormalParty" />
+
+        <activity android:name=".ui.minyisquare.MinyiAty"/>
+        <activity android:name=".ui.minyisquare.Minadd"/>
+        <activity android:name=".ui.minyisquare.Minsearch"/>
+
+        <activity android:name=".ui.bianminservice.BianminAty"/>
+        <activity android:name=".ui.bianminservice.Bianadd"/>
+        <activity android:name=".ui.bianminservice.Biansearch"/>
+
+        <activity android:name=".ui.yuqing.YuqingAty"/>
+        <activity android:name=".ui.yuqing.YqDSH"/>
+        <activity android:name=".ui.yuqing.YqYPB"/>
+        <activity android:name=".ui.yuqing.Yqdetail"/>
+
+        <activity android:name=".ui.ann_committee.AnnouncementAty"/>
+        <activity android:name=".ui.ann_committee.AnnDetailAty" />
+        <activity android:name=".ui.ann_committee.AnnPublishAty" />
+
+        <activity android:name=".ui.party.OrgLifeAty"/>
+        <activity android:name=".ui.party.OrgLifeDetailAty" />
+        <activity android:name=".ui.party.PartyExpensePayAty"/>
+        <activity android:name=".ui.party.PartyLifeAty"/>
+        <activity android:name=".ui.party.PartyLifeDetailAty"/>
+        <activity android:name=".ui.party.SeasonCheck"/>
+        <activity android:name=".ui.party.ThouhtReportAty"/>
+        <activity android:name=".ui.party.ThoughtReportListAty"/>
+        <activity android:name=".ui.party.ThoughtReportDetailAty"/>
+        <activity android:name=".ui.party.ThoughtReportPublishAty"/>
+
+        <activity android:name=".ui.chat.ChatGroupDetailsAty" />
+        <activity android:name=".ui.chat.ChatGroupMsgAty" />
+        <activity android:name=".ui.chat.ChatActivity"/>
+
+        <activity android:name=".ui.minzheng.CivilAffairEditAty"/>
+        <activity android:name=".ui.minzheng.CivilAffairHomeAty"/>
+
+        <activity android:name=".ui.infocard.NameInformationActivity"/>
+        <activity android:name=".ui.infocard.NetInformationActivity"/>
+        <activity android:name=".ui.infocard.PartyInformationActivity"/>
+        <activity android:name=".ui.infocard.PartyPersonInfomation"/>
+        <activity android:name=".ui.infocard.SettingAty"/>
+        <activity android:name=".ui.infocard.LivingInformationActivity"/>
+        <activity android:name=".ui.chat.AddContactsAty" />
+        <activity android:name=".ui.chat.GroupChatAty"/>
+
+        <activity android:name=".ui.vote.MinyivoteAty"/>
+        <activity android:name=".ui.vote.NewvoteAty"/>
+
+        <activity android:name=".ui.human_resource_info.RenshiAty"/>
+        <activity android:name=".ui.human_resource_info.RenshiChanged"/>
+        <activity android:name=".ui.human_resource_info.RenshiDetail"/>
+
+        <activity android:name=".ui.wuyerepair.PropertyRepairAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAddAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAssessAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairCheckAty"/>
+
+        <activity android:name=".ui.linli.LinliAty"/>
+        <activity android:name=".ui.linli.Linlichat"/>
+        <activity android:name=".ui.linli.Linlisearch"/>
+        <activity android:name=".ui.linli.Linlichatdetail"/>
+
+        <!-- Mqtt Service -->
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <service android:name=".chat.HeartbeatService" />
+
+    </application>
+
+</manifest>

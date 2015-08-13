@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffe2e2e2"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="@string/web_infomation_title"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="30dp" />
+
+    </FrameLayout>
+
+
+    <!--抬头图片，activity中调用添加-->
+    <ImageView
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/info_netcard_image"
+        android:layout_weight="3"
+        />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="0"
+        android:stretchColumns="1"
+        android:layout_weight="2.4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+        <View
+            android:layout_height="6dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:id="@+id/net_information_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/web_infomation_nickname"
+                android:layout_gravity="center"
+                android:textSize="24sp" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                android:id="@+id/info_netcard_nickname"
+                android:hint="@string/web_information_inputnamehint"
+                android:drawableEnd="@drawable/edit_pen"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/web_infomation_id"
+                android:layout_gravity="center_vertical"
+                android:textSize="24sp"
+                />
+            <!--社区用户号具体号码，activity中调用添加-->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:id="@+id/info_netcard_webid"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/web_infomation_namecard"
+                android:textSize="24sp"
+                android:layout_gravity="center_vertical" />
+            <!--社区二维码image，src在activity中调用添加-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/info_netcard_qrcode"
+                android:layout_gravity="right"/>
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+    </TableLayout>
+
+</LinearLayout>
