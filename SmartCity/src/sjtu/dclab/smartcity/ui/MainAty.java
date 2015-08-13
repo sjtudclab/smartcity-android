@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import sjtu.dclab.smartcity.ui.infocard.NameInformationActivity;
 import sjtu.dclab.smartcity.ui.login.LoginAty;
 
 public class MainAty extends Activity {
@@ -16,7 +17,8 @@ public class MainAty extends Activity {
 //        setContentView(R.layout.aty_main);
 
         //app入口，可以修改来测试自己的activity
-        startActivity(new Intent(getApplicationContext(), LoginAty.class));
+        //startActivity(new Intent(getApplicationContext(), LoginAty.class));
+        startActivity(new Intent(getApplicationContext(), NameInformationActivity.class));
         finish();
     }
 }

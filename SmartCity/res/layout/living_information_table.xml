@@ -52,6 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_name"
                 android:layout_gravity="center"
                 android:textSize="24sp"
                 />
@@ -71,6 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_address"
                 android:layout_gravity="center"
                 android:textSize="24sp"
                 />
@@ -90,6 +92,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_mailcode"
                 android:layout_gravity="center"
                 android:textSize="24sp"
                 />
@@ -109,6 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/info_livingcard_doorid"
                 android:layout_gravity="center"
                 android:textSize="24sp"
                 />
