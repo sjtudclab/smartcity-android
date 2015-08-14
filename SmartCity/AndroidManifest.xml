@@ -90,6 +90,9 @@
         <activity android:name=".ui.linli.Linlisearch"/>
         <activity android:name=".ui.linli.Linlichatdetail"/>
 
+        <activity android:name=".ui.info_look_up.HouseAty"/>
+        <activity android:name=".ui.info_look_up.PopulationAty"/>
+        <activity android:name=".ui.info_look_up.SearchResult"/>
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".chat.HeartbeatService" />

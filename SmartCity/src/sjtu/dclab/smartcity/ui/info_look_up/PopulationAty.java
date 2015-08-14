@@ -91,7 +91,7 @@ public class PopulationAty extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0) {
-                    income_choice = adapter_gender.getItem(i);
+                    income_choice = adapter_income.getItem(i);
                 }
                 else {
                     income_choice = "";
@@ -124,7 +124,7 @@ public class PopulationAty extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0) {
-                    career_choice = adapter_gender.getItem(i);
+                    career_choice = adapter_career.getItem(i);
                 }
                 else {
                     career_choice = "";
@@ -138,7 +138,7 @@ public class PopulationAty extends Activity{
         });
 
         //spinner marriage
-        spinner_marriage = (Spinner) findViewById(R.id.spinner3);
+        spinner_marriage = (Spinner) findViewById(R.id.spinner4);
         list_marriage = new ArrayList<String>();
         //TODO:从服务器端获取数据库信息，并自动生成list来替换以下代码
         list_marriage.add("婚姻状态");
@@ -154,7 +154,7 @@ public class PopulationAty extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0) {
-                    marriage_choice = adapter_gender.getItem(i);
+                    marriage_choice = adapter_marriage.getItem(i);
                 }
                 else {
                     marriage_choice = "";
