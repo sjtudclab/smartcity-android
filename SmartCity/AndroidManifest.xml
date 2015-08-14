@@ -73,8 +73,8 @@
         <activity android:name=".ui.chat.AddContactsAty" />
         <activity android:name=".ui.chat.GroupChatAty"/>
 
-        <activity android:name=".ui.vote.MinyivoteAty"/>
-        <activity android:name=".ui.vote.NewvoteAty"/>
+        <activity android:name=".ui.vote.VoteAty"/>
+        <activity android:name=".ui.vote.NewVoteAty"/>
 
         <activity android:name=".ui.human_resource_info.RenshiAty"/>
         <activity android:name=".ui.human_resource_info.RenshiChanged"/>
@@ -89,6 +89,7 @@
         <activity android:name=".ui.linli.Linlichat"/>
         <activity android:name=".ui.linli.Linlisearch"/>
         <activity android:name=".ui.linli.Linlichatdetail"/>
+        <activity android:name=".ui.chat.GroupDetail"/>
 
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />

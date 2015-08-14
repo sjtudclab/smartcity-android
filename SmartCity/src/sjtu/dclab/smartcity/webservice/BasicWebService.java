@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -39,6 +40,7 @@ public class BasicWebService {
     private final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
 
     private final String ERRORMSG = "error";
+    private final String SUCCESS = "success";
 
     public BasicWebService() {
         BasicHttpParams httpParams = new BasicHttpParams();
@@ -81,14 +83,14 @@ public class BasicWebService {
         return ERRORMSG;
     }
 
-    public String sendPostRequestWithRawJson(String url, JSONObject jsonObject){
+    public String sendPostRequestWithRawJson(String url, JSONObject jsonObject) {
         try {
             HttpPost httpPost = new HttpPost(url);
             httpPost.addHeader("Content-Type", "application/json");
             httpPost.setEntity(new ByteArrayEntity(jsonObject.toString().getBytes()));
             HttpResponse response = httpClient.execute(httpPost);
             StatusLine statusLine = response.getStatusLine();
-            if (statusLine != null && statusLine.getStatusCode()==200){
+            if (statusLine != null && statusLine.getStatusCode() == 200) {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     InputStream instream = entity.getContent();
@@ -105,7 +107,7 @@ public class BasicWebService {
                 Log.i(TAG, ERRORMSG);
                 return ERRORMSG;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ERRORMSG;
         }
@@ -143,10 +145,28 @@ public class BasicWebService {
         return ERRORMSG;
     }
 
-    public String sendPutRequest(String url, Map<String,String> args){
+
+    public String sendPostRequestWithMultipartEntity(String url, MultipartEntity entity) {
+        try {
+            HttpPost httpPost = new HttpPost(url);
+            HttpResponse httpResponse;
+            httpPost.setEntity(entity);
+            httpResponse = httpClient.execute(httpPost);
+            int statusCode = httpResponse.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                return SUCCESS;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERRORMSG;
+    }
+
+
+    public String sendPutRequest(String url, Map<String, String> args) {
         try {
             HttpPut httpPut = new HttpPut(url);
-            if (args!=null){
+            if (args != null) {
                 List<BasicNameValuePair> putData = new ArrayList<BasicNameValuePair>();
                 for (Map.Entry<String, String> entry : args.entrySet()) {
                     putData.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
@@ -156,15 +176,15 @@ public class BasicWebService {
             }
             HttpResponse response = httpClient.execute(httpPut);
             HttpEntity entity = response.getEntity();
-            if(entity == null){
+            if (entity == null) {
                 return null;
             }
             String result = EntityUtils.toString(entity, HTTP.UTF_8);
             return result;
-        }catch (ClientProtocolException e){
+        } catch (ClientProtocolException e) {
             e.printStackTrace();
             return ERRORMSG;
-        }catch (IOException io){
+        } catch (IOException io) {
             io.printStackTrace();
         }
         return ERRORMSG;

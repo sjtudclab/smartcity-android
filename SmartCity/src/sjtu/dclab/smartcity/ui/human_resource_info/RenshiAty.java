@@ -44,7 +44,7 @@ public class RenshiAty extends Activity {
     }
 
     public void init() {
-        String urlRoot = getString(R.string.URLroot);
+        String urlRoot = getString(R.string.URLRoot);
         String urlCommittee = getString(R.string.URLCommittee);
         String url = urlRoot + urlCommittee;
         String resp = new BasicWebService().sendGetRequest(url, null);

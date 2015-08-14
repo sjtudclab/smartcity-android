@@ -31,33 +31,42 @@ android:weightSum="1">
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="fill_parent"
+                android:id="@+id/tv_vote_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vote_title"
-                android:id="@+id/vote_title"
                 android:layout_weight="5"
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical" />
 
+            <TextView
+                android:id="@+id/tv_vote_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="@color/black"/>
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/vote_rg"
+                android:id="@+id/rg_vote"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vote_yes"
-                    android:id="@+id/radioButton"
+                    android:textColor="@color/black"
+                    android:id="@+id/rb_vote_agree"
                     android:layout_weight="1" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vote_no"
-                    android:id="@+id/radioButton2"
+                    android:textColor="@color/black"
+                    android:id="@+id/rb_vote_disagree"
                     android:layout_weight="1" />
             </RadioGroup>
         </LinearLayout>

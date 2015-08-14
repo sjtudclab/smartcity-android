@@ -18,7 +18,7 @@ import sjtu.dclab.smartcity.ui.linli.LinliAty;
 import sjtu.dclab.smartcity.ui.minyisquare.MinyiAty;
 import sjtu.dclab.smartcity.ui.minzheng.CivilAffairHomeAty;
 import sjtu.dclab.smartcity.ui.party.*;
-import sjtu.dclab.smartcity.ui.vote.MinyivoteAty;
+import sjtu.dclab.smartcity.ui.vote.VoteAty;
 import sjtu.dclab.smartcity.ui.wuyerepair.PropertyRepairAddAty;
 import sjtu.dclab.smartcity.ui.yuqing.YuqingAty;
 
@@ -149,7 +149,7 @@ public class HomeFragment extends Fragment {
                     startActivity(new Intent(context, MinyiAty.class));
                     break;
                 case R.drawable.minyivote:
-                    startActivity(new Intent(context, MinyivoteAty.class));
+                    startActivity(new Intent(context, VoteAty.class));
                     break;
                 case R.drawable.yuqing:
                     startActivity(new Intent(context, YuqingAty.class));

@@ -166,7 +166,7 @@ public class ContactsFragment extends Fragment {
         //init group list
         lv_groups = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_groups);
         items_groups = new ArrayList<HashMap<String, Object>>();
-        String url = getString(R.string.URLroot) + "groups/0/users/" + Me.id;
+        String url = getString(R.string.URLRoot) + "groups/0/users/" + Me.id;
         String groupStr = new BasicWebService().sendGetRequest(url, null);
         List<GroupTransfer> gts = GsonTool.getGroupList(groupStr);
 

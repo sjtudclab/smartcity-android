@@ -40,7 +40,7 @@ public class ThoughtReportListAty extends Activity{
             }
         });
 
-        ibtnAdd = (ImageButton) findViewById(R.id.ann_ibtn_add);
+        ibtnAdd = (ImageButton) findViewById(R.id.btn_ann_add);
         ibtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

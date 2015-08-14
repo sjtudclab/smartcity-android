@@ -19,30 +19,29 @@ import sjtu.dclab.smartcity.community.entity.Message;
  */
 public class GroupChatAty extends Activity {
     private GroupChatAty chat = this;
+
+    private ImageButton ibtnGroupDetail;
     private ListView listView;
     private MessageAdapter adapter;
     private Button messageButton;
     private EditText messageText;
     private Group group;
 
+    private long groupId;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_chat);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         listView = (ListView) findViewById(R.id.chat_list);
 
         Intent intent = getIntent();
-        group = (Group) intent.getSerializableExtra(String
-                .valueOf(R.string.group));
+        group = (Group) intent.getSerializableExtra(String.valueOf(R.string.group));
+        groupId = group.getId();
         adapter = Messages.loadMessageAdapter(group.getName());
 
         // 设置聊天名称
-        TextView chatTitle = (TextView)findViewById(R.id.tv_chat_title);
+        TextView chatTitle = (TextView) findViewById(R.id.tv_chat_title);
         chatTitle.setText(group.getName());
 
         // 接收消息
@@ -51,24 +50,40 @@ public class GroupChatAty extends Activity {
         // 发送消息
         messageButton = (Button) findViewById(R.id.MessageButton);
         messageText = (EditText) findViewById(R.id.MessageText);
-        messageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = messageText.getText().toString();
-                if (content.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "请输入内容", Toast.LENGTH_SHORT).show();
-                } else {
-                    Message msg = new Message();
-                    msg.setContent(content);
-                    msg.setFrom(Me.id);
-                    msg.setTo(group.getId());
-                    msg.setName(group.getName());
-                    msg.setType(2); //group msg type
-                    Publisher.publishMessage(msg);
-                    Messages.storeMessageEntity(group.getName(), new MessageEntity(Me.username, content), true);
-                    messageText.setText("");
-                }
+        messageButton.setOnClickListener(new SendBtnListener());
+
+
+        // 群组详情
+        ibtnGroupDetail = (ImageButton) findViewById(R.id.ibtn_group_detail);
+        ibtnGroupDetail.setOnClickListener(new DetailBtnListener());
+    }
+
+    private class DetailBtnListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(), GroupDetail.class);
+            intent.putExtra("groupId", groupId + "");
+            startActivity(intent);
+        }
+    }
+
+    private class SendBtnListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            String content = messageText.getText().toString();
+            if (content.length() == 0) {
+                Toast.makeText(getApplicationContext(), "请输入内容", Toast.LENGTH_SHORT).show();
+            } else {
+                Message msg = new Message();
+                msg.setContent(content);
+                msg.setFrom(Me.id);
+                msg.setTo(group.getId());
+                msg.setName(group.getName());
+                msg.setType(2); //group msg type
+                Publisher.publishMessage(msg);
+                Messages.storeMessageEntity(group.getName(), new MessageEntity(Me.username, content), true);
+                messageText.setText("");
             }
-        });
+        }
     }
 }

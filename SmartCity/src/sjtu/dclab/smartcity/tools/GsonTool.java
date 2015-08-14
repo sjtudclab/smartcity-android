@@ -7,11 +7,9 @@ import sjtu.dclab.smartcity.transfer.GroupTransfer;
 import sjtu.dclab.smartcity.transfer.ManagementCitizenTransfer;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
-//import sjtu.dclab.smartcity.entity.Contact;
 
 /**
  * Created by Yang on 2015/7/9.
@@ -31,7 +29,7 @@ public class GsonTool {
      * json : 指定对象解析过的JSON字符串源,用来转换回Java对象。
      * classOfT ： 泛型   T 的Class对象。
      */
-    public static <T> T getObject(String jsonString, Class<T> cls){
+    public static <T> T getObject(String jsonString, Class<T> cls) {
         T t = null;
         try {
             Gson gson = new Gson();
@@ -51,43 +49,16 @@ public class GsonTool {
      * getType()的意思就是表示将jsonString的字符串解析出来之后封装到List集合中，然后分别从T里面取出类型将其复制。
      */
 
-    public static <T> List<T> getObjectList(String jsonString, Class<T> cls){
-        List<T> list = new ArrayList<T>();
+    public static <T> List<T> getObjectList(String jsonString, Class<T[]> cls) {
         try {
             Gson gson = new Gson();
-            list = gson.fromJson(jsonString,
-                    new TypeToken<List<T>>(){}.getType());
+            T[] arr = gson.fromJson(jsonString, cls);
+            return Arrays.asList(arr);
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
+            return null;
         }
-        return list;
-    }
-
-    public static List<String> getList(String jsonString){
-        List<String> list = new ArrayList<String>();
-        try {
-            Gson gson = new Gson();
-            list = gson.fromJson(jsonString,
-                    new TypeToken<List<String>>(){}.getType());
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    public static List<Map<String, Object>> getListMaps(String jsonString){
-        List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-        try {
-            Gson gson = new Gson();
-            list = gson.fromJson(jsonString,
-                    new TypeToken<List<Map<String, Object>>>(){}.getType());
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-        return list;
     }
 
     public static List<ApplicationTransfer> getFriendApplicationTransferList(String content) {
@@ -108,7 +79,7 @@ public class GsonTool {
         }
     }
 
-    public static List<GroupTransfer> getGroupList(String content){
+    public static List<GroupTransfer> getGroupList(String content) {
         Gson gson = new Gson();
         try {
             Type type = new TypeToken<List<GroupTransfer>>() {
@@ -126,7 +97,7 @@ public class GsonTool {
         }
     }
 
-    public static List<ManagementCitizenTransfer> getCommittee(String content){
+    public static List<ManagementCitizenTransfer> getCommittee(String content) {
         Gson gson = new Gson();
         try {
             Type type = new TypeToken<List<ManagementCitizenTransfer>>() {

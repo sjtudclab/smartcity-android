@@ -9,9 +9,8 @@
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <!-- 黑色 -->
+    <color name="black">#000000</color><!-- 黑色 -->
     <color name="greenyellow">#ADFF2F</color>
     <color name="green">#008000</color>
- <color name="lightgray">#D3D3D3</color> <!-- 亮灰色 -->
+    <color name="lightgray">#D3D3D3</color> <!-- 亮灰色 -->
 </resources>
