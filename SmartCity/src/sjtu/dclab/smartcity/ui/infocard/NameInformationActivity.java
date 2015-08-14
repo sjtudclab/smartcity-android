@@ -61,7 +61,6 @@ public class NameInformationActivity extends Activity {
                    }
                    //text_sex.setText(curUserId);
 
-
                }
 
 

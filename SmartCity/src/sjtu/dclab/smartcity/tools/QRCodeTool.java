@@ -76,6 +76,9 @@ public class QRCodeTool {
 
     }
 
+
+    //通过传入位图Bitmap(Adroid格式)生成对应的字符串
+    //返回的图片对象为String
     public static String decodeQRBitmap(Bitmap bMap){
         String decode_str = "error decoding";
         try {
