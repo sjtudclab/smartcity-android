@@ -1,6 +1,9 @@
 package sjtu.dclab.smartcity.tools;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
 import sjtu.dclab.smartcity.transfer.GroupTransfer;
@@ -142,5 +145,16 @@ public class GsonTool {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static <T> List<T> fromJsonArray(String json, Class<T> cls) throws Exception {
+        List<T> lst = new ArrayList<T>();
+
+        JsonArray array = new JsonParser().parse(json).getAsJsonArray();
+        for(final JsonElement elem : array){
+            lst.add(new Gson().fromJson(elem, cls));
+        }
+
+        return lst;
     }
 }

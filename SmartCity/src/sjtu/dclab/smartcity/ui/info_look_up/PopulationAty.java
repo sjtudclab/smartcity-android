@@ -173,12 +173,12 @@ public class PopulationAty extends Activity{
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
+                intent.setClass(PopulationAty.this, SearchResult.class);
                 intent.putExtra("mode","Population");
                 intent.putExtra("gender", gender_choice);
                 intent.putExtra("career", career_choice);
                 intent.putExtra("income", income_choice);
                 intent.putExtra("marriage", marriage_choice);
-                intent.setClass(PopulationAty.this, SearchResult.class);
                 startActivity(intent);
             }
         });
