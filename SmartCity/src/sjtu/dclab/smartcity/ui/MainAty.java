@@ -15,6 +15,7 @@ public class MainAty extends Activity {
 
         //app入口，可以修改来测试自己的activity
         startActivity(new Intent(getApplicationContext(), LoginAty.class));
+//        startActivity(new Intent(getApplicationContext(), HouseAty.class));
         finish();
     }
 }

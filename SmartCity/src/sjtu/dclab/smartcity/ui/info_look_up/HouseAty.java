@@ -64,9 +64,9 @@ public class HouseAty extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.putExtra("mode","House");
-                intent.putExtra("gender", area_choice);
                 intent.setClass(HouseAty.this, SearchResult.class);
+                intent.putExtra("mode","House");
+                intent.putExtra("area", area_choice);
                 startActivity(intent);
             }
         });

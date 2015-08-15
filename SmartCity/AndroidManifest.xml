@@ -94,8 +94,6 @@
         <activity android:name=".ui.info_look_up.HouseAty"/>
         <activity android:name=".ui.info_look_up.PopulationAty"/>
         <activity android:name=".ui.info_look_up.SearchResult"/>
-
-        <!--其他-->
         <activity android:name=".ui.info_look_up.SomethingMore"/>
 
         <!-- Mqtt Service -->
