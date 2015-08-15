@@ -3,7 +3,6 @@ package sjtu.dclab.smartcity.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import sjtu.dclab.smartcity.ui.login.LoginAty;
 
 public class MainAty extends Activity {
