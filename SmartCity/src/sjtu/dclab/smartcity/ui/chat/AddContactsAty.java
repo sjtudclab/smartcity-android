@@ -3,19 +3,25 @@ package sjtu.dclab.smartcity.ui.chat;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONObject;
+
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.qrcode.activity.CaptureActivity;
 import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
 import sjtu.dclab.smartcity.model.CitizenResident;
 import sjtu.dclab.smartcity.tools.GsonTool;
+import sjtu.dclab.smartcity.ui.vote.NewVoteAty;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
@@ -37,7 +43,7 @@ public class AddContactsAty extends Activity {
     private final String URL_ALL_CITIZENS_IN_APARTMENT = URLROOT + "apartment/101/citizen"; //TODO 测试阶段
 
     private ListView lvRecommend, lvRequest;
-    private ImageButton ibtnBack;
+    private ImageButton ibtnBack, ibtnScan;
     private ArrayList<HashMap<String, Object>> itemsRecommend, itemsRequest;
     private List<ApplicationTransfer> friendApplications;
     private List<CitizenResident> citizens;
@@ -56,6 +62,13 @@ public class AddContactsAty extends Activity {
                 finish();
             }
         });
+        ibtnScan = (ImageButton) findViewById(R.id.ibtn_scan);
+        ibtnScan.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
+			}
+		});
     }
 
     @Override
@@ -116,7 +129,8 @@ public class AddContactsAty extends Activity {
         }
 
         //************************************************************************
-        //TODO 需要重写！！！
+        //TODO 需要重写！！！暂时屏蔽
+        /*
         lvRecommend = (ListView) findViewById(R.id.add_contacts_lv);
         itemsRecommend = new ArrayList<HashMap<String, Object>>();
         //REST请求：推荐好友列表
@@ -173,5 +187,6 @@ public class AddContactsAty extends Activity {
                 }
             });
         }
+        */
     }
 }

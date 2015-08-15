@@ -29,14 +29,14 @@ public class QRCodeTool {
     public QRCodeTool(){
     }
 
-    //Í¨¹ı´«Èë×Ö·û´®srcÉú³É¶ÔÓ¦µÄ¶şÎ¬Âë
-    //·µ»ØµÄÍ¼Æ¬¶ÔÏóÎªBitMap,Ä¬ÈÏ´óĞ¡¶¨ÒåÔÚÀàÖĞ,Ä¬ÈÏÎª400x400
+    //é€šè¿‡ä¼ å…¥å­—ç¬¦ä¸²srcç”Ÿæˆå¯¹åº”çš„äºŒç»´ç 
+    //è¿”å›çš„å›¾ç‰‡å¯¹è±¡ä¸ºBitMap,é»˜è®¤å¤§å°å®šä¹‰åœ¨ç±»ä¸­,é»˜è®¤ä¸º400x400
     public static Bitmap createQRBitmap(String src)
     {
         Bitmap bitmap = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT, Bitmap.Config.ARGB_8888);
         try
         {
-            //¼òµ¥ÅĞ¶ÏsrcºÏ·¨ĞÔ
+            //ç®€å•åˆ¤æ–­srcåˆæ³•æ€§
             if (src == null || src.length() < 1)
             {
                 return null;
@@ -61,7 +61,7 @@ public class QRCodeTool {
                     }
                 }
             }
-            //Éú³É¶şÎ¬ÂëÍ¼Æ¬µÄ¸ñÊ½£¬Ê¹ÓÃARGB_8888
+            //ç”ŸæˆäºŒç»´ç å›¾ç‰‡çš„æ ¼å¼ï¼Œä½¿ç”¨ARGB_8888
 
             bitmap.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);
             return bitmap;
@@ -77,8 +77,8 @@ public class QRCodeTool {
     }
 
 
-    //Í¨¹ı´«ÈëÎ»Í¼Bitmap(Adroid¸ñÊ½)Éú³É¶ÔÓ¦µÄ×Ö·û´®
-    //·µ»ØµÄÍ¼Æ¬¶ÔÏóÎªString
+    //é€šè¿‡ä¼ å…¥ä½å›¾Bitmap(Adroidæ ¼å¼)ç”Ÿæˆå¯¹åº”çš„å­—ç¬¦ä¸²
+    //è¿”å›çš„å›¾ç‰‡å¯¹è±¡ä¸ºString
     public static String decodeQRBitmap(Bitmap bMap){
         String decode_str = "error decoding";
         try {
