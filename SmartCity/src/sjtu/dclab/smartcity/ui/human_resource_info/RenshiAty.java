@@ -49,7 +49,7 @@ public class RenshiAty extends Activity {
         String url = urlRoot + urlCommittee;
         String resp = new BasicWebService().sendGetRequest(url, null);
 
-        mctlist = GsonTool.getCommittee(resp);
+        mctlist = GsonTool.getObjectList(resp,ManagementCitizenTransfer[].class);
 
         for (ManagementCitizenTransfer mct : mctlist) {
             Map<String, Object> map = new HashMap<String, Object>();

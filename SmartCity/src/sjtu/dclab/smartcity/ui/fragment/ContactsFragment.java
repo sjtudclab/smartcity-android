@@ -168,7 +168,7 @@ public class ContactsFragment extends Fragment {
         items_groups = new ArrayList<HashMap<String, Object>>();
         String url = getString(R.string.URLRoot) + "groups/0/users/" + Me.id;
         String groupStr = new BasicWebService().sendGetRequest(url, null);
-        List<GroupTransfer> gts = GsonTool.getGroupList(groupStr);
+        List<GroupTransfer> gts = GsonTool.getObjectList(groupStr,GroupTransfer[].class);
 
         for (GroupTransfer gt : gts) {
             HashMap<String, Object> map = new HashMap<String, Object>();

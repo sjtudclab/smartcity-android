@@ -1,12 +1,7 @@
 package sjtu.dclab.smartcity.tools;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
-import sjtu.dclab.smartcity.transfer.GroupTransfer;
-import sjtu.dclab.smartcity.transfer.ManagementCitizenTransfer;
 
-import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,57 +56,21 @@ public class GsonTool {
         }
     }
 
-    public static List<ApplicationTransfer> getFriendApplicationTransferList(String content) {
-        Gson gson = new Gson();
-        try {
-            Type type = new TypeToken<List<ApplicationTransfer>>() {
-            }.getType();
-            if (content != null) {
-                List<ApplicationTransfer> record = gson.fromJson(content, type);
-                return record;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static List<GroupTransfer> getGroupList(String content) {
-        Gson gson = new Gson();
-        try {
-            Type type = new TypeToken<List<GroupTransfer>>() {
-            }.getType();
-            if (content != null) {
-                List<GroupTransfer> record = gson.fromJson(content, type);
-                return record;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static List<ManagementCitizenTransfer> getCommittee(String content) {
-        Gson gson = new Gson();
-        try {
-            Type type = new TypeToken<List<ManagementCitizenTransfer>>() {
-            }.getType();
-            if (content != null) {
-                List<ManagementCitizenTransfer> record = gson.fromJson(content, type);
-                return record;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public static List<ApplicationTransfer> getFriendApplicationTransferList(String content) {
+//        Gson gson = new Gson();
+//        try {
+//            Type type = new TypeToken<List<ApplicationTransfer>>() {
+//            }.getType();
+//            if (content != null) {
+//                List<ApplicationTransfer> record = gson.fromJson(content, type);
+//                return record;
+//            } else {
+//                return null;
+//            }
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }

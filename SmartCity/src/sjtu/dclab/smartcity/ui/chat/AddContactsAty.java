@@ -68,7 +68,7 @@ public class AddContactsAty extends Activity {
         //完整示例http://202.120.40.111:8080/community-server/rest/friends/3/applications
         String resultRequest = new BasicWebService().sendGetRequest(URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications", null);
         if (resultRequest != null) {
-            friendApplications = GsonTool.getFriendApplicationTransferList(resultRequest);
+            friendApplications = GsonTool.getObjectList(resultRequest,ApplicationTransfer[].class);
         }
         if (friendApplications != null && friendApplications.size() != 0) {
             for (ApplicationTransfer at : friendApplications) {
