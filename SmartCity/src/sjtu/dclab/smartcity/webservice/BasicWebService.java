@@ -153,6 +153,7 @@ public class BasicWebService {
             httpPost.setEntity(entity);
             httpResponse = httpClient.execute(httpPost);
             int statusCode = httpResponse.getStatusLine().getStatusCode();
+            Log.i(TAG,"StatusCode="+statusCode);
             if (statusCode == 200) {
                 return SUCCESS;
             }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.Toast;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.ui.HomeAty;
 
@@ -43,7 +44,12 @@ public class LoginIdentityCommitteeAty extends Activity {
         });
 
         yeweihui = (Button) findViewById(R.id.identity_btn_yeweihui);
-        yeweihui.setOnClickListener(null);
+        yeweihui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"业委会模块正在开发中 ...",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         dangjian = (Button) findViewById(R.id.identity_btn_partybuilding);
         dangjian.setOnClickListener(new View.OnClickListener() {
@@ -64,11 +70,6 @@ public class LoginIdentityCommitteeAty extends Activity {
         });
     }
 
-    /**
-     * Button�����¼�������
-     *
-     * @param v
-     */
     public void onClickProcess(View v) {
         if (v.getId() == R.id.identity_btn_partybuilding) {
             startActivity(new Intent(this, HomeAty.class));

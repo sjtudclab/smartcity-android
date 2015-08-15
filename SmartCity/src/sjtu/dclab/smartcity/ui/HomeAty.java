@@ -49,7 +49,7 @@ public class HomeAty extends FragmentActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_home = inflater.inflate(R.layout.tab_home, null);
         View view_contacts = inflater.inflate(R.layout.tab_contacts, null);
-        View view_chat = inflater.inflate(R.layout.tab_chat, null);
+        View view_chat = inflater.inflate(R.layout.tab_msgrecord, null);
         View view_profile = inflater.inflate(R.layout.tab_profile, null);
 
         final ArrayList<View> views = new ArrayList<View>();

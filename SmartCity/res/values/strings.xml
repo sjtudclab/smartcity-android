@@ -296,6 +296,9 @@
     <string name="person_info_home">个人信息</string>
     <string name="person_info_edit">设置</string>
 
+    <!--Msg Record-->
+    <string name="msgrecord_title">信息记录</string>
+
     <!--Zhang add-->
     <string name="web_information_inputnamehint">请输入昵称</string>
     <!--end-->

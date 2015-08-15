@@ -2,6 +2,7 @@ package sjtu.dclab.smartcity.ui.ann_committee;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
+
+import java.io.File;
 
 /**
  * AnnPublishAty
@@ -33,6 +37,9 @@ public class AnnPublishAty extends Activity {
 
     private BasicWebService webService = new BasicWebService();
     private String url;
+
+//        private String filePath = "/DCIM/Camera/1430140545395.jpg";
+    private String filePath = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,7 @@ public class AnnPublishAty extends Activity {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, 0);
         }
     }
 
@@ -84,18 +91,18 @@ public class AnnPublishAty extends Activity {
                 args.addPart("content", new StringBody(content));
                 args.addPart("from", new StringBody(from));
                 args.addPart("infotype", new StringBody(infotype));
-                args.addPart("file", null);   //TODO file stream
+                args.addPart("file", new FileBody(new File(filePath)));   //TODO file stream
                 args.addPart("redirect_url", new StringBody(redirect_url));
                 String resp = webService.sendPostRequestWithMultipartEntity(url, args);
                 if (resp == "success") {
                     Toast.makeText(getApplicationContext(), "发布成功！", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "发布失败！", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG,"状态码!=200");
+                    Log.e(TAG, "状态码!=200");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e(TAG,"exception");
+                Log.e(TAG, "exception");
                 Toast.makeText(getApplicationContext(), "发布失败！", Toast.LENGTH_SHORT).show();
             }
         }
@@ -104,6 +111,12 @@ public class AnnPublishAty extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //TODO
+        Log.i(TAG, "onActivityResult:" + requestCode + ", Excepted:" + RESULT_OK);
+        if (requestCode == RESULT_OK) {
+            Uri uri = data.getData();
+            filePath = uri.getPath();
+            Log.i(TAG, "filePath:" + filePath);
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -68,7 +68,6 @@ public class PushCallback implements MqttCallback {
                 intent.putExtra(String.valueOf(R.string.friend), friend);
                 final PendingIntent activity = PendingIntent.getActivity(context, 0,
                         intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
                 notification.setLatestEventInfo(context, "好友消息", msgEntity.getContent(), activity);
                 notificationManager.notify(notification.number, notification);
                 notification.number += 1;

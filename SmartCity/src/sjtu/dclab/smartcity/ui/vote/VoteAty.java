@@ -1,6 +1,7 @@
 package sjtu.dclab.smartcity.ui.vote;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,9 +38,9 @@ public class VoteAty extends Activity {
         setContentView(R.layout.aty_vote);
 
         ibtnAdd = (ImageButton) findViewById(R.id.ibtn_vote_add);
-        lvVote = (ListView) findViewById(R.id.lv_vote);
-
         ibtnAdd.setOnClickListener(new AddBtnListener());
+
+        lvVote = (ListView) findViewById(R.id.lv_vote);
 
         init();
     }
@@ -62,7 +63,6 @@ public class VoteAty extends Activity {
         );
 
         lvVote.setAdapter(adapter);
-        lvVote.setOnItemClickListener(new VoteItemClickListener());
     }
 
     private class AddBtnListener implements View.OnClickListener {
@@ -72,30 +72,20 @@ public class VoteAty extends Activity {
         }
     }
 
-    // TODO 点击无效
-    private class AgrListener implements View.OnClickListener {
+    // TODO 投票结果的监听
+    private class VoteListener implements RadioGroup.OnCheckedChangeListener{
         @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "您投了支持，谢谢！", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private class DisagrListener implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "您投了反对，谢谢！", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private class VoteItemClickListener implements AdapterView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            rgVote = (RadioGroup) view.findViewById(R.id.rg_vote);
-            rbAgree = (RadioButton) rgVote.findViewById(R.id.rb_vote_agree);
-            rbDisag = (RadioButton) rgVote.findViewById(R.id.rb_vote_disagree);
-
-            rbAgree.setOnClickListener(new AgrListener());
-            rbDisag.setOnClickListener(new DisagrListener());
+        public void onCheckedChanged(RadioGroup radioGroup, int i) {
+            int rbtnId = radioGroup.getCheckedRadioButtonId();
+            Context context = getApplicationContext();
+            switch (rbtnId){
+                case R.id.rb_vote_agree:
+                    Toast.makeText(context,"您投了支持，谢谢合作！",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rb_vote_disagree:
+                    Toast.makeText(context,"您投了反对，谢谢合作！",Toast.LENGTH_SHORT).show();
+                    break;
+            }
         }
     }
 }

@@ -103,7 +103,7 @@ public class ContactsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        initList();
+        init();
         setUpMessageAdapters();
         startMQTTService();
     }
@@ -111,7 +111,7 @@ public class ContactsFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        curAty.unbindService(conn);
+//        curAty.unbindService(conn);
         Log.i(TAG, "unbindService");    // not work
     }
 
@@ -121,7 +121,7 @@ public class ContactsFragment extends Fragment {
 //        curAty.unbindService(conn);
     }
 
-    public void initList() {
+    public void init() {
 //        Intent intent = getActivity().getIntent();
 //        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
         talk = ((GlobalApp) getActivity().getApplication()).getTalk();
@@ -134,24 +134,32 @@ public class ContactsFragment extends Fragment {
         friends = Friends.getFriends();
         if (friends == null || friends.size() == 0) {
             friends = (List<Friend>) talk.getFriends();
-            Friends.addFriends(friends);
+
+            for (Friend f : friends) {
+                if (f.getId() != Me.id) {
+                    Friends.addFriend(f);
+                }
+            }
         }
 
-        lv_contacts = (ListView) getFragmentManager()
-                .findFragmentById(R.id.fragment_contact)
-                .getView().findViewById(R.id.lv_contacts);
+        lv_contacts = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_contacts);
         items_contacts = new ArrayList<HashMap<String, Object>>();
 
         for (Friend friend : friends) {
             HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("name", friend.getName());
+            String name = friend.getName() == null ? "路人甲" : friend.getName();
+            map.put("name", name);
+            String pic = friend.getImage();
+            pic = pic == null ? "tab_img_profile" : pic.split("\\.")[0];
+            int picId = getResources().getIdentifier(pic, "drawable", getActivity().getPackageName());
+            map.put("pic", picId);
             items_contacts.add(map);
         }
 
         SimpleAdapter adapterFriend = new SimpleAdapter(getActivity(),
                 items_contacts, R.layout.list_friend,
-                new String[]{"name"},
-                new int[]{R.id.list_friend_name});
+                new String[]{"name", "pic"},
+                new int[]{R.id.list_friend_name, R.id.list_friend_img});
         lv_contacts.setAdapter(adapterFriend);
         lv_contacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -168,7 +176,7 @@ public class ContactsFragment extends Fragment {
         items_groups = new ArrayList<HashMap<String, Object>>();
         String url = getString(R.string.URLRoot) + "groups/0/users/" + Me.id;
         String groupStr = new BasicWebService().sendGetRequest(url, null);
-        List<GroupTransfer> gts = GsonTool.getObjectList(groupStr,GroupTransfer[].class);
+        List<GroupTransfer> gts = GsonTool.getObjectList(groupStr, GroupTransfer[].class);
 
         for (GroupTransfer gt : gts) {
             HashMap<String, Object> map = new HashMap<String, Object>();
