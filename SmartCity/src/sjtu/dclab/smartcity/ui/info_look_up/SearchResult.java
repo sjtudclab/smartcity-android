@@ -3,7 +3,6 @@ package sjtu.dclab.smartcity.ui.info_look_up;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +20,7 @@ import sjtu.dclab.smartcity.webservice.BasicWebService;
 /**
  * Created by theGODofws on 2015/8/12.
  */
+
 public class SearchResult extends Activity{
     //Gson
     private BasicWebService bws;
@@ -59,13 +59,18 @@ public class SearchResult extends Activity{
                 @Override
                 public void run() {
                     String json = bws.sendGetRequest(url,null);
-                    List<CitizenResident>persons = Gson.getObjectList(json,CitizenResident.class);
-                    for(CitizenResident p : persons){
-                        if ((condition1.isEmpty() || p.getGender().equals(condition1))
-                                &&(condition4.isEmpty() || p.getMarriage_status().equals(condition4))
-                                &&(condition3.isEmpty() || p.getEmployment_status().equals(condition3))
-                                &&(condition2.isEmpty() || p.getIncome_status().equals(condition2))){
-                            result.add(p.getName());
+                    List<CitizenResident>persons = null;
+                    try {
+                        persons = Gson.fromJsonArray(json, CitizenResident.class);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    for(int i = 0 ; i < persons.size();i++){
+                        if ((condition1.isEmpty() || persons.get(i).getGender().equals(condition1))
+                                &&(condition4.isEmpty() || persons.get(i).getMarriage_status().equals(condition4))
+                                &&(condition3.isEmpty() || persons.get(i).getEmployment_status().equals(condition3))
+                                &&(condition2.isEmpty() || persons.get(i).getIncome_status().equals(condition2))){
+                            result.add(persons.get(i).getName());
                         }
                     }
                 }
@@ -91,17 +96,17 @@ public class SearchResult extends Activity{
                         e.printStackTrace();
                     }
                     //TODO:确定区域判定的标准，更改下面的代码
-                    for (Apartment a :apartments){
+                    for (int i=0;i<apartments.size();i++){
                         if (condition1.isEmpty()){
-                            result.add(a.getName());
+                            result.add(apartments.get(i).getName());
                         }
                         else if (condition1.equals("A1")){
-                            if (a.getId() < 400){
-                                result.add(a.getName());
+                            if (apartments.get(i).getId() < 400){
+                                result.add(apartments.get(i).getName());
                             }
                         }
-                        else if (a.getId() >= 400){
-                            result.add(a.getName());
+                        else if (apartments.get(i).getId() >= 400){
+                            result.add(apartments.get(i).getName());
                         }
                     }
                 }

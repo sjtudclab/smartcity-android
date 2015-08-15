@@ -93,6 +93,7 @@
         <activity android:name=".ui.info_look_up.HouseAty"/>
         <activity android:name=".ui.info_look_up.PopulationAty"/>
         <activity android:name=".ui.info_look_up.SearchResult"/>
+        <activity android:name=".ui.info_look_up.SomethingMore"/>
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".chat.HeartbeatService" />
