@@ -108,13 +108,20 @@ public class SearchResult extends Activity {
             }
         }
         listView = (ListView) findViewById(R.id.search_result);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, result);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getApplicationContext(), SomethingMore.class));
-            }
-        });
+        if (!result.isEmpty()) {
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, result);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new ListView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    startActivity(new Intent(getApplicationContext(), SomethingMore.class));
+                }
+            });
+        }
+        else{
+            result.add("没有符合条件的项目");
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, result);
+            listView.setAdapter(adapter);
+        }
     }
 }
