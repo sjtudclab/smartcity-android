@@ -14,6 +14,8 @@ import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.ui.ann_committee.AnnouncementAty;
 import sjtu.dclab.smartcity.ui.bianminservice.BianminAty;
 import sjtu.dclab.smartcity.ui.human_resource_info.RenshiAty;
+import sjtu.dclab.smartcity.ui.info_look_up.HouseAty;
+import sjtu.dclab.smartcity.ui.info_look_up.PopulationAty;
 import sjtu.dclab.smartcity.ui.linli.LinliAty;
 import sjtu.dclab.smartcity.ui.minyisquare.MinyiAty;
 import sjtu.dclab.smartcity.ui.minzheng.CivilAffairHomeAty;
@@ -159,8 +161,10 @@ public class HomeFragment extends Fragment {
                     break;
 
                 case R.drawable.peopleinfo:
+                	startActivity(new Intent(context, PopulationAty.class));
                     break;
                 case R.drawable.houseinfo:
+                	startActivity(new Intent(context, HouseAty.class));
                     break;
                 case R.drawable.renshi:
                     startActivity(new Intent(context, RenshiAty.class));
