@@ -65,6 +65,8 @@
                 android:textSize="24sp"
                 android:id="@+id/info_netcard_nickname"
                 android:hint="@string/web_information_inputnamehint"
+                android:editable="false"
+                android:maxLines="1"
                 android:drawableEnd="@drawable/edit_pen"
                 />
         </LinearLayout>
@@ -86,7 +88,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:id="@+id/info_netcard_webid"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"/>
         </LinearLayout>
         <View
             android:layout_height="2dip"
@@ -105,7 +108,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/info_netcard_qrcode"
-                android:layout_gravity="right"/>
+                android:paddingLeft="35dp"
+                android:layout_gravity="center"/>
         </LinearLayout>
         <View
             android:layout_height="2dip"

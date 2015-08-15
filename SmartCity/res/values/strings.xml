@@ -263,7 +263,12 @@
     <string name="party_infomation_branch">流动支部</string>
     <string name="party_infomation_job">党内职务</string>
     <string name="party_infomation_kind">党员类别</string>
+    <string name="party_infomation_kind_1">群众</string>
+    <string name="party_infomation_kind_2">中共党员</string>
+    <string name="party_infomation_kind_3">预备党员</string>
     <string name="party_infomation_membership">党籍状态</string>
+    <string name="party_infomation_membership_1">在籍</string>
+    <string name="party_infomation_membership_2">离籍</string>
     <string name="party_infomation_joindate">入党日期</string>
     <string name="party_infomation_confirmationdate">转正日期</string>
     <string name="party_infomation_inspection">考察人</string>

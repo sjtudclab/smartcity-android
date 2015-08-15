@@ -46,14 +46,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/party_infomation_organization"
                 android:layout_gravity="center"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
             <!--组织关系内容,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_partycard_organization"
+                android:gravity="center_horizontal"
                 android:layout_gravity="center"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 />
         </LinearLayout>
         <View
@@ -66,14 +67,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/party_infomation_branch"
                 android:layout_gravity="center"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
             <!--流动支部,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:id="@+id/info_partycard_branch"
                 android:layout_gravity="center"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 />
         </LinearLayout>
         <View
@@ -86,14 +88,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/party_infomation_job"
                 android:layout_gravity="center"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
             <!--党内职务内容,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_partycard_job"
+                android:gravity="center_horizontal"
                 android:layout_gravity="center"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 />
         </LinearLayout>
         <View
@@ -109,14 +112,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/party_infomation_kind"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <!--党员类别内容,待添加-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:id="@+id/info_partycard_kind"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -127,14 +131,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/party_infomation_membership"
                     android:layout_gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <!--党籍状态内容,待添加-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:id="@+id/info_partycard_membership"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
         </TableRow>
@@ -150,14 +155,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/party_infomation_joindate"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <!--入党日期内容,待添加-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:id="@+id/info_partycard_joindate"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -168,14 +174,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/party_infomation_confirmationdate"
                     android:layout_gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <!--转正日期内容,待添加-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:id="@+id/info_partycard_confirmationdate"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
         </TableRow>
@@ -191,14 +198,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/party_infomation_inspection"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <!--考察人内容,待添加-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
                     android:layout_height="wrap_content"
                     android:id="@+id/info_partycard_inspection"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -209,14 +217,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/party_infomation_bookid"
                     android:layout_gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <!--入党志愿书内容,待添加-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/info_partycard_bookid"
+                    android:gravity="center_horizontal"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
         </TableRow>
