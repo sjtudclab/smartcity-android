@@ -2,27 +2,21 @@ package sjtu.dclab.smartcity.ui.infocard;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.os.Message;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.tools.QRCodeTool;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.logging.LogRecord;
-
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.community.config.Me;
-import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.tools.QRCodeTool;
-
-import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 public class NameInformationActivity extends Activity {
-    private static final String TAG = "NameInformationActivit";
+    private static final String TAG = "NameInformationActivity";
 
     private String curUserId;
     private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
@@ -40,7 +34,7 @@ public class NameInformationActivity extends Activity {
 
                List<Map<String,Object>> content = null;
                if ( citizen_content != null){
-                   content = GsonTool.getListMaps(citizen_content);
+//                   content = GsonTool.getListMaps(citizen_content);
 
                    for (Map<String,Object> people : content) {
                        int userid_int = ((Double)people.get("user")).intValue();
@@ -60,7 +54,6 @@ public class NameInformationActivity extends Activity {
                        }
                    }
                    //text_sex.setText(curUserId);
-
                }
 
 

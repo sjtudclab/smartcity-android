@@ -84,7 +84,7 @@ public class AnnPublishAty extends Activity {
                 args.addPart("content", new StringBody(content));
                 args.addPart("from", new StringBody(from));
                 args.addPart("infotype", new StringBody(infotype));
-//                args.addPart("file", new FileBody(new File()));   //TODO file stream
+                args.addPart("file", null);   //TODO file stream
                 args.addPart("redirect_url", new StringBody(redirect_url));
                 String resp = webService.sendPostRequestWithMultipartEntity(url, args);
                 if (resp == "success") {
