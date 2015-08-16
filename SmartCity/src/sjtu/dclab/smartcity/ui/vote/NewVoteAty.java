@@ -11,7 +11,7 @@ import sjtu.dclab.smartcity.R;
 /**
  * Created by 孤独的观测者 on 2015/7/30.
  */
-public class NewvoteAty extends Activity{
+public class NewVoteAty extends Activity{
     private ImageButton rtnbutton;
 
     @Override

@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="邀请他人"
         android:textSize="20dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:visibility="invisible"/>
 
 </LinearLayout>

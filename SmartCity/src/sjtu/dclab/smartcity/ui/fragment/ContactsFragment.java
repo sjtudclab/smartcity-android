@@ -69,6 +69,14 @@ public class ContactsFragment extends Fragment {
         Log.i(TAG, "Fragment created");
 
         curAty = getActivity();
+        talk = ((GlobalApp) getActivity().getApplication()).getTalk();
+
+        //for network
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        // init friend list
+        friends = Friends.getFriends();
 
         conn = new ServiceConnection() {
             @Override
@@ -124,21 +132,13 @@ public class ContactsFragment extends Fragment {
     public void init() {
 //        Intent intent = getActivity().getIntent();
 //        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
-        talk = ((GlobalApp) getActivity().getApplication()).getTalk();
 
-        //for network
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        // init friend list
-        friends = Friends.getFriends();
         if (friends == null || friends.size() == 0) {
             friends = (List<Friend>) talk.getFriends();
-
             for (Friend f : friends) {
-                if (f.getId() != Me.id) {
-                    Friends.addFriend(f);
-                }
+//                if (f.getId() == Me.id)
+//                    continue;
+                Friends.addFriend(f);
             }
         }
 
@@ -146,6 +146,9 @@ public class ContactsFragment extends Fragment {
         items_contacts = new ArrayList<HashMap<String, Object>>();
 
         for (Friend friend : friends) {
+            //TODO 自己出现在自己的好友列表里
+//            if (friend.getId()==Me.id)
+//                continue;
             HashMap<String, Object> map = new HashMap<String, Object>();
             String name = friend.getName() == null ? "路人甲" : friend.getName();
             map.put("name", name);
@@ -181,6 +184,7 @@ public class ContactsFragment extends Fragment {
         for (GroupTransfer gt : gts) {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("name", gt.getName());
+            map.put("pic",R.drawable.group_profile);
             items_groups.add(map);
 
             Group g = new Group();
@@ -197,8 +201,8 @@ public class ContactsFragment extends Fragment {
 
         SimpleAdapter adapterGroup = new SimpleAdapter(getActivity(),
                 items_groups, R.layout.list_friend,
-                new String[]{"name"},
-                new int[]{R.id.list_friend_name});
+                new String[]{"name","pic"},
+                new int[]{R.id.list_friend_name, R.id.list_friend_img});
         lv_groups.setAdapter(adapterGroup);
         lv_groups.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {

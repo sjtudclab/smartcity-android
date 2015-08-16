@@ -106,7 +106,8 @@
         <activity android:name=".ui.chat.QRCodeTestAty"/>
         <activity android:name=".qrcode.activity.CaptureActivity"/>
         <activity android:name=".qrcode.activity.ResultActivity"/>
-        
+        <activity android:name=".ui.chat.GroupAddAty"/>
+
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".chat.HeartbeatService" />

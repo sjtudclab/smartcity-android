@@ -5,11 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.SQLite.DBManager;
 import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.entity.Message;
@@ -19,11 +21,14 @@ import sjtu.dclab.smartcity.ui.chat.GroupChatAty;
 
 public class PushCallback implements MqttCallback {
 
+    private final String TAG = "PushCallback";
+
     private Context context;
+    private DBManager dbManager;
 
     public PushCallback(Context context) {
-
         this.context = context;
+        this.dbManager = new DBManager(context);
     }
 
     @Override
@@ -54,6 +59,8 @@ public class PushCallback implements MqttCallback {
          * type     1为单聊，2为群聊
          */
         Message msg = JsonUtil.getFromJsonStr(str, new TypeReference<Message>() {});
+        dbManager.saveMsg(msg);
+        Log.i(TAG,"save received msg");
 
         int type = msg.getType();
 

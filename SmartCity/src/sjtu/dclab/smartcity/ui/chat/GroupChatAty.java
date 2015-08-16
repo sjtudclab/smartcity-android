@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.SQLite.DBManager;
 import sjtu.dclab.smartcity.chat.MessageAdapter;
 import sjtu.dclab.smartcity.chat.MessageEntity;
 import sjtu.dclab.smartcity.chat.Messages;
@@ -28,6 +29,9 @@ public class GroupChatAty extends Activity {
     private Group group;
 
     private long groupId;
+
+    //db
+    private DBManager dbm;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,14 @@ public class GroupChatAty extends Activity {
         // 群组详情
         ibtnGroupDetail = (ImageButton) findViewById(R.id.ibtn_group_detail);
         ibtnGroupDetail.setOnClickListener(new DetailBtnListener());
+
+        dbm = new DBManager(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbm.closeDB();
     }
 
     private class DetailBtnListener implements View.OnClickListener {
@@ -83,6 +95,7 @@ public class GroupChatAty extends Activity {
                 Publisher.publishMessage(msg);
                 Messages.storeMessageEntity(group.getName(), new MessageEntity(Me.username, content), true);
                 messageText.setText("");
+                dbm.saveMsg(msg);
             }
         }
     }
