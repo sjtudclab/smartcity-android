@@ -7,8 +7,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.gson.reflect.TypeToken;
+
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.tools.QRCodeTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
@@ -34,23 +38,24 @@ public class NameInformationActivity extends Activity {
 
                List<Map<String,Object>> content = null;
                if ( citizen_content != null){
-//                   content = GsonTool.getListMaps(citizen_content);
+                   content = GsonTool.getListMaps(citizen_content);
+                   if (content != null) {
+                       for (Map<String, Object> people : content) {
+                           int userid_int = ((Double) people.get("user")).intValue();
 
-                   for (Map<String,Object> people : content) {
-                       int userid_int = ((Double)people.get("user")).intValue();
+                           String userid = userid_int + "";
+                           //text_race.setText(userid);
+                           if (userid.equals(curUserId)) {
+                               text_name.setText((String) people.get("name"));
+                               text_sex.setText((String) people.get("gender"));
+                               text_race.setText((String) people.get("nation"));
 
-                       String userid = userid_int + "";
-                       //text_race.setText(userid);
-                       if (userid.equals(curUserId)){
-                           text_name.setText((String) people.get("name"));
-                           text_sex.setText((String)people.get("gender"));
-                           text_race.setText((String) people.get("nation"));
-
-                           //QRTool Test
-                           Bitmap bmap = QRCodeTool.createQRBitmap("Resident Evil");
-                           image_avatar.setImageBitmap(bmap);
-                           text_sex.setText(QRCodeTool.decodeQRBitmap(bmap));
-                           break;
+//                           //QRTool Test
+//                           Bitmap bmap = QRCodeTool.createQRBitmap("Resident Evil");
+//                           image_avatar.setImageBitmap(bmap);
+//                           text_sex.setText(QRCodeTool.decodeQRBitmap(bmap));
+                               break;
+                           }
                        }
                    }
                    //text_sex.setText(curUserId);

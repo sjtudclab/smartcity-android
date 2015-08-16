@@ -68,7 +68,7 @@ public class VoteAty extends Activity {
     private class AddBtnListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(getApplicationContext(), NewVoteAty.class));
+            startActivity(new Intent(getApplicationContext(), NewvoteAty.class));
         }
     }
 

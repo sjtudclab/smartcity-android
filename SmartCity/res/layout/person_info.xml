@@ -75,52 +75,39 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <Button
             android:layout_margin="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/person_info_namecardbutton"
             android:textSize="20sp"
-            android:text="资料"
+            android:text="@string/name_infomation_title"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_margin="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_info_webcardbutton"
+            android:textSize="20sp"
+            android:text="@string/web_infomation_title"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_margin="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_info_partycardbutton"
+            android:textSize="20sp"
+            android:text="@string/party_infomation_title"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_margin="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_info_livingcardbutton"
+            android:textSize="20sp"
+            android:text="@string/liveing_infomation_title"
             android:layout_weight="1"/>
 
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="昵称"
-            android:layout_weight="1"/>
 
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="联系方式"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="政治面貌"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="二维码名片"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="个性签名"
-            android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

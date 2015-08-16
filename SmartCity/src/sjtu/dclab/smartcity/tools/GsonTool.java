@@ -1,10 +1,13 @@
 package sjtu.dclab.smartcity.tools;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 /**
  * Created by Yang on 2015/7/9.
@@ -40,6 +43,31 @@ public class GsonTool {
         }
     }
 
+    public static List<Map<String, Object>> getListMaps(String jsonString){
+        List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+        try {
+            Gson gson = new Gson();
+            list = gson.fromJson(jsonString,
+                    new TypeToken<List<Map<String, Object>>>(){}.getType());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static Map<String, Object> getMap(String jsonString){
+        Map<String, Object> list = new HashMap<String,Object>();
+        try {
+            Gson gson = new Gson();
+            list = gson.fromJson(jsonString,
+                    new TypeToken<Map<String, Object>>(){}.getType());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return list;
+    }
 //    public static List<ApplicationTransfer> getFriendApplicationTransferList(String content) {
 //        Gson gson = new Gson();
 //        try {

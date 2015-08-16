@@ -1,24 +1,61 @@
 package sjtu.dclab.smartcity.ui.infocard;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+import java.util.Map;
+
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
+import sjtu.dclab.smartcity.tools.GsonTool;
+import sjtu.dclab.smartcity.tools.QRCodeTool;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 public class NetInformationActivity extends Activity {
-    private static final String TAG = "NameInformationActivit";
+    private static final String TAG = "NetInformationActivit";
 
     private String curUserId;
     private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
+    private final String URL_BASE_REQUEST_FOR_NETINFO  = URLROOT + "infocard/netcard/";
 
     private ImageView image_avatar,image_qrcode;
     private TextView text_nickname,text_webid;
+
+    private String card_json;
+
+    final int netMessage = 223;
+
+
+    public Handler netHandler = new Handler() {
+        public void handleMessage(android.os.Message msg){
+            if (msg.what == netMessage){
+
+                Map<String,Object> content = null;
+                if ( card_json != null){
+                    content = GsonTool.getMap(card_json);
+
+                    text_nickname.setText((String)content.get("nickname"));
+                    text_webid.setText(((Double)content.get("community_user_id")).intValue()+"");
+                    String qrcode_str = curUserId + "_" + Me.username;
+                    Bitmap QRNamecard = QRCodeTool.createQRBitmap(qrcode_str);
+                    image_qrcode.setImageBitmap(QRNamecard);
+                    //text_sex.setText(curUserId);
+                }
+
+
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,5 +68,24 @@ public class NetInformationActivity extends Activity {
         text_nickname = (TextView) findViewById(R.id.info_netcard_nickname);
         text_webid = (TextView) findViewById(R.id.info_netcard_webid);
 
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                card_json = new BasicWebService().sendGetRequest(URL_BASE_REQUEST_FOR_NETINFO+curUserId, null);
+                Log.i(TAG, card_json);
+
+                android.os.Message msg = new android.os.Message();
+                msg.what = netMessage;
+                netHandler.sendMessage(msg);
+            }
+        });
+        thread.start();
+
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
     }
 }

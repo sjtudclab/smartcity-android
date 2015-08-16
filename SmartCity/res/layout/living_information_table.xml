@@ -47,14 +47,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/liveing_infomation_name"
                 android:layout_gravity="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
             <!--小区名内容,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_livingcard_name"
+                android:gravity="center_horizontal"
                 android:layout_gravity="center"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 />
         </LinearLayout>
         <View
@@ -67,14 +68,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/liveing_infomation_address"
                 android:layout_gravity="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
             <!--小区地址内容,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:id="@+id/info_livingcard_address"
                 android:layout_gravity="center"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 />
         </LinearLayout>
         <View
@@ -87,14 +89,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/liveing_infomation_mailcode"
                 android:layout_gravity="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
             <!--邮编内容,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:id="@+id/info_livingcard_mailcode"
                 android:layout_gravity="center"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 />
         </LinearLayout>
         <View
@@ -107,14 +110,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/liveing_infomation_id"
                 android:layout_gravity="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
             <!--门牌号内容,待添加-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_livingcard_doorid"
                 android:layout_gravity="center"
-                android:textSize="24sp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
                 />
         </LinearLayout>
         <View
