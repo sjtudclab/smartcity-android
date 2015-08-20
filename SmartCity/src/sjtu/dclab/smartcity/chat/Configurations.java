@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class Configurations {
 
-    public static String server = "202.120.40.111";
+    public static String server = "202.120.40.24";
 
     public static String clientId = "android-" + UUID.randomUUID().toString().substring(0, 4);
 

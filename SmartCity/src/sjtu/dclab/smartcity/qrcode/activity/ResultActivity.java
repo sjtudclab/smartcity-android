@@ -1,14 +1,11 @@
 package sjtu.dclab.smartcity.qrcode.activity;
 
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.json.JSONObject;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.qrcode.decode.DecodeThread;
@@ -26,8 +24,8 @@ import sjtu.dclab.smartcity.webservice.BasicWebService;
 public class ResultActivity extends Activity {
 	private static final String TAG = ResultActivity.class.getSimpleName();
 	
-	private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
-	private final String URL_BASE_REQUEST_FOR_FRIEND = URLROOT + "friends/";
+	private String URLROOT;
+	private String URL_BASE_REQUEST_FOR_FRIEND;
 
 	private ImageView mResultImage;
 	private TextView mResultText;
@@ -36,6 +34,9 @@ public class ResultActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result);
+
+		URLROOT = getResources().getString(R.string.URLRoot);
+		URL_BASE_REQUEST_FOR_FRIEND = URLROOT + "friends/";
 
 		Bundle extras = getIntent().getExtras();
 

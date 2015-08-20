@@ -21,6 +21,7 @@ import java.util.List;
  */
 public class VoteAty extends Activity {
 
+    private ImageButton ibtnRtn;
     private ImageButton ibtnAdd;
     private ListView lvVote;
     private RadioGroup rgVote;
@@ -36,6 +37,14 @@ public class VoteAty extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_vote);
+
+        ibtnRtn = (ImageButton) findViewById(R.id.vote_rtn);
+        ibtnRtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         ibtnAdd = (ImageButton) findViewById(R.id.ibtn_vote_add);
         ibtnAdd.setOnClickListener(new AddBtnListener());

@@ -1,19 +1,14 @@
 package sjtu.dclab.smartcity.ui.infocard;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.gson.reflect.TypeToken;
-
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.tools.QRCodeTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.List;
@@ -23,8 +18,8 @@ public class NameInformationActivity extends Activity {
     private static final String TAG = "NameInformationActivity";
 
     private String curUserId;
-    private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
-    private final String URL_BASE_REQUEST_FOR_CITIZEN  = URLROOT + "citizen/";
+    private String URLRoot;
+    private String URL_BASE_REQUEST_FOR_CITIZEN;
     private ImageView image_avatar;
     private TextView text_name,text_sex,text_race;
 
@@ -71,6 +66,10 @@ public class NameInformationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.name_information_table);
+
+        URLRoot = getResources().getString(R.string.URLRoot);
+        URL_BASE_REQUEST_FOR_CITIZEN  = URLRoot + "citizen/";
+
         image_avatar = (ImageView) findViewById(R.id.info_namecard_image);
         text_name = (TextView) findViewById(R.id.info_namecard_name);
         text_sex = (TextView) findViewById(R.id.info_namecard_sex);

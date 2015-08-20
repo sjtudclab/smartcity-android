@@ -10,6 +10,7 @@
         android:layout_weight="0">
 
         <ImageButton
+            android:id="@+id/search_rtn"
             android:layout_width="67dp"
             android:layout_height="match_parent"
             android:src="@drawable/left_arrow"

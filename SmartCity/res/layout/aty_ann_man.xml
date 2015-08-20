@@ -12,6 +12,14 @@
         android:layout_weight="7">
 
         <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_ann_rtn"
+            android:src="@drawable/left_arrow"
+            android:background="#00000000"
+            android:layout_gravity="left"/>
+
+        <ImageButton
             android:id="@+id/btn_ann_add"
             android:layout_width="67dp"
             android:layout_height="match_parent"

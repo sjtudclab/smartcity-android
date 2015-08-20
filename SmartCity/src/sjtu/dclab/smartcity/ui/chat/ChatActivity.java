@@ -32,7 +32,6 @@ public class ChatActivity extends Activity {
     private DBManager dbm;
 
     public void onCreate(Bundle savedInstanceState) {
-        // Log.v(TAG, "onCreate >>>>>>");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_chat);
 
@@ -44,6 +43,7 @@ public class ChatActivity extends Activity {
         friend = (Friend) intent.getSerializableExtra(String
                 .valueOf(R.string.friend));
         adapter = Messages.loadMessageAdapter(friend.getName());
+        listView.setAdapter(adapter);
 
         // 设置聊天名称
         TextView chatTitle = (TextView) findViewById(R.id.tv_chat_title);
@@ -55,9 +55,6 @@ public class ChatActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        // 接收消息
-        listView.setAdapter(adapter);
 
         // 发送消息
         messageButton = (Button) findViewById(R.id.MessageButton);

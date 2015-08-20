@@ -1,21 +1,15 @@
 package sjtu.dclab.smartcity.ui.infocard;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.Map;
-
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.tools.QRCodeTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
+
+import java.util.Map;
 
 /**
  * Created by hp on 2015/7/24.
@@ -24,8 +18,8 @@ public class LivingInformationActivity extends Activity {
     private static final String TAG = "LivingInformationActivit";
 
     private String curUserId;
-    private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
-    private final String URL_BASE_REQUEST_FOR_NETINFO  = URLROOT + "infocard/livingcard/";
+    private String URLRoot;
+    private String URL_BASE_REQUEST_FOR_NETINFO;
 
     private TextView text_areaname,text_address,text_mailcode,text_doorid;
 
@@ -61,6 +55,9 @@ public class LivingInformationActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.living_information_table);
 
+        URLRoot = getResources().getString(R.string.URLRoot);
+        URL_BASE_REQUEST_FOR_NETINFO  = URLRoot + "infocard/livingcard/";
+
         curUserId = Me.id + "";
         text_areaname = (TextView) findViewById(R.id.info_livingcard_name);
         text_address = (TextView) findViewById(R.id.info_livingcard_address);
@@ -72,7 +69,7 @@ public class LivingInformationActivity extends Activity {
             public void run() {
 
                 card_json = new BasicWebService().sendGetRequest(URL_BASE_REQUEST_FOR_NETINFO+curUserId, null);
-                Log.i(TAG, card_json.substring(0,23));
+//                Log.i(TAG, card_json.substring(0,23));
 
                 android.os.Message msg = new android.os.Message();
                 msg.what = netMessage;

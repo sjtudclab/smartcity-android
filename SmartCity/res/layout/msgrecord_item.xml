@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/iv_msg_pic"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/tab_img_profile"
         android:layout_margin="10dp"
         />
@@ -24,7 +24,7 @@
             android:layout_margin="5dp"
             android:text="contactname"
             android:textColor="@color/black"
-            android:textSize="25dp"/>
+            android:textSize="15dp"/>
 
         <TextView
             android:id="@+id/tv_msg_content"
@@ -33,7 +33,7 @@
             android:layout_margin="5dp"
             android:text="msgcontent"
             android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:textSize="15dp"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -6,22 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
-
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
-import sjtu.dclab.smartcity.qrcode.activity.CaptureActivity;
-import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
 import sjtu.dclab.smartcity.model.CitizenResident;
+import sjtu.dclab.smartcity.qrcode.activity.CaptureActivity;
 import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.ui.vote.NewVoteAty;
+import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
@@ -38,9 +30,9 @@ public class AddContactsAty extends Activity {
     private static final String TAG = "AddContactsAty";
 
     private String curUserId;
-    private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
-    private final String URL_BASE_REQUEST_FOR_FRIEND = URLROOT + "friends/";
-    private final String URL_ALL_CITIZENS_IN_APARTMENT = URLROOT + "apartment/101/citizen"; //TODO 测试阶段
+    private String URLROOT;
+    private String URL_BASE_REQUEST_FOR_FRIEND;
+    private String URL_ALL_CITIZENS_IN_APARTMENT; //TODO 测试阶段
 
     private ListView lvRecommend, lvRequest;
     private ImageButton ibtnBack, ibtnScan;
@@ -54,6 +46,11 @@ public class AddContactsAty extends Activity {
         setContentView(R.layout.aty_add_contacts);
 
         curUserId = Me.id + "";
+        URLROOT = getResources().getString(R.string.URLRoot);
+        URL_BASE_REQUEST_FOR_FRIEND = URLROOT + "friends/";
+        URL_ALL_CITIZENS_IN_APARTMENT = URLROOT + "apartment/101/citizen";
+
+        lvRequest = (ListView) findViewById(R.id.add_contacts_questList);
 
         ibtnBack = (ImageButton) findViewById(R.id.ibtn_addcontacts_back);
         ibtnBack.setOnClickListener(new View.OnClickListener() {
@@ -64,69 +61,17 @@ public class AddContactsAty extends Activity {
         });
         ibtnScan = (ImageButton) findViewById(R.id.ibtn_scan);
         ibtnScan.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        lvRequest = (ListView) findViewById(R.id.add_contacts_questList);
-        itemsRequest = new ArrayList<HashMap<String, Object>>();
-        //REST请求：好友请求列表
-        //完整示例http://202.120.40.111:8080/community-server/rest/friends/3/applications
-        String resultRequest = new BasicWebService().sendGetRequest(URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications", null);
-        if (resultRequest != null) {
-            friendApplications = GsonTool.getObjectList(resultRequest,ApplicationTransfer[].class);
-        }
-        if (friendApplications != null && friendApplications.size() != 0) {
-            for (ApplicationTransfer at : friendApplications) {
-                HashMap<String, Object> map = new HashMap<String, Object>();
-                map.put("name", at.getName());
-                itemsRequest.add(map);
-            }
-        }
-        if (itemsRequest != null && itemsRequest.size() != 0) {
-            final SimpleAdapter adapter = new SimpleAdapter(
-                    getApplication(), itemsRequest, R.layout.list_friend,
-                    new String[]{"name"}, new int[]{R.id.list_friend_name});
-            lvRequest.setAdapter(adapter);
-            lvRequest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    final ApplicationTransfer at = friendApplications.get(position);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AddContactsAty.this);
-                    builder.setMessage("提示");
-                    builder.setMessage("确认添加" + at.getName() + "为好友么？");
-                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //TODO 此处发送PUT请求接收好友请求
-                            String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + at.getApplicationId();
-                            String res = new BasicWebService().sendPutRequest(url, null);
-                            Log.i(TAG, res);
-                            if (res.equals("success")) {
-                                Toast.makeText(AddContactsAty.this, "添加成功", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(AddContactsAty.this, "添加失败", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                    });
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    builder.show();
-                }
-            });
-        }
+        init();
 
         //************************************************************************
         //TODO 需要重写！！！暂时屏蔽
@@ -188,5 +133,62 @@ public class AddContactsAty extends Activity {
             });
         }
         */
+    }
+
+    public void init(){
+        itemsRequest = new ArrayList<HashMap<String, Object>>();
+        //REST请求：好友请求列表
+        //完整示例http://202.120.40.111:8080/community-server/rest/friends/3/applications
+        String resultRequest = new BasicWebService().sendGetRequest(URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications", null);
+        if (resultRequest != null) {
+            friendApplications = GsonTool.getObjectList(resultRequest, ApplicationTransfer[].class);
+        }
+        if (friendApplications != null && friendApplications.size() != 0) {
+            for (ApplicationTransfer at : friendApplications) {
+                HashMap<String, Object> map = new HashMap<String, Object>();
+                map.put("name", at.getName());
+                itemsRequest.add(map);
+            }
+        }
+        if (itemsRequest != null && itemsRequest.size() != 0) {
+            final SimpleAdapter adapter = new SimpleAdapter(
+                    getApplication(), itemsRequest, R.layout.list_friend,
+                    new String[]{"name"}, new int[]{R.id.list_friend_name});
+            lvRequest.setAdapter(adapter);
+            lvRequest.setOnItemClickListener(new ItemClickedListener());
+        }
+    }
+
+    private class ItemClickedListener implements AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            final ApplicationTransfer at = friendApplications.get(position);
+            AlertDialog.Builder builder = new AlertDialog.Builder(AddContactsAty.this);
+            builder.setMessage("提示");
+            builder.setMessage("确认添加" + at.getName() + "为好友么？");
+            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //TODO 此处发送PUT请求接收好友请求
+                    String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + at.getApplicationId();
+                    String res = new BasicWebService().sendPutRequest(url, null);
+                    Log.i(TAG, res);
+                    if (res.equals("success")) {
+                        Toast.makeText(AddContactsAty.this, "添加成功", Toast.LENGTH_SHORT).show();
+                        init();
+                    } else {
+                        Toast.makeText(AddContactsAty.this, "添加失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.show();
+        }
     }
 }

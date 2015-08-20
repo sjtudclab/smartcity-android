@@ -26,7 +26,7 @@ public class SearchResult extends Activity {
     //Gson
     private BasicWebService bws;
     private GsonTool Gson;
-    private String url;
+    private String URLRoot;
     //ListView
     private ListView listView;
     private ArrayAdapter<String> adapter;
@@ -41,7 +41,7 @@ public class SearchResult extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_result);
         result = new ArrayList<String>();
-        url = "http://202.120.40.111:8080/community-server/rest/";
+        URLRoot = getResources().getString(R.string.URLRoot);
 
         //intent
         Intent intent = getIntent();
@@ -51,7 +51,7 @@ public class SearchResult extends Activity {
         Gson = new GsonTool();
         bws = new BasicWebService();
         if (mode.equals("Population")) {
-            url = url + "citizen";
+            URLRoot = URLRoot + "citizen";
             condition1 = intent.getStringExtra("gender");
             condition2 = intent.getStringExtra("income");
             condition3 = intent.getStringExtra("career");
@@ -59,7 +59,7 @@ public class SearchResult extends Activity {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String json = bws.sendGetRequest(url, null);
+                    String json = bws.sendGetRequest(URLRoot, null);
                     List<CitizenResident> persons = Gson.getObjectList(json, CitizenResident[].class);
                     for (int i = 0; i < persons.size(); i++) {
                         if ((condition1.isEmpty() || persons.get(i).getGender().equals(condition1))
@@ -78,12 +78,12 @@ public class SearchResult extends Activity {
                 e.printStackTrace();
             }
         } else {
-            url = url + "apartment";
+            URLRoot = URLRoot + "apartment";
             condition1 = intent.getStringExtra("area");
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String json = bws.sendGetRequest(url, null);
+                    String json = bws.sendGetRequest(URLRoot, null);
                     List<Apartment> apartments = GsonTool.getObjectList(json, Apartment[].class);
                     //TODO:确定区域判定的标准，更改下面的代码
 

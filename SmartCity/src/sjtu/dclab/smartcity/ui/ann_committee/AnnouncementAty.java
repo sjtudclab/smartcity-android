@@ -22,6 +22,7 @@ public class AnnouncementAty extends Activity {
 
     private ListView lvAnn;
     private ImageButton ibtnAdd;
+    private ImageButton ibtnRtn;
 
     private List<InformationTransfer> infoList;
     private List<HashMap<String, Object>> itemList = new ArrayList<HashMap<String, Object>>();
@@ -33,6 +34,7 @@ public class AnnouncementAty extends Activity {
 
         lvAnn = (ListView) findViewById(R.id.lv_annlist);
         ibtnAdd = (ImageButton) findViewById(R.id.btn_ann_add);
+        ibtnRtn = (ImageButton) findViewById(R.id.btn_ann_rtn);
 
         init();
     }
@@ -76,6 +78,13 @@ public class AnnouncementAty extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), AnnPublishAty.class));
+            }
+        });
+
+        ibtnRtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -5,22 +5,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Map;
-import java.util.Date;
-
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
 public class PartyInformationActivity extends Activity {
     private static final String TAG = "PartyInformationActivit";
 
     private String curUserId;
-    private final String URLROOT = "http://202.120.40.111:8080/community-server/rest/";
-    private final String URL_BASE_REQUEST_FOR_NETINFO  = URLROOT + "infocard/partycard/";
+    private String URLRoot;
+    private String URL_BASE_REQUEST_FOR_NETINFO;
 
     private TextView text_organazation,text_branch,text_job,text_kind,text_membership,text_joindate,text_confirmdate,text_inspector,text_bookid;
 
@@ -39,7 +38,7 @@ public class PartyInformationActivity extends Activity {
                     text_organazation.setText((String)content.get("relation"));
                     text_branch.setText((String)content.get("party_branch"));
                     text_job.setText((String)content.get("position"));
-                    //to do:  Éè¶¨µ³Ô±µÄÀà±ðºÍµ³¼®×´Ì¬
+                    //to do:  ï¿½è¶¨ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½×´Ì¬
                     int kind = ((Double)content.get("type")).intValue();
                     int membership = ((Double)content.get("status")).intValue();
                     //text_kind.setText((String)content.get("type"));
@@ -92,6 +91,9 @@ public class PartyInformationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.party_information_table);
+
+        URLRoot = getResources().getString(R.string.URLRoot);
+        URL_BASE_REQUEST_FOR_NETINFO  = URLRoot + "infocard/partycard/";
 
         curUserId = Me.id + "";
         text_organazation = (TextView) findViewById(R.id.info_partycard_organization);

@@ -130,25 +130,21 @@ public class ContactsFragment extends Fragment {
     }
 
     public void init() {
-//        Intent intent = getActivity().getIntent();
-//        talk = (MyTalk) intent.getSerializableExtra(String.valueOf(R.string.talk));
 
         if (friends == null || friends.size() == 0) {
             friends = (List<Friend>) talk.getFriends();
-            for (Friend f : friends) {
+            //TODO 在好友表中去掉自己
+//            for (Friend f : friends) {
 //                if (f.getId() == Me.id)
-//                    continue;
-                Friends.addFriend(f);
-            }
+//                    friends.remove(f);
+//            }
+            Friends.addFriends(friends);
         }
 
         lv_contacts = (ListView) getFragmentManager().findFragmentById(R.id.fragment_contact).getView().findViewById(R.id.lv_contacts);
         items_contacts = new ArrayList<HashMap<String, Object>>();
 
         for (Friend friend : friends) {
-            //TODO 自己出现在自己的好友列表里
-//            if (friend.getId()==Me.id)
-//                continue;
             HashMap<String, Object> map = new HashMap<String, Object>();
             String name = friend.getName() == null ? "路人甲" : friend.getName();
             map.put("name", name);
@@ -184,7 +180,7 @@ public class ContactsFragment extends Fragment {
         for (GroupTransfer gt : gts) {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("name", gt.getName());
-            map.put("pic",R.drawable.group_profile);
+            map.put("pic", R.drawable.group_profile);
             items_groups.add(map);
 
             Group g = new Group();
@@ -201,7 +197,7 @@ public class ContactsFragment extends Fragment {
 
         SimpleAdapter adapterGroup = new SimpleAdapter(getActivity(),
                 items_groups, R.layout.list_friend,
-                new String[]{"name","pic"},
+                new String[]{"name", "pic"},
                 new int[]{R.id.list_friend_name, R.id.list_friend_img});
         lv_groups.setAdapter(adapterGroup);
         lv_groups.setOnItemClickListener(

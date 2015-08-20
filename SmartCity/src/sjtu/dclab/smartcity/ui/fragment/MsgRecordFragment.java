@@ -1,6 +1,5 @@
 package sjtu.dclab.smartcity.ui.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +11,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.SQLite.DBManager;
 import sjtu.dclab.smartcity.chat.Friends;
+import sjtu.dclab.smartcity.chat.MessageEntity;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.talk.MyTalk;
@@ -27,19 +28,19 @@ import java.util.List;
  */
 public class MsgRecordFragment extends Fragment {
 
-    private Activity curAct;
     private View view;
 
     private MyTalk talk;
     private List<Friend> friends = null;
+    private List<Friend> friendsWithRecords = null;
     private ListView lv_contacts;
-
-    private ArrayList<HashMap<String, Object>> items_contacts = new ArrayList<HashMap<String, Object>>();
+    private ArrayList<HashMap<String, Object>> items_contacts;
+    private DBManager dbm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        curAct =getActivity();
         super.onCreate(savedInstanceState);
+        dbm = new DBManager(getActivity());
     }
 
     @Override
@@ -50,36 +51,32 @@ public class MsgRecordFragment extends Fragment {
 
     @Override
     public void onStart() {
-        super.onStart();
+        lv_contacts = (ListView) getFragmentManager().findFragmentById(R.id.fragment_msgrecord).getView().findViewById(R.id.lv_msgrecord);
         init();
+        super.onStart();
     }
 
     public void init() {
         talk = ((GlobalApp) getActivity().getApplication()).getTalk();
         friends = Friends.getFriends();
-        if (friends == null || friends.size() == 0) {
-            friends = (List<Friend>) talk.getFriends();
+        friendsWithRecords = new ArrayList<Friend>();
+        items_contacts = new ArrayList<HashMap<String, Object>>();
 
-            for (Friend f : friends) {
-                if (f.getId() != Me.id) {
-                    Friends.addFriend(f);
-                }
+        for (Friend f : friends) {
+            MessageEntity msg = dbm.getLastMsg(Me.id,f.getId());
+            if (msg!=null){
+                friendsWithRecords.add(f);
+                HashMap<String,Object> map = new HashMap<String, Object>();
+                String name = f.getName() == null ? "路人甲" : f.getName();
+                map.put("name", name);
+                String pic = f.getImage();
+                pic = pic == null ? "tab_img_profile" : pic.split("\\.")[0];
+                int picId = getResources().getIdentifier(pic, "drawable", getActivity().getPackageName());
+                map.put("pic", picId);
+                map.put("msg", msg.getContent());
+                items_contacts.add(map);
             }
         }
-
-        for (Friend friend : friends) {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            String name = friend.getName() == null ? "路人甲" : friend.getName();
-            map.put("name", name);
-            String pic = friend.getImage();
-            pic = pic == null ? "tab_img_profile" : pic.split("\\.")[0];
-            int picId = getResources().getIdentifier(pic, "drawable", getActivity().getPackageName());
-            map.put("pic", picId);
-            map.put("msg", "你好");
-            items_contacts.add(map);
-        }
-
-        lv_contacts = (ListView) getFragmentManager().findFragmentById(R.id.fragment_msgrecord).getView().findViewById(R.id.lv_msgrecord);
 
         SimpleAdapter adapter = new SimpleAdapter(
                 getActivity().getApplicationContext(), items_contacts, R.layout.msgrecord_item,
@@ -91,7 +88,7 @@ public class MsgRecordFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), ChatActivity.class);
-                intent.putExtra(String.valueOf(R.string.friend), friends.get(i));
+                intent.putExtra(String.valueOf(R.string.friend), friendsWithRecords.get(i));
                 getActivity().startActivity(intent);
             }
         });

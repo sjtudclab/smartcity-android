@@ -46,7 +46,32 @@ public class DBManager {
                 " WHERE (fromId=? AND toId=?)" +
                 " OR (toId=? AND fromId=?)" +
                 " ORDER BY _id";
-        Cursor cursor = db.rawQuery(sql, new String[]{me + "", peer + "", me + "", peer + ""});
+        String meStr = me + "";
+        String peerStr = peer + "";
+        Cursor cursor = db.rawQuery(sql, new String[]{meStr, peerStr, meStr, peerStr});
+        return cursor;
+    }
+
+    public MessageEntity getLastMsg(long me, long peer) {
+        Cursor cursor = getLastMsgCursor(me, peer);
+        while(cursor.moveToNext()){
+            MessageEntity msg = new MessageEntity();
+            msg.setContent(cursor.getString(cursor.getColumnIndex("content")));
+            msg.setName(cursor.getString(cursor.getColumnIndex("name")));
+            return msg;
+        }
+        return null;
+    }
+
+    public Cursor getLastMsgCursor(long me, long peer) {
+        // TODO
+        String sql = "SELECT * FROM " + DBHelper.TABLE_NAME +
+                " WHERE (fromId=? AND toId=?)" +
+                " OR (toId=? AND fromId=?)" +
+                " ORDER BY _id DESC LIMIT 1";
+        String meStr = me + "";
+        String peerStr = peer + "";
+        Cursor cursor = db.rawQuery(sql, new String[]{meStr, peerStr, meStr, peerStr});
         return cursor;
     }
 

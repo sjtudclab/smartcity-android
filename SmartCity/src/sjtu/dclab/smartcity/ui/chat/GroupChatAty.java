@@ -59,6 +59,7 @@ public class GroupChatAty extends Activity {
 
         // 群组详情
         ibtnGroupDetail = (ImageButton) findViewById(R.id.ibtn_group_detail);
+        ibtnGroupDetail.setVisibility(View.VISIBLE);
         ibtnGroupDetail.setOnClickListener(new DetailBtnListener());
 
         dbm = new DBManager(this);

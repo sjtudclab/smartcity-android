@@ -26,10 +26,11 @@ import java.util.Iterator;
  * Created by Yang on 2015/7/21.
  */
 public class LoginAty extends Activity {
-    private final String LOGIN = "LOGIN";
-    private CommunityApp app = new CommunityApp("http://202.120.40.111:8080/community-server");
-    private MyLogin login = app.getLoginModule();
-    private MyTalk talk = app.getTalkModule();
+    private String LOGIN;
+    private String URLServer;
+    private CommunityApp app;
+    private MyLogin login;
+    private MyTalk talk;
 
     private String statusKey;
     private GlobalApp globalApp;
@@ -38,6 +39,12 @@ public class LoginAty extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_login);
+
+        LOGIN = "LOGIN";
+        URLServer = getResources().getString(R.string.URLServer);
+        app = new CommunityApp(URLServer);
+        login = app.getLoginModule();
+        talk = app.getTalkModule();
 
         globalApp = (GlobalApp) getApplication();
         statusKey = getString(R.string.StatusKey);
