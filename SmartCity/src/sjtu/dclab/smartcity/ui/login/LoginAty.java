@@ -91,7 +91,7 @@ public class LoginAty extends Activity {
 
                     Intent i;
                     globalApp.setTalk(talk);
-//                    globalApp.setStatus(type);
+                    globalApp.setStatus(type);
                     globalApp.setUsername(username);
 
                     if (type.equals(getString(R.string.NormalParty))) {

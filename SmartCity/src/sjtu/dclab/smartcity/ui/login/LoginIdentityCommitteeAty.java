@@ -7,6 +7,7 @@ import android.view.View;
 
 import android.widget.Button;
 import android.widget.Toast;
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.ui.HomeAty;
 
@@ -22,10 +23,14 @@ public class LoginIdentityCommitteeAty extends Activity {
     private Button dangjian;
     private Button jumin;
 
+    private GlobalApp globalApp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_login_identity);
+
+        globalApp = (GlobalApp) getApplication();
     }
 
     @Override
@@ -38,6 +43,7 @@ public class LoginIdentityCommitteeAty extends Activity {
         juweihui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                globalApp.setStatus(getString(R.string.Committee));
                 intent.putExtra(statusKey, getString(R.string.Committee));
                 startActivity(intent);
             }
@@ -64,7 +70,9 @@ public class LoginIdentityCommitteeAty extends Activity {
         jumin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                globalApp.setStatus(getString(R.string.Resident));
                 intent.putExtra(statusKey, getString(R.string.Resident));
+
                 startActivity(intent);
             }
         });

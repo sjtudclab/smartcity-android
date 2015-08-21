@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.GlobalApp;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.InformationTransfer;
@@ -24,6 +25,8 @@ public class AnnouncementAty extends Activity {
     private ImageButton ibtnAdd;
     private ImageButton ibtnRtn;
 
+    private GlobalApp globalApp;
+
     private List<InformationTransfer> infoList;
     private List<HashMap<String, Object>> itemList = new ArrayList<HashMap<String, Object>>();
 
@@ -32,10 +35,22 @@ public class AnnouncementAty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_ann_man);
 
-        lvAnn = (ListView) findViewById(R.id.lv_annlist);
-        ibtnAdd = (ImageButton) findViewById(R.id.btn_ann_add);
-        ibtnRtn = (ImageButton) findViewById(R.id.btn_ann_rtn);
+        globalApp = (GlobalApp)getApplication();
 
+        lvAnn = (ListView) findViewById(R.id.lv_annlist);
+        ibtnRtn = (ImageButton) findViewById(R.id.btn_ann_rtn);
+        ibtnAdd = (ImageButton) findViewById(R.id.btn_ann_add);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        init();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
         init();
     }
 
@@ -73,6 +88,11 @@ public class AnnouncementAty extends Activity {
                 new int[]{R.id.tv_ann_title, R.id.tv_ann_time, R.id.tv_ann_content, R.id.iv_ann_pic}
         );
         lvAnn.setAdapter(adapter);
+
+
+        if (!globalApp.getStatus().equals(getString(R.string.Resident))){
+            ibtnAdd.setVisibility(View.VISIBLE);
+        }
 
         ibtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
