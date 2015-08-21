@@ -74,7 +74,7 @@ public class ChatActivity extends Activity {
                     msg.setType(1); //TODO
                     Publisher.publishMessage(msg);
                     Messages.storeMessageEntity(friend.getName(),
-                            new MessageEntity(Me.username, content), true);
+                            new MessageEntity("我", content), true);
                     messageText.setText("");
 
                     //db
@@ -104,8 +104,8 @@ public class ChatActivity extends Activity {
 
     protected void reloadMsg() {
         List<MessageEntity> msgList = dbm.getMsg(Me.id, friend.getId());
-        for (MessageEntity me : msgList) {
-            Messages.storeMessageEntity(friend.getName(), me, true);
+        for (MessageEntity messageEntity : msgList) {
+            Messages.storeMessageEntity(friend.getName(), messageEntity, true);
         }
     }
 }

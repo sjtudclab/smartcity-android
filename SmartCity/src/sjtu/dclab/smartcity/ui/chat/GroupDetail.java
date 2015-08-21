@@ -57,7 +57,6 @@ public class GroupDetail extends Activity {
             int picId = getResources().getIdentifier(pic, "drawable", getPackageName()); // 通过资源名获得资源id
             map.put("pic", picId);
             itemList.add(map);
-
             icons.add(picId);
         }
 

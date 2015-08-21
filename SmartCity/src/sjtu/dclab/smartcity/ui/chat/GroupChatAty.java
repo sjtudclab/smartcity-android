@@ -94,7 +94,7 @@ public class GroupChatAty extends Activity {
                 msg.setName(group.getName());
                 msg.setType(2); //group msg type
                 Publisher.publishMessage(msg);
-                Messages.storeMessageEntity(group.getName(), new MessageEntity(Me.username, content), true);
+                Messages.storeMessageEntity(group.getName(), new MessageEntity("我", content), true);
                 messageText.setText("");
                 dbm.saveMsg(msg);
             }

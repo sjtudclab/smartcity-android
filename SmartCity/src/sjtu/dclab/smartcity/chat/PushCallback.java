@@ -16,8 +16,13 @@ import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.community.util.JsonUtil;
+import sjtu.dclab.smartcity.tools.GsonTool;
+import sjtu.dclab.smartcity.transfer.GroupMemberTransfer;
 import sjtu.dclab.smartcity.ui.chat.ChatActivity;
 import sjtu.dclab.smartcity.ui.chat.GroupChatAty;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
+
+import java.util.List;
 
 public class PushCallback implements MqttCallback {
 
@@ -25,6 +30,8 @@ public class PushCallback implements MqttCallback {
 
     private Context context;
     private DBManager dbManager;
+
+    private Message lastMsg = new Message();
 
     public PushCallback(Context context) {
         this.context = context;
@@ -58,44 +65,59 @@ public class PushCallback implements MqttCallback {
          * to       接收者，群聊时为groupID
          * type     1为单聊，2为群聊
          */
-        Message msg = JsonUtil.getFromJsonStr(str, new TypeReference<Message>() {});
-        dbManager.saveMsg(msg);
-        Log.i(TAG,"save received msg");
+        Message msg = JsonUtil.getFromJsonStr(str, new TypeReference<Message>() {
+        });
 
-        int type = msg.getType();
+        // 去重
+        if (!msg.getContent().equals(lastMsg.getContent())) {
+            lastMsg = msg;
+            dbManager.saveMsg(msg);
+            Log.i(TAG, "save received msg");
 
-        switch (type){
-            case 1:
-                Friend friend = Friends.getFriend(msg.getFrom());
-                MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
-                Messages.storeMessageEntity(friend.getName(), msgEntity, true);
-                notification.flags |= Notification.FLAG_AUTO_CANCEL;
-                final Intent intent = new Intent(context, ChatActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra(String.valueOf(R.string.friend), friend);
-                final PendingIntent activity = PendingIntent.getActivity(context, 0,
-                        intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.setLatestEventInfo(context, "好友消息", msgEntity.getContent(), activity);
-                notificationManager.notify(notification.number, notification);
-                notification.number += 1;
-                break;
+            int type = msg.getType();
 
-            case 2:
-                // TODO refactor and get group
-                // 问题：不知道发送者的名字，都会以组群名显示
-                Group group = Groups.getGroup(msg.getTo());
-                MessageEntity gmsgEntity = new MessageEntity(group.getName(),msg.getContent());
-                Messages.storeMessageEntity(group.getName(),gmsgEntity,true);
-                notification.flags |= Notification.FLAG_AUTO_CANCEL;
-                final Intent gintent = new Intent(context, GroupChatAty.class);
-                gintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                gintent.putExtra(String.valueOf(R.string.group),group);
-                final PendingIntent gactivity = PendingIntent.getActivity(context, 0,
-                        gintent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.setLatestEventInfo(context, "群组消息", gmsgEntity.getContent(), gactivity);
-                notificationManager.notify(notification.number, notification);
-                notification.number += 1;
-                break;
+            switch (type) {
+                case 1:
+                    Friend friend = Friends.getFriend(msg.getFrom());
+                    MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
+                    Messages.storeMessageEntity(friend.getName(), msgEntity, true);
+                    notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                    final Intent intent = new Intent(context, ChatActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(String.valueOf(R.string.friend), friend);
+                    final PendingIntent activity = PendingIntent.getActivity(context, 0,
+                            intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notification.setLatestEventInfo(context, "好友消息", msgEntity.getContent(), activity);
+                    notificationManager.notify(notification.number, notification);
+                    notification.number += 1;
+                    break;
+
+                case 2:
+                    Group group = Groups.getGroup(msg.getTo());
+
+                    String url = context.getString(R.string.URLRoot) + "/groups/" + group.getId() + "/memberlist";
+                    String resp = new BasicWebService().sendGetRequest(url, null);
+                    List<GroupMemberTransfer> gmtList = GsonTool.getObjectList(resp, GroupMemberTransfer[].class);
+                    String sender = "";
+                    for (GroupMemberTransfer gmt : gmtList) {
+                        if (gmt.getId() == msg.getFrom()) {
+                            sender = gmt.getName();
+                        }
+                    }
+
+                    MessageEntity gmsgEntity = new MessageEntity(sender, msg.getContent());
+                    Messages.storeMessageEntity(sender, gmsgEntity, true);
+                    notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                    final Intent gintent = new Intent(context, GroupChatAty.class);
+                    gintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    gintent.putExtra(String.valueOf(R.string.group), group);
+                    final PendingIntent gactivity = PendingIntent.getActivity(context, 0,
+                            gintent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notification.setLatestEventInfo(context, "群组消息", gmsgEntity.getContent(), gactivity);
+                    notificationManager.notify(notification.number, notification);
+                    notification.number += 1;
+                    break;
+            }
         }
     }
 }

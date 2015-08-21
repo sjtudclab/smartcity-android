@@ -34,5 +34,4 @@ public class Messages {
 		if(flag)
 			adapter.notifyDataSetChanged();
 	}
-	
 }
