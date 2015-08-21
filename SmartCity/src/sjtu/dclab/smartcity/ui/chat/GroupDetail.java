@@ -44,7 +44,7 @@ public class GroupDetail extends Activity {
     }
 
     public void init() {
-        String url = getResources().getString(R.string.URLRoot) + "/groups/" + groupId + "/memberlist";
+        String url = getResources().getString(R.string.URLRoot) + "groups/" + groupId + "/memberlist";
         String resp = webService.sendGetRequest(url, null);
         itemList = new ArrayList<HashMap<String, Object>>();
         icons = new ArrayList<Integer>();

@@ -40,8 +40,7 @@ public class ChatActivity extends Activity {
         listView = (ListView) findViewById(R.id.chat_list);
 
         Intent intent = getIntent();
-        friend = (Friend) intent.getSerializableExtra(String
-                .valueOf(R.string.friend));
+        friend = (Friend) intent.getSerializableExtra(String.valueOf(R.string.friend));
         adapter = Messages.loadMessageAdapter(friend.getName());
         listView.setAdapter(adapter);
 
@@ -70,11 +69,10 @@ public class ChatActivity extends Activity {
                     msg.setContent(content);
                     msg.setFrom(Me.id);
                     msg.setTo(friend.getId());
-                    msg.setName(friend.getName()); // name of msg writer????
+                    msg.setName("我");
                     msg.setType(1); //TODO
                     Publisher.publishMessage(msg);
-                    Messages.storeMessageEntity(friend.getName(),
-                            new MessageEntity("我", content), true);
+                    Messages.storeMessageEntity(friend.getName(), new MessageEntity("我", content), true);
                     messageText.setText("");
 
                     //db

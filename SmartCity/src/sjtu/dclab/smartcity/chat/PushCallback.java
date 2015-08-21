@@ -69,9 +69,8 @@ public class PushCallback implements MqttCallback {
         });
 
         // 去重
-        if (!msg.getContent().equals(lastMsg.getContent())) {
+        if (msg != lastMsg) {
             lastMsg = msg;
-            dbManager.saveMsg(msg);
             Log.i(TAG, "save received msg");
 
             int type = msg.getType();
@@ -79,6 +78,10 @@ public class PushCallback implements MqttCallback {
             switch (type) {
                 case 1:
                     Friend friend = Friends.getFriend(msg.getFrom());
+
+                    msg.setName(friend.getName());
+                    dbManager.saveMsg(msg);
+
                     MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
                     Messages.storeMessageEntity(friend.getName(), msgEntity, true);
                     notification.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -95,7 +98,7 @@ public class PushCallback implements MqttCallback {
                 case 2:
                     Group group = Groups.getGroup(msg.getTo());
 
-                    String url = context.getString(R.string.URLRoot) + "/groups/" + group.getId() + "/memberlist";
+                    String url = context.getString(R.string.URLRoot) + "groups/" + group.getId() + "/memberlist";
                     String resp = new BasicWebService().sendGetRequest(url, null);
                     List<GroupMemberTransfer> gmtList = GsonTool.getObjectList(resp, GroupMemberTransfer[].class);
                     String sender = "";
@@ -105,8 +108,11 @@ public class PushCallback implements MqttCallback {
                         }
                     }
 
+                    msg.setName(sender);
+                    dbManager.saveMsg(msg);
+
                     MessageEntity gmsgEntity = new MessageEntity(sender, msg.getContent());
-                    Messages.storeMessageEntity(sender, gmsgEntity, true);
+                    Messages.storeMessageEntity(group.getName(), gmsgEntity, true);
                     notification.flags |= Notification.FLAG_AUTO_CANCEL;
                     final Intent gintent = new Intent(context, GroupChatAty.class);
                     gintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

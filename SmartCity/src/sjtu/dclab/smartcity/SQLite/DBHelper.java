@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int j) {
         sqLiteDatabase.execSQL("ALTER TABLE messages_record ADD COLUMN other STRING");
     }
 }

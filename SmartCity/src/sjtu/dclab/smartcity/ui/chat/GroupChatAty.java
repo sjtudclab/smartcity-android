@@ -19,8 +19,6 @@ import sjtu.dclab.smartcity.community.entity.Message;
  * Created by Yang on 2015/8/4.
  */
 public class GroupChatAty extends Activity {
-    private GroupChatAty chat = this;
-
     private ImageButton ibtnGroupDetail;
     private ListView listView;
     private MessageAdapter adapter;
