@@ -70,8 +70,8 @@
     <string name="item_me">我</string>
 
     <!--URL 相关-->
-    <string name="URLRoot">http://202.120.40.24:8080/community-server/rest/</string>
-    <string name="URLServer">http://202.120.40.24:8080/community-server</string>
+    <string name="URLRoot">http://202.120.40.111:8080/community-server/rest/</string>
+    <string name="URLServer">http://202.120.40.111:8080/community-server</string>
     <string name="URLLogin">users/login</string>
     <string name="URLCommittee">managementCitizens/committee</string>
     <string name="URLAnnouncement">information/1</string> <!--公告-->

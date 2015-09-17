@@ -15,7 +15,7 @@ public class Login {
 
     static public UserTransfer login(String name, String passwd) {
         
-        String URLLOGIN = "http://202.120.40.24:8080/community-server/rest/users/login";
+        String URLLOGIN = "http://202.120.40.111:8080/community-server/rest/users/login";
 
         BasicWebService webService = new BasicWebService();
         Map<String, String> kvs = new HashMap<String, String>();

@@ -134,7 +134,7 @@ public class MyTalk implements Serializable {
     }
 
     public static void main(String[] args) throws Exception {
-        CommunityApp app = new CommunityApp("http://202.120.40.24:8080/community-server/");
+        CommunityApp app = new CommunityApp("http://202.120.40.111:8080/community-server/");
         MyLogin login = app.getLoginModule();
         login.doLogin("resident_test", "admin");
 
