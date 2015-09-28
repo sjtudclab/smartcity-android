@@ -1,5 +1,7 @@
 package sjtu.dclab.smartcity.ui.login;
 
+import android.content.Context;
+import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.UserTransfer;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
@@ -13,9 +15,9 @@ import java.util.Map;
 public class Login {
 
 
-    static public UserTransfer login(String name, String passwd) {
-        
-        String URLLOGIN = "http://202.120.40.111:8080/community-server/rest/users/login";
+    static public UserTransfer login(Context c, String name, String passwd) {
+        String URLLOGIN = c.getString(R.string.URLRoot) + c.getString(R.string.URLLogin);
+//        String URLLOGIN = "http://202.120.40.111:8080/community-server/rest/users/login";
 
         BasicWebService webService = new BasicWebService();
         Map<String, String> kvs = new HashMap<String, String>();

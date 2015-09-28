@@ -14,10 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.*;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*;
 import sjtu.dclab.smartcity.GlobalApp;
@@ -274,6 +271,7 @@ public class ContactsFragment extends Fragment {
 
                 @Override
                 public void onFailure(IMqttToken arg0, Throwable arg1) {
+                    Toast.makeText(getActivity(), "MQTT 服务器连接失败", Toast.LENGTH_SHORT).show();
                     Log.e(TAG + " Failure", arg1.getMessage());
                 }
             });

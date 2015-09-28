@@ -3,12 +3,10 @@ package sjtu.dclab.smartcity.community.talk;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import sjtu.dclab.smartcity.community.common.CommunityApp;
 import sjtu.dclab.smartcity.community.config.Config;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.entity.Message;
-import sjtu.dclab.smartcity.community.login.MyLogin;
 import sjtu.dclab.smartcity.community.util.JsonUtil;
 import sjtu.dclab.smartcity.community.util.NetUtilWithHttpClient;
 
@@ -31,7 +29,8 @@ public class MyTalk implements Serializable {
 
     private static MyTalk instance;
 
-    private MyTalk() {}
+    private MyTalk() {
+    }
 
     public static MyTalk getInstance() {
         if (instance == null) {
@@ -51,25 +50,14 @@ public class MyTalk implements Serializable {
      * @return
      */
     public Collection<Friend> getFriends() {
-        /*Thread thread = new Thread(new Runnable() {
-			public void run() {
-				try {
-					tmp = NetUtil.sendGet(Config.getFriendsUrl(), "");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		thread.start();
-		thread.join();*/
-
         String result = NetUtilWithHttpClient.sendGet(Config.getFriendsUrl(), "");
 
 
         Collection<Friend> friends = null;
         Collection<Friend> friendsWithoutMe = new ArrayList<Friend>();
         try {
-            friends = JsonUtil.getFromJsonStr(result, new TypeReference<Collection<Friend>>() {});
+            friends = JsonUtil.getFromJsonStr(result, new TypeReference<Collection<Friend>>() {
+            });
         } catch (JsonParseException e) {
             friends = new ArrayList<Friend>();
             e.printStackTrace();
@@ -81,8 +69,8 @@ public class MyTalk implements Serializable {
             e.printStackTrace();
         }
 
-        for (Friend f:friends){
-            if (f.getId()!= Me.id)
+        for (Friend f : friends) {
+            if (f.getId() != Me.id)
                 friendsWithoutMe.add(f);
         }
 
@@ -131,30 +119,5 @@ public class MyTalk implements Serializable {
                         });
 
         return msgs;
-    }
-
-    public static void main(String[] args) throws Exception {
-        CommunityApp app = new CommunityApp("http://202.120.40.111:8080/community-server/");
-        MyLogin login = app.getLoginModule();
-        login.doLogin("resident_test", "admin");
-
-        MyTalk talk = app.getTalkModule();
-
-        Collection<Friend> friends = talk.getFriends();
-        //System.out.println(friends);
-        Friend friend = null;
-        for (Friend f : friends) {
-            friend = f;
-            break;
-        }
-
-        Message msg = null;
-        if (friend != null) {
-//			msg = talk.sendMessage(friend, "testtest1");
-//			System.out.println(msg);
-        }
-
-//		System.out.println(talk.receiveMessage(friend, msg, 5));
-        System.out.println(talk.receiveMessage(friend, null, 100));
     }
 }

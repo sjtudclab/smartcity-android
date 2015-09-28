@@ -75,7 +75,7 @@ public class LoginAty extends Activity {
                 StrictMode.setThreadPolicy(policy);
 
                 login.doLogin(username, password);  //长意的Login，为了talk模块中传userID的参数
-                UserTransfer ut = Login.login(username, password);
+                UserTransfer ut = Login.login(getApplicationContext(), username, password);
                 if (ut != null) {
                     Collection<Role> roles = ut.getRoles();
                     String type = null;
@@ -101,7 +101,7 @@ public class LoginAty extends Activity {
                     } else {
                         //default value
                         i = new Intent(getApplicationContext(), HomeAty.class);
-                        i.putExtra(statusKey,getString(R.string.Resident));
+                        i.putExtra(statusKey, getString(R.string.Resident));
                     }
                     startActivity(i);
                     finish();

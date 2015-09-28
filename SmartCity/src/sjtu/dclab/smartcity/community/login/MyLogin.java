@@ -7,7 +7,7 @@ import sjtu.dclab.smartcity.community.config.Config;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.User;
 import sjtu.dclab.smartcity.community.util.JsonUtil;
-import sjtu.dclab.smartcity.community.util.NetUtilWithHttpClient;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -52,7 +52,7 @@ public class MyLogin {
 		String result = "";
 		User user = null;
 
-		result = NetUtilWithHttpClient.sendPost(Config.getLoginUrl(), map);
+		result = new BasicWebService().sendPostRequest(Config.getLoginUrl(), map);
 
 		if(result == null)
 			return "fail";

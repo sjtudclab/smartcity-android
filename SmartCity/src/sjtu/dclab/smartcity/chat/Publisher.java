@@ -1,13 +1,15 @@
 package sjtu.dclab.smartcity.chat;
 
+import android.util.Log;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
-import sjtu.dclab.smartcity.community.util.JsonUtil;
 import sjtu.dclab.smartcity.community.entity.Message;
+import sjtu.dclab.smartcity.community.util.JsonUtil;
 
 public class Publisher {
+	private static String TAG = "Publisher Failure";
 
 	private static MqttAndroidClient client;
 	
@@ -16,6 +18,10 @@ public class Publisher {
 	}
 
 	public static void publishMessage(Message msg){
+		if (client == null){
+			Log.d(TAG, "MQTT服务器注册失败");
+		}
+
 		String content = "";
 		try {
 			content = JsonUtil.getJsonStr(msg);
@@ -23,7 +29,6 @@ public class Publisher {
 			e1.printStackTrace();
 		}
 
-//		final MqttMessage message = new MqttMessage(content.getBytes());
 		try {
 			client.publish(Configurations.publicTopic,content.getBytes(), Configurations.qos, Configurations.retained);
 		} catch (MqttPersistenceException e) {
