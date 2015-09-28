@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">东方名城</string>
+
+    <string name="head_title_home">东方名城</string>
+
+    <string name="btm_title_home">主页</string>
+    <string name="btm_title_contacts">联系人</string>
+    <string name="btm_title_chat">聊天</string>
+    <string name="btm_title_profile">个人</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_clickme">Click me</string>
+    <string name="iv_contentd">Img describe.</string>
+
+    <!--login-->
+    <string name="login_title">东方名城智慧邻里登陆</string>
+    <string name="login_name">用户名</string>
+    <string name="login_passwd">密码</string>
+    <string name="login_btn">登陆</string>
+
+    <!--status-->
+    <string name="StatusKey">StatusKey</string>
+    <string name="Resident">居民</string>
+    <string name="Committee">居委会</string>
+    <string name="Yeweihu">业委会</string>
+    <string name="NormalParty">普通党员</string>
+
+    <!--chat-->
+    <string name="talk">talk</string>
+    <string name="friend">friend</string>
+    <string name="group">group</string>
+
+    <!--身份选择-->
+    <string name="identity_1">居委会工作</string>
+    <string name="identity_2">业委会工作</string>
+    <string name="identity_3">党建工作</string>
+    <string name="identity_4">居民生活</string>
+
+    <!--发布公告-->
+    <string name="pub_ann">发布公告</string>
+    <string name="ann_title">公告标题</string>
+    <string name="ann_text">公告正文</string>
+    <string name="upload_pic">上传照片</string>
+    <string name="upload_video">上传视频</string>
+    <string name="upload_attachment">添加附件</string>
+
+    <!--公告详情-->
+    <string name="ann_det">公告详情</string>
+    <string name="ann_edit">编辑公告</string>
+    <string name="ann_del">删除公告</string>
+
+    <!--公告管理-->
+    <string name="ann_man">公告管理</string>
+    <string name="ann_list">公告列表</string>
+
+    <!--组织生活-->
+    <string name="org_life">组织生活</string>
+    <string name="org_life_details">组织生活详情</string>
+    <string name="org_life_title">组织生活标题</string>
+    <string name="org_life_summary">活动概要：</string>
+    <string name="org_life_sign">签到</string>
+
+    <!--item杂项-->
+    <string name="item_note">备用</string>
+    <string name="item_time">时间</string>
+    <string name="item_num">人数</string>
+    <string name="item_pos">地点</string>
+    <string name="item_test">Hello World!</string>
+    <string name="item_me">我</string>
+
+    <!--URL 相关-->
+    <string name="URLRoot">http://202.120.40.111:40002/community-server/rest/</string>
+    <string name="URLServer">http://202.120.40.111:40002/community-server</string>
+    <string name="URLLogin">users/login</string>
+    <string name="URLCommittee">managementCitizens/committee</string>
+    <string name="URLAnnouncement">information/1</string> <!--公告-->
+    <string name="URLPublishAnn">information</string>
+    <string name="URLGetVote">topic?type=1</string>
+
+    <!--xx工作-->
+    <string name="minzheng">民政工作</string>
+    <string name="gongyi">公益服务</string>
+    <string name="bianmin">便民服务</string>
+    <string name="weiji">卫计工作</string>
+    <string name="anfang">安防工作</string>
+    <string name="zongzhi">社区综治</string>
+    <string name="xinfang">信访调解</string>
+    <string name="wenjiao">文教宣传</string>
+    <string name="minyiguangchang">民意广场</string>
+    <string name="minyitoupiao">民意投票</string>
+    <string name="yuqing">舆情管理</string>
+    <string name="gonggao">公告管理</string>
+    <string name="renkou">人口信息</string>
+    <string name="fangwu">房屋信息</string>
+    <string name="renshi">人事信息</string>
+    <string name="zhoubian">周边设施</string>
+
+    <!--党建系统-->
+    <string name="zuzhishenghuo">组织生活</string>
+    <string name="dangyuanhuodong">党员活动</string>
+    <string name="sixianghuibao">思想汇报</string>
+    <string name="dangfeijiaona">党费缴纳</string>
+    <string name="ziwopingjia">自我评价</string>
+    <string name="dangyuanhuping">党员互评</string>
+    <string name="zuzhiguanxi">组织关系</string>
+    <string name="jidukaocha">季度考察</string>
+
+    <!--党团信息-->
+    <string name="dangtuan_aty">党员生活详情</string>
+    <string name="dangtuan_title">关于建设智慧社区</string>
+    <string name="dangtuan_time">时间：</string>
+    <string name="dangtuan_tm">1987-01-01</string>
+    <string name="dangtuan_didian">地点：</string>
+    <string name="dangtuan_dd">中山公园</string>
+    <string name="dangtuan_yingdao">应到人数：</string>
+    <string name="dangtuan_yd">20</string>
+    <string name="dangtuan_shidao">实到人数：</string>
+    <string name="dangtuan_sd">20</string>
+    <string name="dangtuan_huodong">活动概要</string>
+    <string name="dangtuan_hd">1.XXX.......</string>
+    <string name="org_relationship">组织关系</string>
+    <string name="org_rel_name">姓名：李明</string>
+    <string name="org_rel_date">转出日期：2515-03-01</string>
+    <string name="org_rel_type">转出类别：</string>
+    <string name="org_rel_destination">转出去向：</string>
+    <string name="org_rel_code">接收单位党组织代码：</string>
+    <string name="org_rel_com">接收单位党组织名称：</string>
+    <string name="commit_info">提交转出信息</string>
+    <string name="pty_session_checkout">季度考察</string>
+    <string name="thought_report">思想汇报</string>
+    <string name="thought_report_comment">撰写评论</string>
+    <string name="thought_report_no">不通过</string>
+    <string name="thought_report_yes">通过</string>
+    <string name="personal_info_name">李小明</string>
+    <string name="personal_info_gender">男</string>
+    <string name="personal_info_num">社区用户号：XXXXXX</string>
+    <string name="personal_info_real_name">实名信息</string>
+    <string name="personal_info_living">居住信息</string>
+    <string name="personal_info_party">党员信息</string>
+    <string name="policy_statement_detail">政策/说明详情</string>
+
+    <!--思想汇报-->
+    <string name="thought_report_list">思想汇报</string>
+    <string name="thought_report_statement">思想汇报说明</string>
+    <string name="thought_report_publish">提交报告</string>
+    <string name="thought_report_rewrite">修改报告</string>
+    <string name="thought_report_write">撰写思想汇报</string>
+    <string name="thought_report_title">报告标题</string>
+    <string name="thought_report_text">报告正文</string>
+    <string name="thought_report_save">保存报告</string>
+
+    <!--党费缴纳-->
+    <string name="party_expense_pay">党费缴纳</string>
+    <string name="party_expense_policy">党费缴纳政策说明</string>
+    <string name="party_expense_date">党费交至日期：</string>
+    <string name="party_expense_amount">请输入缴纳金额</string>
+    <string name="party_expense_commite">确认缴纳</string>
+
+
+    <!--微信-->
+    <string name="group_name">我的家庭</string>
+    <string name="send_msg">发送</string>
+    <string name="mygroup">我的组群</string>
+    <string name="myfriends">我的好友</string>
+
+    <!--群组详情-->
+    <string name="group_details">详细信息</string>
+    <string name="group_file">资料</string>
+    <string name="group_chat_name">群聊名称：</string>
+    <string name="group_my_nickname">我在本群的昵称：</string>
+    <string name="group_note_up">备注：</string>
+    <string name="group_btn_send_msg">发消息</string>
+    <string name="group_btn_no_bother">消息免打扰</string>
+    <string name="group_btn_stickie">置顶聊天</string>
+    <string name="group_btn_chat_rocord">查找聊天记录</string>
+    <string name="group_btn_del_record">清空聊天记录</string>
+    <string name="group_btn_110">举报群组</string>
+    <string name="group_btn_del_group">删除群组</string>
+
+    <!--人事模块-->
+    <string name="hr_info">人事信息</string>
+    <string name="hr_name_test">小明</string>
+    <string name="hr_pos_test">工会主席</string>
+    <string name="hr_blank"> </string>
+    <string name="hr_cadre_info">干部信息</string>
+    <string name="hr_details">详细信息</string>
+    <string name="hr_name">姓名：</string>
+    <string name="hr_pos">职务：</string>
+    <string name="hr_politic_face">政治面貌：</string>
+    <string name="hr_phone_num">联系方式：</string>
+    <string name="hr_addr">居住地址：</string>
+    <string name="hr_change">人事调整</string>
+    <string name="hr_pos_now">当前职务：</string>
+    <string name="hr_change_pos">调整职务</string>
+    <string name="hr_cb_dzzsj">党总支书记</string>
+    <string name="hr_cb_wszr">卫生主任</string>
+    <string name="hr_cb_jwhzr">居委会主任</string>
+    <string name="hr_cb_wjzr">文教主任</string>
+    <string name="hr_cb_mzllzr">民政老龄主任</string>
+    <string name="hr_cb_jyyzy">就业援助员</string>
+    <string name="hr_cb_zbzr">治保主任</string>
+    <string name="hr_cb_sqmj">社区民警</string>
+    <string name="hr_cb_tjzr">调解主任</string>
+    <string name="hr_cb_jszr">计生主任</string>
+    <string name="hr_cb_sqba">社区保安</string>
+    <string name="hr_cb_fdzr">妇代主任</string>
+    <string name="hr_cb_ywhwy">业委会委员</string>
+    <string name="hr_cb_syyzy">失业援助员</string>
+    <string name="hr_change_confirm">确认</string>
+
+    <!--民意投票-->
+    <string name="vote_yes">赞成</string>
+    <string name="vote_no">反对</string>
+    <string name="vote_title">投票标题</string>
+    <string name="vote_starter">发起人：</string>
+    <string name="vote_start_time">起始时间</string>
+    <string name="vote_end_time">结束时间</string>
+    <string name="vote">民意投票</string>
+    <string name="vote_list">投票列表</string>
+    <string name="vote_start">发起投票</string>
+
+    <!--Huang adds-->
+    <string name="btm_title_service">服务</string>
+    <string name="btm_title_person">个人</string>
+    <string name="btm_title_more">更多</string>
+    <string name="juwei">居委会</string>
+    <string name="yehui">业委会</string>
+    <string name="wuye">物业报修</string>
+    <string name="linli">邻里之间</string>
+    <string name="minyi">民意广场</string>
+    <string name="huodong">社区活动</string>
+    <string name="dangyuan_mana">党员管理</string>
+    <string name="dangyuan_org">组织生活</string>
+    <string name="dangyuan_aty">党员活动</string>
+    <string name="dangfei_mana">党费管理</string>
+    <string name="dangjian">党建工作</string>
+
+    <!--联系人-->
+    <string name="contacts_quest">好友请求</string>
+    <string name="contacts_friend">好友</string>
+    <string name="contacts_group">群组</string>
+
+    <!--信息卡-->
+    <string name="web_infomation_title">网络信息卡</string>
+    <string name="web_infomation_nickname">昵称</string>
+    <string name="web_infomation_id">社区用户号</string>
+    <string name="web_infomation_namecard">社区二维码</string>
+
+    <string name="name_infomation_title">实名信息卡</string>
+    <string name="name_infomation_name">姓名</string>
+    <string name="name_infomation_sex">性别</string>
+    <string name="name_infomation_nation">民族</string>
+
+    <string name="liveing_infomation_title">居住信息卡</string>
+    <string name="liveing_infomation_name">小区名称</string>
+    <string name="liveing_infomation_address">小区地址</string>
+    <string name="liveing_infomation_mailcode">邮编</string>
+    <string name="liveing_infomation_id">门牌号</string>
+
+    <string name="party_infomation_title">党员信息卡</string>
+    <string name="party_infomation_organization">组织关系</string>
+    <string name="party_infomation_branch">流动支部</string>
+    <string name="party_infomation_job">党内职务</string>
+    <string name="party_infomation_kind">党员类别</string>
+    <string name="party_infomation_kind_1">群众</string>
+    <string name="party_infomation_kind_2">中共党员</string>
+    <string name="party_infomation_kind_3">预备党员</string>
+    <string name="party_infomation_membership">党籍状态</string>
+    <string name="party_infomation_membership_1">在籍</string>
+    <string name="party_infomation_membership_2">离籍</string>
+    <string name="party_infomation_joindate">入党日期</string>
+    <string name="party_infomation_confirmationdate">转正日期</string>
+    <string name="party_infomation_inspection">考察人</string>
+    <string name="party_infomation_bookid">入党志愿书编号</string>
+
+    <string name="property_repair">物业报修</string>
+    <string name="repair_check_head">查看报修</string>
+    <string name="repair_add_head">添加报修</string>
+    <string name="repair_assess_head">报修评价</string>
+
+    <string name="repair_add_name">维修项目</string>
+    <string name="repair_add_address">维修地址</string>
+    <string name="repair_add_customer_name">客户姓名</string>
+    <string name="repair_add_telephone">联系电话</string>
+    <string name="repair_add_number">人员数量</string>
+    <string name="repair_decide">确定</string>
+    <string name="repair_cancel">取消</string>
+    <string name="repair_assess_name">维修项目</string>
+    <string name="repair_assess_rate">满意度</string>
+    <string name="repair_assess_inst">说明</string>
+
+    <string name="civil_affair_home">民政工作</string>
+    <string name="civil_affair_edit_report">编辑述职报告</string>
+    <string name="civil_affair_report_title">标题</string>
+    <string name="civil_affair_report_content">内容</string>
+    <string name="civil_affair_report_photo">上传照片</string>
+    <string name="civil_affair_report_video">上传视频</string>
+    <string name="civil_affair_report_public">发布报告</string>
+
+    <string name="person_info_home">个人信息</string>
+    <string name="person_info_edit">设置</string>
+
+    <!--Msg Record-->
+    <string name="msgrecord_title">信息记录</string>
+
+    <!--Zhang add-->
+    <string name="web_information_inputnamehint">请输入昵称</string>
+    <!--end-->
+
+
+</resources>

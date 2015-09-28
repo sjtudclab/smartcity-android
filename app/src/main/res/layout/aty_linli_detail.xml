@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="邻里资料"
+        android:id="@+id/textView41"
+        android:textIsSelectable="false"
+        android:textSize="20dp"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView12"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dong2" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="-150dp"
+        android:layout_marginLeft="170dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="门户：5306"
+            android:id="@+id/textView39"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="说明：小女初嫁人"
+            android:id="@+id/textView40"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="给户主发消息"
+        android:id="@+id/button13"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp" />
+</LinearLayout>

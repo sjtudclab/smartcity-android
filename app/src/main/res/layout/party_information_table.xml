@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffe2e2e2"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/left_arrow"
+            android:background="#00000000" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="@string/party_infomation_title"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="30dp" />
+
+    </FrameLayout>
+
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4.8"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        >
+        <View
+            android:layout_height="6dp"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/party_infomation_organization"
+                android:layout_gravity="center"
+                android:textSize="16sp" />
+            <!--组织关系内容,待添加-->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_partycard_organization"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/party_infomation_branch"
+                android:layout_gravity="center"
+                android:textSize="16sp" />
+            <!--流动支部,待添加-->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/info_partycard_branch"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <LinearLayout
+            android:layout_weight="0.8">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/party_infomation_job"
+                android:layout_gravity="center"
+                android:textSize="16sp" />
+            <!--党内职务内容,待添加-->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_partycard_job"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+
+        <TableRow
+            android:layout_weight="0.8">
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/party_infomation_kind"
+                    android:textSize="16sp" />
+                <!--党员类别内容,待添加-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/info_partycard_kind"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/party_infomation_membership"
+                    android:layout_gravity="center"
+                    android:textSize="16sp" />
+                <!--党籍状态内容,待添加-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/info_partycard_membership"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <TableRow
+            android:layout_weight="0.8">
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/party_infomation_joindate"
+                    android:textSize="16sp" />
+                <!--入党日期内容,待添加-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/info_partycard_joindate"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/party_infomation_confirmationdate"
+                    android:layout_gravity="center"
+                    android:textSize="16sp" />
+                <!--转正日期内容,待添加-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/info_partycard_confirmationdate"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+        <TableRow
+            android:layout_weight="0.8">
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/party_infomation_inspection"
+                    android:textSize="16sp" />
+                <!--考察人内容,待添加-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/info_partycard_inspection"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/party_infomation_bookid"
+                    android:layout_gravity="center"
+                    android:textSize="16sp" />
+                <!--入党志愿书内容,待添加-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/info_partycard_bookid"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#B7B7B7" />
+
+    </TableLayout>
+
+</LinearLayout>
