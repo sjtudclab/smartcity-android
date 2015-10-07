@@ -156,6 +156,7 @@ public class AddContactsAty extends Activity {
                     new String[]{"name"}, new int[]{R.id.list_friend_name});
             lvRequest.setAdapter(adapter);
             lvRequest.setOnItemClickListener(new ItemClickedListener());
+            adapter.notifyDataSetChanged();
         }
     }
 
