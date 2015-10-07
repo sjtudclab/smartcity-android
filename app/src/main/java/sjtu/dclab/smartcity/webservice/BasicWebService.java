@@ -90,7 +90,37 @@ public class BasicWebService {
             httpPost.setEntity(new ByteArrayEntity(jsonObject.toString().getBytes()));
             HttpResponse response = httpClient.execute(httpPost);
             StatusLine statusLine = response.getStatusLine();
-            if (statusLine != null && statusLine.getStatusCode() == 200) {
+            if (statusLine != null && statusLine.getStatusCode() / 100 == 2) {
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    InputStream instream = entity.getContent();
+                    String jaxrsmessage = "";
+                    jaxrsmessage = Reader.read(instream);
+                    Log.i("jaxrsmessage", jaxrsmessage);
+                    httpPost.abort();
+                    return jaxrsmessage;
+                } else {
+                    Log.i(TAG, "null");
+                    return ERRORMSG;
+                }
+            } else {
+                Log.i(TAG, ERRORMSG);
+                return ERRORMSG;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ERRORMSG;
+        }
+    }
+
+    public String sendPostRequestWithJsonString(String url, String jsonStr) {
+        try {
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.addHeader("Content-Type", "application/json");
+            httpPost.setEntity(new ByteArrayEntity(jsonStr.getBytes()));
+            HttpResponse response = httpClient.execute(httpPost);
+            StatusLine statusLine = response.getStatusLine();
+            if (statusLine != null && statusLine.getStatusCode() / 100 == 2) {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     InputStream instream = entity.getContent();
@@ -153,8 +183,8 @@ public class BasicWebService {
             httpPost.setEntity(entity);
             httpResponse = httpClient.execute(httpPost);
             int statusCode = httpResponse.getStatusLine().getStatusCode();
-            Log.i(TAG,"StatusCode="+statusCode);
-            if (statusCode == 200) {
+            Log.i(TAG, "StatusCode=" + statusCode);
+            if (statusCode / 100 == 2) {
                 return SUCCESS;
             }
         } catch (Exception e) {

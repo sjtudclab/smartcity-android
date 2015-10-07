@@ -33,3 +33,6 @@ proguard/
 # Eclipse
 .classpath
 .project
+
+.gradle
+.idea

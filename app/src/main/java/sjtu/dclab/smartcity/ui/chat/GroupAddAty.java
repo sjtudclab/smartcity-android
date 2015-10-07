@@ -70,10 +70,20 @@ public class GroupAddAty extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             // TODO check and test
             long chosenUserId = friends.get(i).getId();
-            String url = getResources().getString(R.string.URLRoot) + "groups/" + groupId + "/users/" + chosenUserId;
-            String resp = new BasicWebService().sendPostRequest(url,null);
-            Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
+            String jsonStr = "{\"userIds\":["+ chosenUserId +"]}";
+            String url = getResources().getString(R.string.URLRoot) + "groups/" + groupId + "/users";
+
+            String resp = "";
+            try {
+                resp = new BasicWebService().sendPostRequestWithJsonString(url, jsonStr);
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
+            }
+
+            if(resp.equals("success")){
+                Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
+            }
+            setResult(0);
             finish();
         }
     }

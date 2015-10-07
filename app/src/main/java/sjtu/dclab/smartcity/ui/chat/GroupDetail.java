@@ -43,6 +43,13 @@ public class GroupDetail extends Activity {
         init();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 0)
+            init();
+    }
+
     public void init() {
         String url = getResources().getString(R.string.URLRoot) + "groups/" + groupId + "/memberlist";
         String resp = webService.sendGetRequest(url, null);
@@ -80,19 +87,11 @@ public class GroupDetail extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             switch (icons.get(i)) {
                 case R.drawable.group_add:
-//                    startActivityForResult();
                     Intent intent = new Intent(getApplicationContext(), GroupAddAty.class);
                     intent.putExtra("groupId", groupId);
                     startActivityForResult(intent, 0);
                     break;
             }
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK)
-            init();
     }
 }

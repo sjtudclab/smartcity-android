@@ -3,6 +3,7 @@ package sjtu.dclab.smartcity.ui.ann_committee;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -53,6 +54,14 @@ public class AnnouncementAty extends Activity {
         super.onRestart();
         init();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume()");
+        init();
+    }
+
 
     public void init() {
         String url = getResources().getString(R.string.URLRoot) + getResources().getString(R.string.URLAnnouncement);
