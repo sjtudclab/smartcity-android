@@ -41,8 +41,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:hint="搜索联系人/群组" />
+            android:id="@+id/et_addContact"
+            android:hint="输入账号添加联系人"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"/>
     </LinearLayout>
 
     <TextView

@@ -9,28 +9,39 @@
         android:layout_height="100dp">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
             android:id="@+id/itemIcon"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_margin="6dp"  />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/itemLab"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:textSize="20dp" />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/itemPhone"
-            android:layout_marginTop="60dp"
-            android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemLab"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemPhone"
+                android:layout_below="@id/itemLab"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>
