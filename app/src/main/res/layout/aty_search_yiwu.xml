@@ -30,20 +30,23 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         android:layout_weight="0">
 
         <EditText
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText"
+            android:layout_marginLeft="6dp"
             android:hint="请输入关键字" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="search"
+            android:text="查找"
             android:id="@+id/button"
-            android:layout_marginLeft="30dp" />
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -6,8 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.*;
+
+import org.json.JSONObject;
+
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.model.CitizenResident;
@@ -36,6 +42,7 @@ public class AddContactsAty extends Activity {
 
     private ListView lvRecommend, lvRequest;
     private ImageButton ibtnBack, ibtnScan;
+    private EditText etAddContact;
     private ArrayList<HashMap<String, Object>> itemsRecommend, itemsRequest;
     private List<ApplicationTransfer> friendApplications;
     private List<CitizenResident> citizens;
@@ -66,73 +73,16 @@ public class AddContactsAty extends Activity {
                 startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
             }
         });
+
+        etAddContact = (EditText) findViewById(R.id.et_addContact);
+        etAddContact.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        etAddContact.setOnEditorActionListener(new EditorActionListener());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         init();
-
-        //************************************************************************
-        //TODO 需要重写！！！暂时屏蔽
-        /*
-        lvRecommend = (ListView) findViewById(R.id.add_contacts_lv);
-        itemsRecommend = new ArrayList<HashMap<String, Object>>();
-        //REST请求：推荐好友列表
-        String resultRecommend = new BasicWebService().sendGetRequest(URL_ALL_CITIZENS_IN_APARTMENT, null);
-        if (resultRecommend != null) {
-            citizens = new Gson().fromJson(resultRecommend, new TypeToken<List<CitizenResident>>() {
-            }.getType());
-        }
-        if (citizens != null && citizens.size() != 0) {
-            Log.i(TAG, citizens.toString());
-            for (CitizenResident citizen : citizens) {
-                HashMap<String, Object> map = new HashMap<String, Object>();
-                map.put("name", citizen.getName());
-                itemsRecommend.add(map);
-            }
-        }
-        if (itemsRecommend != null && itemsRecommend.size() != 0) {
-            final SimpleAdapter adapter = new SimpleAdapter(getApplication(), itemsRecommend, R.layout.list_friend,
-                    new String[]{"name"}, new int[]{R.id.list_friend_name});
-            lvRecommend.setAdapter(adapter);
-            lvRecommend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AddContactsAty.this);
-                    LayoutInflater factory = LayoutInflater.from(AddContactsAty.this);
-                    final View textEntryView = factory.inflate(R.layout.dialog_friend_req, null);
-                    builder.setTitle("请求xxx为联系人");
-                    builder.setView(textEntryView);
-                    builder.setPositiveButton("发送", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    EditText et_msg = (EditText) textEntryView.findViewById(R.id.et_msg_dialog_fiendreq);
-                                    //发送请求到服务器
-                                    String friendId = "18";//TODO 测试阶段
-                                    String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId + "/applications/" + friendId;
-                                    JSONObject jsonObject = new JSONObject();
-                                    try {
-                                        jsonObject.put("message", et_msg.getText().toString());
-                                        String res = new BasicWebService().sendPostRequestWithRawJson(url, jsonObject);
-                                        if (res.equals("success")){
-                                            Toast.makeText(getApplicationContext(),"请求已成功发送",Toast.LENGTH_SHORT).show();
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        Toast.makeText(getApplicationContext(),"请求失败",Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                    );
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {}
-                            });
-                    builder.create().show();
-                }
-            });
-        }
-        */
     }
 
     public void init(){
@@ -192,4 +142,46 @@ public class AddContactsAty extends Activity {
             builder.show();
         }
     }
+
+    private class EditorActionListener implements EditText.OnEditorActionListener{
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddContactsAty.this);
+                LayoutInflater factory = LayoutInflater.from(AddContactsAty.this);
+                final View textEntryView = factory.inflate(R.layout.dialog_friend_req, null);
+                builder.setTitle("请求" + etAddContact.getText() + "为联系人");
+                builder.setView(textEntryView);
+                builder.setPositiveButton("发送", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                EditText et_msg = (EditText) textEntryView.findViewById(R.id.et_msg_dialog_fiendreq);
+                                //REST请求：好友请求列表
+                                //完整示例http://202.120.40.111:8080/community-server/rest/friends/3/applications/byaccount/zhangsan
+                                String url = URL_BASE_REQUEST_FOR_FRIEND + curUserId +
+                                        "/applications/byaccount/" + etAddContact.getText();
+                                JSONObject jsonObject = new JSONObject();
+                                try {
+                                    jsonObject.put("message", et_msg.getText().toString());
+                                    String res = new BasicWebService().sendPostRequestWithRawJson(url, jsonObject);
+                                    if (res.equals("success")){
+                                        Toast.makeText(getApplicationContext(),"请求已成功发送",Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(),"请求失败",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                );
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {}
+                });
+                builder.create().show();
+                return true;
+            }
+            return false;
+        }
+    }
+
 }
