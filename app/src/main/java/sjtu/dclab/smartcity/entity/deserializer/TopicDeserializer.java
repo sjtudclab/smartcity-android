@@ -30,6 +30,7 @@ public class TopicDeserializer extends JsonDeserializer<Topic> {
         //topic.setEndTime(new Date(node.get("end_time").asLong()));
         //topic.setParentTopicId(node.get("parent_topic_id").asLong());
         topic.setTopicTypeId(node.get("topic_type_id").asLong());
+        topic.setTopicId(node.get("topic_id").asLong());
         topic.setVoteCount(0);
 
         String[] options = node.get("options").asText().split(",");

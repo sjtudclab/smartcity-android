@@ -37,6 +37,7 @@ android:weightSum="1">
                 android:text="@string/vote_title"
                 android:layout_weight="5"
                 android:textSize="20sp"
+                android:textColor="@color/black"
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical" />
 

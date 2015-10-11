@@ -20,7 +20,10 @@ public class Publisher {
 	public static void publishMessage(Message msg){
 		if (client == null){
 			Log.d(TAG, "MQTT服务器注册失败");
+			return;
 		}
+
+		Log.i("MQTT", "MQTT服务器注册成功");
 
 		String content = "";
 		try {

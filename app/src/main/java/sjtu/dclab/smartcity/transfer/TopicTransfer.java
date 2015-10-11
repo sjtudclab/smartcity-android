@@ -1,77 +1,22 @@
 package sjtu.dclab.smartcity.transfer;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import sjtu.dclab.smartcity.entity.TopicOption;
-import sjtu.dclab.smartcity.entity.deserializer.TopicDeserializer;
-
 import java.util.Collection;
 
-/**
- * Created by Yang on 2015/8/14.
- * 投票，沿用了服务器端的类名
- */
-
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "topic_id")
-@JsonDeserialize(using = TopicDeserializer.class)
-
 public class TopicTransfer {
-    @JsonProperty(value = "topic_id")
-    private long topicId;
-
-    @JsonProperty(value = "title")
+    private long topic_id;
     private String title;
-
-    @JsonProperty(value = "content")
     private String content;
-
-    @JsonProperty(value = "desc")
     private String desc;
-
-    @JsonProperty(value = "vote_count")
-    private long voteCount;
-
-    @JsonProperty(value = "start_time")
-    private String startTime;
-
-    @JsonProperty(value = "end_time")
-    private String endTime;
-
-    @JsonProperty(value = "topic_type_id")
-    private long topicTypeId;
-
-    @JsonProperty(value = "parent_topic_id")
-    private long parentTopicId;
-
-    @JsonProperty(value = "attachment")
+    private long vote_count;
+    private String start_time;
+    private String end_time;
+    private long topic_type_id;
+    private long parent_topic_id;
     private String attachment;
-
-    @JsonProperty(value = "created_by")
-    private long createdBy;
-
-    @JsonProperty(value = "submit_time")
-    private String submitTime;
-
-    @JsonProperty(value = "options")
+    private long created_by;
+    private String submit_time;
     private Collection<TopicOption> options;
-
-    public long getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(long voteCount) {
-        this.voteCount = voteCount;
-    }
-
-    public long getTopicTypeId() {
-        return topicTypeId;
-    }
-
-    public void setTopicTypeId(long topicTypeId) {
-        this.topicTypeId = topicTypeId;
-    }
 
     public String getAttachment() {
         return attachment;
@@ -89,12 +34,12 @@ public class TopicTransfer {
         this.content = content;
     }
 
-    public long getCreatedBy() {
-        return createdBy;
+    public long getCreated_by() {
+        return created_by;
     }
 
-    public void setCreatedBy(long createdBy) {
-        this.createdBy = createdBy;
+    public void setCreated_by(long created_by) {
+        this.created_by = created_by;
     }
 
     public String getDesc() {
@@ -105,12 +50,12 @@ public class TopicTransfer {
         this.desc = desc;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getEnd_time() {
+        return end_time;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
     }
 
     public Collection<TopicOption> getOptions() {
@@ -121,28 +66,28 @@ public class TopicTransfer {
         this.options = options;
     }
 
-    public long getParentTopicId() {
-        return parentTopicId;
+    public long getParent_topic_id() {
+        return parent_topic_id;
     }
 
-    public void setParentTopicId(long parentTopicId) {
-        this.parentTopicId = parentTopicId;
+    public void setParent_topic_id(long parent_topic_id) {
+        this.parent_topic_id = parent_topic_id;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
-    public String getSubmitTime() {
-        return submitTime;
+    public String getSubmit_time() {
+        return submit_time;
     }
 
-    public void setSubmitTime(String submitTime) {
-        this.submitTime = submitTime;
+    public void setSubmit_time(String submit_time) {
+        this.submit_time = submit_time;
     }
 
     public String getTitle() {
@@ -153,11 +98,27 @@ public class TopicTransfer {
         this.title = title;
     }
 
-    public long getTopicId() {
-        return topicId;
+    public long getTopic_id() {
+        return topic_id;
     }
 
-    public void setTopicId(long topicId) {
-        this.topicId = topicId;
+    public void setTopic_id(long topic_id) {
+        this.topic_id = topic_id;
+    }
+
+    public long getTopic_type_id() {
+        return topic_type_id;
+    }
+
+    public void setTopic_type_id(long topic_type_id) {
+        this.topic_type_id = topic_type_id;
+    }
+
+    public long getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(long vote_count) {
+        this.vote_count = vote_count;
     }
 }
