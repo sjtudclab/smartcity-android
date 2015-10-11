@@ -45,7 +45,7 @@
             android:paddingLeft="5dp"
             android:textSize="20sp"
             android:hint="@string/vote_title"
-            android:id="@+id/editText2"
+            android:id="@+id/et_new_vote_title"
             android:layout_marginTop="10dp" />
 
         <EditText
@@ -55,21 +55,9 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="5dp"
-            android:hint="@string/vote_start_time"
+            android:hint="@string/vote_content"
             android:textSize="20sp"
-            android:id="@+id/editText3"
-            android:layout_marginTop="5dp" />
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/corner_send_msg"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="5dp"
-            android:hint="@string/vote_end_time"
-            android:textSize="20sp"
-            android:id="@+id/editText4"
+            android:id="@+id/et_new_vote_content"
             android:layout_marginTop="5dp" />
 
         <Button
@@ -82,7 +70,8 @@
             android:paddingBottom="10dp"
             android:textSize="20sp"
             android:layout_margin="5dp"
-            android:background="@drawable/corner_pub_ann" />
+            android:background="@drawable/corner_pub_ann"
+            android:id="@+id/btn_new_vote"/>
 
     </LinearLayout>
 

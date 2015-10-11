@@ -213,6 +213,7 @@
     <string name="vote_yes">赞成</string>
     <string name="vote_no">反对</string>
     <string name="vote_title">投票标题</string>
+    <string name="vote_content">投票内容</string>
     <string name="vote_starter">发起人：</string>
     <string name="vote_start_time">起始时间</string>
     <string name="vote_end_time">结束时间</string>
