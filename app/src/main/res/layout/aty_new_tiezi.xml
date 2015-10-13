@@ -9,7 +9,7 @@
         android:background="#ffe2e2e2"
         android:layout_weight="7">
 
-        <ImageButton
+        <ImageButton android:id="@+id/ibtn_newpost_back"
             android:layout_width="67dp"
             android:layout_height="match_parent"
             android:src="@drawable/left_arrow"
@@ -34,56 +34,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="2"
-            android:hint="新帖标题"
-            android:textSize="25dp"
+            android:layout_weight="1"
+            android:hint=" 帖子标题"
+            android:textSize="20dp"
             android:background="@drawable/corner_pub_ann"
-            android:layout_margin="2dp" />
+            android:layout_margin="4dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:hint=" 帖子类型"
+            android:textSize="20dp"
+            android:background="@drawable/corner_pub_ann"
+            android:layout_margin="4dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="20"
-            android:hint="新帖正文"
-            android:textSize="25dp"
+            android:hint="帖子正文"
+            android:textSize="20dp"
             android:gravity="center_vertical|center_horizontal"
             android:background="@drawable/corner_pub_ann"
-            android:layout_margin="2dp" />
+            android:layout_margin="4dp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="@string/upload_pic"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textSize="20dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="@string/upload_video"
-                android:layout_weight="1"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="20dp" />
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:text="@string/upload_pic"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:textSize="20dp" />-->
+        <!--</LinearLayout>-->
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="发布新帖"
+            android:text="发布帖子"
             android:layout_weight="1"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_margin="4dp"
             android:textSize="20dp" />
     </LinearLayout>
 

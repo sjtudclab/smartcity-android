@@ -9,20 +9,19 @@
         android:layout_height="50dp">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/itemIcon"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_margin="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/itemLab"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="5dp" />
+            android:text="ussername"
+            android:id="@+id/tv_minyi_itemUser"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <TextView
@@ -32,14 +31,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:textSize="20dp"
-        android:text="nimei a " />
+        android:textColor="@color/black"
+        android:text="Title" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="caonima"
+        android:text="contents"
         android:id="@+id/itemCon"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/black"
         android:textSize="15dp" />
 </LinearLayout>
