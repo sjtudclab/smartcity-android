@@ -307,6 +307,8 @@
 
     <!--Zhang add-->
     <string name="web_information_inputnamehint">请输入昵称</string>
+    <string name="title_activity_minyi_detail">MinyiDetail</string>
+    <string name="action_settings">Settings</string>
     <!--end-->
 
 

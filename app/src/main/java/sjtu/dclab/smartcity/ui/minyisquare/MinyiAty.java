@@ -1,16 +1,13 @@
 package sjtu.dclab.smartcity.ui.minyisquare;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.*;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.transfer.GoodTransfer;
 import sjtu.dclab.smartcity.transfer.PostTransfer;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
@@ -91,7 +88,7 @@ public class MinyiAty extends Activity {
                         map.put("itemTit",post.getTitle());
                         map.put("itemCon",post.getContent());
 //                        map.put("type",post.getType());
-//                        map.put("id",post.getId());
+                        map.put("id",post.getId());
 //                        map.put("communityId",post.getCommunityId());
 //                        map.put("goodNums",post.getGoodNums());
 //                        map.put("replyNums",post.getReplyNums());
@@ -104,7 +101,23 @@ public class MinyiAty extends Activity {
                             new String[] { "itemIcon", "itemUser","itemTit","itemCon"},
                             new int[] { R.id.itemIcon, R.id.tv_minyi_itemUser ,R.id.itemTit,R.id.itemCon});
                     cur_tie.setAdapter(adapter);
-//                    cur_tie.setOnItemClickListener(new ItemClickedListener());//TODO 单击跳转到帖子详情
+                    cur_tie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            Context c = getApplicationContext();
+                            String id = items.get(i).get("id").toString();
+                            String user = items.get(i).get("itemUser").toString();
+                            String title= items.get(i).get("itemTit").toString();
+                            String content = items.get(i).get("itemCon").toString();
+                            Toast.makeText(c, "tiezi: "+id, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(c, MinyiDetail.class);
+                            intent.putExtra("id", id);
+                            intent.putExtra("user", user);
+                            intent.putExtra("title", title);
+                            intent.putExtra("content", content);
+                            startActivity(intent);
+                        }
+                    });
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -112,5 +125,4 @@ public class MinyiAty extends Activity {
             e.printStackTrace();
         }
     }
-
 }
