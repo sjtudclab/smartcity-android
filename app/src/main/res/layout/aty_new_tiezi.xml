@@ -30,34 +30,35 @@
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
-        <EditText
+        <EditText android:id="@+id/et_new_post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:hint=" 帖子标题"
             android:textSize="20dp"
+            android:padding="3dp"
             android:background="@drawable/corner_pub_ann"
             android:layout_margin="4dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:hint=" 帖子类型"
-            android:textSize="20dp"
-            android:background="@drawable/corner_pub_ann"
-            android:layout_margin="4dp" />
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_weight="1"-->
+            <!--android:hint=" 帖子类型"-->
+            <!--android:textSize="20dp"-->
+            <!--android:background="@drawable/corner_pub_ann"-->
+            <!--android:layout_margin="4dp" />-->
 
-        <EditText
+        <EditText android:id="@+id/et_new_post_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_weight="20"
             android:hint="帖子正文"
             android:textSize="20dp"
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="left"
+            android:padding="8dp"
             android:background="@drawable/corner_pub_ann"
             android:layout_margin="4dp" />
 
@@ -75,7 +76,7 @@
                 <!--android:textSize="20dp" />-->
         <!--</LinearLayout>-->
 
-        <Button
+        <Button android:id="@+id/btn_new_post_publish"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="发布帖子"
