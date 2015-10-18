@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import sjtu.dclab.smartcity.R;
@@ -65,6 +67,13 @@ public class NetInformationActivity extends Activity {
         image_qrcode = (ImageView) findViewById(R.id.info_netcard_qrcode);
         text_nickname = (TextView) findViewById(R.id.info_netcard_nickname);
         text_webid = (TextView) findViewById(R.id.info_netcard_webid);
+        ImageButton ibtnBack = (ImageButton) findViewById(R.id.ibtn_net_info_card_back);
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override

@@ -3,6 +3,8 @@ package sjtu.dclab.smartcity.ui.infocard;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
@@ -63,6 +65,13 @@ public class LivingInformationActivity extends Activity {
         text_address = (TextView) findViewById(R.id.info_livingcard_address);
         text_mailcode = (TextView) findViewById(R.id.info_livingcard_mailcode);
         text_doorid = (TextView) findViewById(R.id.info_livingcard_doorid);
+        ImageButton ibtnBack = (ImageButton) findViewById(R.id.ibtn_living_info_card_back);
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override

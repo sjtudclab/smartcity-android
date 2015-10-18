@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.community.config.Me;
@@ -105,6 +107,13 @@ public class PartyInformationActivity extends Activity {
         text_confirmdate = (TextView) findViewById(R.id.info_partycard_confirmationdate);
         text_inspector = (TextView) findViewById(R.id.info_partycard_inspection);
         text_bookid = (TextView) findViewById(R.id.info_partycard_bookid);
+        ImageButton ibtnBack = (ImageButton) findViewById(R.id.ibtn_party_info_card_back);
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override

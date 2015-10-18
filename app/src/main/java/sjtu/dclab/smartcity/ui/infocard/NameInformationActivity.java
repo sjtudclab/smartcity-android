@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import sjtu.dclab.smartcity.R;
@@ -74,6 +76,14 @@ public class NameInformationActivity extends Activity {
         text_name = (TextView) findViewById(R.id.info_namecard_name);
         text_sex = (TextView) findViewById(R.id.info_namecard_sex);
         text_race = (TextView) findViewById(R.id.info_namecard_race);
+        ImageButton ibtnBack = (ImageButton) findViewById(R.id.ibtn_name_info_card_back);
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         curUserId = Me.id + "";
 
         Thread thread = new Thread(new Runnable() {
