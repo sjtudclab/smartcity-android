@@ -84,7 +84,7 @@ public class MinyiAty extends Activity {
                     for (PostTransfer post : posts) {
                         HashMap<String, Object> map = new HashMap<String, Object>();
                         map.put("itemIcon", R.drawable.ic_launcher0);//TODO 默认图片
-                        map.put("itemUser", post.getPosterid());//TODO 需要替换为用户名
+                        map.put("itemUser", post.getPosterName());
                         map.put("itemTit",post.getTitle());
                         map.put("itemCon",post.getContent());
 //                        map.put("type",post.getType());
