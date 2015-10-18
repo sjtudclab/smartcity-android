@@ -31,7 +31,7 @@ public class PushCallback implements MqttCallback {
     private Context context;
     private DBManager dbManager;
 
-    private Message lastMsg = new Message();
+    private static Message lastMsg = new Message();
 
     public PushCallback(Context context) {
         this.context = context;
