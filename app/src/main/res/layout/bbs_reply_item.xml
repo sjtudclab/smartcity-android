@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--这是帖子的一级回复-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_bbs_reply_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:text="username"
         android:layout_gravity="center_vertical"
         android:textColor="@color/black"
         android:textSize="15dp"/>
 
     <TextView
+        android:id="@+id/tv_bbs_reply_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="contents"
@@ -20,6 +24,13 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
         android:textSize="15dp"/>
+
+    <ListView
+        android:id="@+id/lv_secondary_reply"
+        android:background="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,11 +40,15 @@
             android:id="@+id/ibtn_comment_reply"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/bbs_reply"/>
         <ImageButton
-            android:id="@+id/ibtn_comment_up"
+            android:id="@+id/ibtn_comment_like"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/bbs_like"/>
     </LinearLayout>
 </LinearLayout>

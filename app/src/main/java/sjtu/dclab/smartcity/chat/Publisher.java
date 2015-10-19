@@ -34,6 +34,7 @@ public class Publisher {
 
 		try {
 			client.publish(Configurations.publicTopic,content.getBytes(), Configurations.qos, Configurations.retained);
+			client.publish(Configurations.heartTopic, content.getBytes(), Configurations.qos, false);
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
 		} catch (MqttException e) {
