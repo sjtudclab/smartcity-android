@@ -25,12 +25,20 @@
         android:textColor="@color/black"
         android:textSize="15dp"/>
 
-    <ListView
-        android:id="@+id/lv_secondary_reply"
-        android:background="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </ListView>
+    <!--<ListView-->
+        <!--android:id="@+id/lv_secondary_reply"-->
+        <!--android:background="@color/black"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</ListView>-->
+    <TextView
+        android:id="@+id/tv_secondary_reply"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/lightgray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"

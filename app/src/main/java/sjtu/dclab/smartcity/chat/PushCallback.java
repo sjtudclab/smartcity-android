@@ -69,7 +69,7 @@ public class PushCallback implements MqttCallback {
         });
 
         // 去重
-        if (msg != lastMsg) {
+        if (msg.equals(lastMsg)) {
             lastMsg = msg;
             Log.i(TAG, "save received msg");
 

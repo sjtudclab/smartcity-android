@@ -139,24 +139,23 @@ public class MinyiDetail extends Activity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             ViewHolder holder;
+            String secondaryReplies = "";
             if (view == null) {
                 view = mInflater.inflate(R.layout.bbs_reply_item, null);
 
                 holder = new ViewHolder();
                 holder.title = (TextView) view.findViewById(R.id.tv_bbs_reply_username);
                 holder.content = (TextView) view.findViewById(R.id.tv_bbs_reply_content);
-                holder.secondaryReply = (ListView) view.findViewById(R.id.lv_secondary_reply);
+                holder.secondaryReply = (TextView) view.findViewById(R.id.tv_secondary_reply);
                 holder.reply = (ImageButton) view.findViewById(R.id.ibtn_comment_reply);
                 String url = rootUrl + "bbspost/" + post_id + "/" + this.data.get(i).get("bbs_reply_id") + "/replies";
                 String resp = new BasicWebService().sendGetRequest(url, null);
                 List<ReplyTransfer> rtList = GsonTool.getObjectList(resp, ReplyTransfer[].class);
-                List<String> secondaryReplies = new ArrayList<String>();
-                // TODO bug:二级评论不全
+
                 for (ReplyTransfer rt : rtList) {
-                    String reply = rt.getBbs_replier_id() + ":" + rt.getBbs_reply_content();
-                    secondaryReplies.add(reply);
+                    String reply = rt.getBbs_replier_id() + ":" + rt.getBbs_reply_content()+"\n";
+                    secondaryReplies += reply;
                 }
-                holder.secondaryReply.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, secondaryReplies));
 
                 view.setTag(holder);
             } else {
@@ -165,6 +164,7 @@ public class MinyiDetail extends Activity {
             holder.title.setText("用户名");
             holder.content.setText((CharSequence) this.data.get(i).get("content"));
             holder.reply.setOnClickListener(new ReplyListener(Integer.parseInt(this.data.get(i).get("bbs_reply_id").toString())));
+            holder.secondaryReply.setText(secondaryReplies);
 
             return view;
         }
@@ -173,7 +173,7 @@ public class MinyiDetail extends Activity {
     private final class ViewHolder {
         private TextView title;
         private TextView content;
-        private ListView secondaryReply;
+        private TextView secondaryReply;
         private ImageButton reply;
         private Button like;
     }
