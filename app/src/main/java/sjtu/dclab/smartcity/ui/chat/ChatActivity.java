@@ -8,26 +8,25 @@ import android.view.View.OnClickListener;
 import android.widget.*;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.SQLite.DBManager;
-import sjtu.dclab.smartcity.chat.MessageAdapter;
+import sjtu.dclab.smartcity.chat.DeprecatedMessageAdapter;
+import sjtu.dclab.smartcity.chat.DeprecatedMessages;
 import sjtu.dclab.smartcity.chat.MessageEntity;
-import sjtu.dclab.smartcity.chat.Messages;
 import sjtu.dclab.smartcity.chat.Publisher;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.entity.Message;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChatActivity extends Activity {
-    private ChatActivity chat = this;
     private ListView listView;
-    private MessageAdapter adapter;
     private Button messageButton;
     private EditText messageText;
-    private Friend friend;
 
+    private Friend friend;
+    private DeprecatedMessageAdapter deprecatedAdapter;
     //DB
     private DBManager dbm;
 
@@ -38,48 +37,19 @@ public class ChatActivity extends Activity {
         dbm = new DBManager(this);
 
         listView = (ListView) findViewById(R.id.chat_list);
+        messageButton = (Button) findViewById(R.id.MessageButton);
+        messageText = (EditText) findViewById(R.id.MessageText);
+        messageButton.setOnClickListener(new SendMsgListener());
 
         Intent intent = getIntent();
         friend = (Friend) intent.getSerializableExtra(String.valueOf(R.string.friend));
-        adapter = Messages.loadMessageAdapter(friend.getName());
-        listView.setAdapter(adapter);
+        deprecatedAdapter = DeprecatedMessages.loadMessages(friend.getName());
 
         // 设置聊天名称
         TextView chatTitle = (TextView) findViewById(R.id.tv_chat_title);
         chatTitle.setText(friend.getName());
 
-        reloadMsg();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // 发送消息
-        messageButton = (Button) findViewById(R.id.MessageButton);
-        messageText = (EditText) findViewById(R.id.MessageText);
-        messageButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = messageText.getText().toString();
-                if (content.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "请输入内容", Toast.LENGTH_SHORT).show();
-                } else {
-                    Message msg = new Message();
-                    msg.setContent(content);
-                    msg.setFrom(Me.id);
-                    msg.setTo(friend.getId());
-                    msg.setName("我");
-                    msg.setType(1); //TODO
-                    Publisher.publishMessage(msg);
-                    Messages.storeMessageEntity(friend.getName(), new MessageEntity("我", content), true);
-                    messageText.setText("");
-
-                    //db
-                    dbm.saveMsg(msg);
-                }
-            }
-        });
+        updateChatList();
     }
 
     @Override
@@ -88,22 +58,47 @@ public class ChatActivity extends Activity {
         dbm.closeDB();
     }
 
-    private class ChatListener implements PropertyChangeListener {
-        @Override
-        public void propertyChange(PropertyChangeEvent event) {
-            chat.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    adapter.notifyDataSetChanged();
-                }
-            });
+    public void updateChatList() {
+        List<MessageEntity> msgs = reloadMsg();
+        List<HashMap<String, Object>> history = new ArrayList<HashMap<String, Object>>();
+        for (MessageEntity msg : msgs) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("name", msg.getName());
+            map.put("content", msg.getContent());
+            history.add(map);
         }
+        deprecatedAdapter.setMsgEntities(msgs);
+        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), history, R.layout.chat_item,
+                new String[]{"name", "content"}, new int[]{R.id.messagedetail_row_name, R.id.messagedetail_row_text});
+        listView.setAdapter(adapter);
+        listView.setSelection(history.size() - 1);
     }
 
-    protected void reloadMsg() {
+    protected List<MessageEntity> reloadMsg() {
         List<MessageEntity> msgList = dbm.getMsg(Me.id, friend.getId());
-        for (MessageEntity messageEntity : msgList) {
-            Messages.storeMessageEntity(friend.getName(), messageEntity, true);
+        return msgList;
+    }
+
+    private class SendMsgListener implements OnClickListener {
+        @Override
+        public void onClick(View view) {
+            String content = messageText.getText().toString();
+            if (content.length() == 0) {
+                Toast.makeText(getApplicationContext(), "请输入内容", Toast.LENGTH_SHORT).show();
+            } else {
+                Message msg = new Message();
+                msg.setContent(content);
+                msg.setFrom(Me.id);
+                msg.setTo(friend.getId());
+                msg.setName("我");
+                msg.setType(1); //TODO
+                msg.setSerialId("");
+                Publisher.publishMessage(msg);
+                messageText.setText("");
+                //db
+                dbm.saveMsg(msg);
+                updateChatList();
+            }
         }
     }
 }

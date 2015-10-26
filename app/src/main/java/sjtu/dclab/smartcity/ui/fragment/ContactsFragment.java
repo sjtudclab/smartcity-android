@@ -214,12 +214,12 @@ public class ContactsFragment extends Fragment {
         if (friends != null) {
             for (Friend f : friends) {
                 String username = f.getName();
-                MessageAdapter adapter = Messages.loadMessageAdapter(username);
+                DeprecatedMessageAdapter adapter = DeprecatedMessages.loadMessages(username);
                 if (adapter == null) {
                     List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
-                    adapter = new MessageAdapter(getActivity(), R.layout.chat_item,
+                    adapter = new DeprecatedMessageAdapter(getActivity(), R.layout.chat_item,
                             R.id.messagedetail_row_text, msgEntities);
-                    Messages.storeMessageAdapter(username, adapter);
+                    DeprecatedMessages.storeMessageAdapter(username, adapter);
                 }
             }
         }
@@ -228,12 +228,12 @@ public class ContactsFragment extends Fragment {
         if (groups != null) {
             for (Group g : groups) {
                 String groupname = g.getName();
-                MessageAdapter adapter = Messages.loadMessageAdapter(groupname);
+                DeprecatedMessageAdapter adapter = DeprecatedMessages.loadMessages(groupname);
                 if (adapter == null) {
                     List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
-                    adapter = new MessageAdapter(getActivity(), R.layout.chat_item,
+                    adapter = new DeprecatedMessageAdapter(getActivity(), R.layout.chat_item,
                             R.id.messagedetail_row_text, msgEntities);
-                    Messages.storeMessageAdapter(groupname, adapter);
+                    DeprecatedMessages.storeMessageAdapter(groupname, adapter);
                 }
             }
         }

@@ -54,7 +54,11 @@ public class MinyiDetail extends Activity {
         btn_send.setOnClickListener(new ReplyBtnListener());
 
         rootUrl = getResources().getString(R.string.URLRoot);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         init();
     }
 
@@ -77,7 +81,6 @@ public class MinyiDetail extends Activity {
 
             lv_replies.setAdapter(new ReplyItemAdapter(getApplicationContext(), replyList));
         }
-
     }
 
     class ReplyBtnListener implements View.OnClickListener {

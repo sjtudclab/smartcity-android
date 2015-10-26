@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    protected static final String DATABASE_NAME = "chat_record.db";
-    protected static final String TABLE_NAME = "messages_record";
+    protected static final String DATABASE_NAME = "chat_record_test.db";
+    protected static final String TABLE_NAME = "messages_record_test";
     protected static final int DATABASE_VERSION = 1;
 
     public DBHelper(Context context) {
@@ -29,7 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "id INTEGER, " +
                 "content TEXT, " +
                 "userId INTEGER, " +
-                "name VARCHAR)";
+                "name VARCHAR," +
+                "serialId VARCHAR)";
         sqLiteDatabase.execSQL(sql);
     }
 

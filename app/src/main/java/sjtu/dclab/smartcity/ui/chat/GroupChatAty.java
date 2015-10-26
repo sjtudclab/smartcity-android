@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.*;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.SQLite.DBManager;
-import sjtu.dclab.smartcity.chat.MessageAdapter;
+import sjtu.dclab.smartcity.chat.DeprecatedMessageAdapter;
 import sjtu.dclab.smartcity.chat.MessageEntity;
-import sjtu.dclab.smartcity.chat.Messages;
+import sjtu.dclab.smartcity.chat.DeprecatedMessages;
 import sjtu.dclab.smartcity.chat.Publisher;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Group;
@@ -21,7 +21,7 @@ import sjtu.dclab.smartcity.community.entity.Message;
 public class GroupChatAty extends Activity {
     private ImageButton ibtnGroupDetail;
     private ListView listView;
-    private MessageAdapter adapter;
+    private DeprecatedMessageAdapter adapter;
     private Button messageButton;
     private EditText messageText;
     private Group group;
@@ -40,7 +40,7 @@ public class GroupChatAty extends Activity {
         Intent intent = getIntent();
         group = (Group) intent.getSerializableExtra(String.valueOf(R.string.group));
         groupId = group.getId();
-        adapter = Messages.loadMessageAdapter(group.getName());
+        adapter = DeprecatedMessages.loadMessages(group.getName());
 
         // 设置聊天名称
         TextView chatTitle = (TextView) findViewById(R.id.tv_chat_title);
@@ -91,8 +91,9 @@ public class GroupChatAty extends Activity {
                 msg.setTo(group.getId());
                 msg.setName(group.getName());
                 msg.setType(2); //group msg type
+                msg.setSerialId("");
                 Publisher.publishMessage(msg);
-                Messages.storeMessageEntity(group.getName(), new MessageEntity("我", content), true);
+                DeprecatedMessages.storeMessageEntity(group.getName(), new MessageEntity("我", content), true);
                 messageText.setText("");
                 dbm.saveMsg(msg);
             }

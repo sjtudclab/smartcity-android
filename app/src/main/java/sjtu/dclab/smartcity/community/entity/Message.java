@@ -29,6 +29,16 @@ public class Message {
 	private long userId;
 	@JsonProperty
 	private String name;
+	@JsonProperty
+	private String serialId;
+
+	public String getSerialId() {
+		return serialId;
+	}
+
+	public void setSerialId(String serialId) {
+		this.serialId = serialId;
+	}
 
 	public long getFrom() {
 		return from;

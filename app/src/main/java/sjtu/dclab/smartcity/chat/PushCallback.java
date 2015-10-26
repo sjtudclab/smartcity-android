@@ -31,8 +31,6 @@ public class PushCallback implements MqttCallback {
     private Context context;
     private DBManager dbManager;
 
-    private static Message lastMsg = new Message();
-
     public PushCallback(Context context) {
         this.context = context;
         this.dbManager = new DBManager(context);
@@ -68,62 +66,57 @@ public class PushCallback implements MqttCallback {
         Message msg = JsonUtil.getFromJsonStr(str, new TypeReference<Message>() {
         });
 
-        // 去重
-        if (msg.equals(lastMsg)) {
-            lastMsg = msg;
-            Log.i(TAG, "save received msg");
+        Log.i(TAG, "save received msg");
 
-            int type = msg.getType();
+        int type = msg.getType();
 
-            switch (type) {
-                case 1:
-                    Friend friend = Friends.getFriend(msg.getFrom());
+        switch (type) {
+            case 1:
+                Friend friend = Friends.getFriend(msg.getFrom());
 
-                    msg.setName(friend.getName());
-                    dbManager.saveMsg(msg);
+                msg.setName(friend.getName());
+                dbManager.saveMsg(msg);
 
-                    MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
-                    Messages.storeMessageEntity(friend.getName(), msgEntity, true);
-                    notification.flags |= Notification.FLAG_AUTO_CANCEL;
-                    final Intent intent = new Intent(context, ChatActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra(String.valueOf(R.string.friend), friend);
-                    final PendingIntent activity = PendingIntent.getActivity(context, 0,
-                            intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notification.setLatestEventInfo(context, "好友消息", msgEntity.getContent(), activity);
-                    notificationManager.notify(notification.number, notification);
-                    notification.number += 1;
-                    break;
+                MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
+                notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                final Intent intent = new Intent(context, ChatActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(String.valueOf(R.string.friend), friend);
+                final PendingIntent activity = PendingIntent.getActivity(context, 0,
+                        intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                notification.setLatestEventInfo(context, "好友消息", msgEntity.getContent(), activity);
+                notificationManager.notify(notification.number, notification);
+                notification.number += 1;
+                break;
 
-                case 2:
-                    Group group = Groups.getGroup(msg.getTo());
+            case 2:
+                Group group = Groups.getGroup(msg.getTo());
 
-                    String url = context.getString(R.string.URLRoot) + "groups/" + group.getId() + "/memberlist";
-                    String resp = new BasicWebService().sendGetRequest(url, null);
-                    List<GroupMemberTransfer> gmtList = GsonTool.getObjectList(resp, GroupMemberTransfer[].class);
-                    String sender = "";
-                    for (GroupMemberTransfer gmt : gmtList) {
-                        if (gmt.getId() == msg.getFrom()) {
-                            sender = gmt.getName();
-                        }
+                String url = context.getString(R.string.URLRoot) + "groups/" + group.getId() + "/memberlist";
+                String resp = new BasicWebService().sendGetRequest(url, null);
+                List<GroupMemberTransfer> gmtList = GsonTool.getObjectList(resp, GroupMemberTransfer[].class);
+                String sender = "";
+                for (GroupMemberTransfer gmt : gmtList) {
+                    if (gmt.getId() == msg.getFrom()) {
+                        sender = gmt.getName();
                     }
+                }
 
-                    msg.setName(sender);
-                    dbManager.saveMsg(msg);
+                msg.setName(sender);
+                dbManager.saveMsg(msg);
 
-                    MessageEntity gmsgEntity = new MessageEntity(sender, msg.getContent());
-                    Messages.storeMessageEntity(group.getName(), gmsgEntity, true);
-                    notification.flags |= Notification.FLAG_AUTO_CANCEL;
-                    final Intent gintent = new Intent(context, GroupChatAty.class);
-                    gintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    gintent.putExtra(String.valueOf(R.string.group), group);
-                    final PendingIntent gactivity = PendingIntent.getActivity(context, 0,
-                            gintent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notification.setLatestEventInfo(context, "群组消息", gmsgEntity.getContent(), gactivity);
-                    notificationManager.notify(notification.number, notification);
-                    notification.number += 1;
-                    break;
-            }
+                MessageEntity gmsgEntity = new MessageEntity(sender, msg.getContent());
+                DeprecatedMessages.storeMessageEntity(group.getName(), gmsgEntity, true);
+                notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                final Intent gintent = new Intent(context, GroupChatAty.class);
+                gintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                gintent.putExtra(String.valueOf(R.string.group), group);
+                final PendingIntent gactivity = PendingIntent.getActivity(context, 0,
+                        gintent, PendingIntent.FLAG_UPDATE_CURRENT);
+                notification.setLatestEventInfo(context, "群组消息", gmsgEntity.getContent(), gactivity);
+                notificationManager.notify(notification.number, notification);
+                notification.number += 1;
+                break;
         }
     }
 }

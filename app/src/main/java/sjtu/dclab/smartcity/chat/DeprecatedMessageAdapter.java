@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author changyi yuan
  */
-public class MessageAdapter extends ArrayAdapter<MessageEntity> implements Serializable {
+public class DeprecatedMessageAdapter extends ArrayAdapter<MessageEntity> implements Serializable {
 
 	/**
 	 * 
@@ -30,8 +30,8 @@ public class MessageAdapter extends ArrayAdapter<MessageEntity> implements Seria
 	
 	private List<MessageEntity> msgEntities;
 
-	public MessageAdapter(Context context, int resource,
-			int textViewResourceId, List<MessageEntity> msgEntities) {
+	public DeprecatedMessageAdapter(Context context, int resource,
+									int textViewResourceId, List<MessageEntity> msgEntities) {
 		super(context, resource, textViewResourceId, msgEntities);
 		this.context = context;
 		this.resource = resource;

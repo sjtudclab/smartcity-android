@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import sjtu.dclab.smartcity.chat.MessageEntity;
+import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Message;
 
 import java.util.ArrayList;
@@ -22,9 +23,12 @@ public class DBManager {
     }
 
     public void saveMsg(Message msg) {
+        MessageEntity lastMe = getLastMsg(msg.getFrom(), msg.getTo());
+        if (msg.getFrom() != Me.id && lastMe != null && lastMe.getSerialId().equals(msg.getSerialId()))
+            return;
         db.execSQL(
-                "INSERT INTO " + DBHelper.TABLE_NAME + " VALUES(null,?,?,?,?,?,?,?,?)",
-                new Object[]{msg.getFrom(), msg.getTo(), msg.getType(), null, null, msg.getContent(), msg.getUserId(), msg.getName()}
+                "INSERT INTO " + DBHelper.TABLE_NAME + " VALUES(null,?,?,?,?,?,?,?,?,?)",
+                new Object[]{msg.getFrom(), msg.getTo(), msg.getType(), null, null, msg.getContent(), msg.getUserId(), msg.getName(), msg.getSerialId()}
         );
     }
 
@@ -35,6 +39,7 @@ public class DBManager {
             MessageEntity msg = new MessageEntity();
             msg.setContent(cursor.getString(cursor.getColumnIndex("content")));
             msg.setName(cursor.getString(cursor.getColumnIndex("name")));
+            msg.setSerialId(cursor.getString(cursor.getColumnIndex("serialId")));
             msgs.add(msg);
         }
         cursor.close();
@@ -54,10 +59,11 @@ public class DBManager {
 
     public MessageEntity getLastMsg(long me, long peer) {
         Cursor cursor = getLastMsgCursor(me, peer);
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             MessageEntity msg = new MessageEntity();
             msg.setContent(cursor.getString(cursor.getColumnIndex("content")));
             msg.setName(cursor.getString(cursor.getColumnIndex("name")));
+            msg.setSerialId(cursor.getString(cursor.getColumnIndex("serialId")));
             return msg;
         }
         return null;
