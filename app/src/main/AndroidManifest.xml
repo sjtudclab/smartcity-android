@@ -117,12 +117,6 @@
             android:name=".ui.minyisquare.SecondaryReplyAty"
             android:label="@string/title_activity_reply_aty" >
         </activity>
-
-        <service
-            android:name=".chat.ChatService"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
     </application>
 
 </manifest>
