@@ -1,0 +1,55 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        e0824ce sjtu.dclab.smartcity/.ui.MainAty
+
+Key Set Manager:
+  [sjtu.dclab.smartcity]
+      Signing KeySets: 36
+
+Packages:
+  Package [sjtu.dclab.smartcity] (3a029fef):
+    userId=10060 gids=[3003, 1028, 1015]
+    pkg=Package{21b31afc sjtu.dclab.smartcity}
+    codePath=/data/app/sjtu.dclab.smartcity-2
+    resourcePath=/data/app/sjtu.dclab.smartcity-2
+    legacyNativeLibraryDir=/data/app/sjtu.dclab.smartcity-2/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=1 targetSdk=17
+    versionName=1.0
+    splits=[base]
+    applicationInfo=ApplicationInfo{6637585 sjtu.dclab.smartcity}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    dataDir=/data/data/sjtu.dclab.smartcity
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-10-27 03:59:20
+    firstInstallTime=2015-10-07 23:08:06
+    lastUpdateTime=2015-10-27 03:59:20
+    signatures=PackageSignatures{3005bfda [2f834c0b]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    User 0:  installed=true hidden=false stopped=false notLaunched=false enabled=0
+    grantedPermissions:
+      android.permission.WRITE_SETTINGS
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.USE_CREDENTIALS
+      android.permission.MODIFY_AUDIO_SETTINGS
+      android.permission.MANAGE_ACCOUNTS
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.GET_TASKS
+      android.permission.AUTHENTICATE_ACCOUNTS
+      android.permission.INTERNET
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.READ_PHONE_STATE
+      android.permission.BROADCAST_STICKY
+      android.permission.CHANGE_WIFI_STATE
+      android.permission.FLASHLIGHT
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.CAMERA
+      android.permission.GET_ACCOUNTS
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.VIBRATE
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.RECORD_AUDIO
+      android.permission.WAKE_LOCK

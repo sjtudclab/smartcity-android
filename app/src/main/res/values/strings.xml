@@ -321,6 +321,19 @@
     <string name="attach_voice_call">语音电话</string>
     <string name="attach_video_call">视频通话</string>
     <string name="move_up_to_cancel">手指上滑，取消发送</string>
+    <string name="Send_voice_need_sdcard_support">发送语音需要sdcard支持</string>
+    <string name="Is_download_voice_click_later">正在下载语音，稍后点击</string>
+    <string name="recoding_fail">录音失败，请重试！</string>
+    <string name="release_to_cancel">松开手指，取消发送</string>
+    <string name="Recording_without_permission">无录音权限</string>
+    <string name="The_recording_time_is_too_short">录音时间太短</string>
+    <string name="send_failure_please">发送失败，请检测服务器是否连接</string>
 
+    <string name="view_record_wav">录音WAV文件</string>
+    <string name="view_record_amr">录音AMR文件</string>
+    <string name="view_stop">停止录音</string>
+    <string name="error_no_sdcard">没有SD卡，无法存储录音数据</string>
+    <string name="error_state_record">正在录音中，请先停止录音</string>
+    <string name="error_unknown">无法识别的错误</string>
 
 </resources>

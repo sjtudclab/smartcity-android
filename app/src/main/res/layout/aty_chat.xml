@@ -45,6 +45,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bar_bottom"
         android:layout_below="@id/top_bar">
+        <!--进度条-->
         <ProgressBar
             android:id="@+id/pb_load_more"
             android:layout_width="28dp"
@@ -133,8 +134,7 @@
                 android:onClick="setModeKeyboard"
                 android:visibility="gone" />
             <!--按住说话条-->
-            <LinearLayout
-                android:id="@+id/btn_press_to_speak"
+            <LinearLayout android:id="@+id/btn_press_to_speak"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
@@ -163,7 +163,9 @@
                 android:paddingLeft="3dp"
                 android:gravity="center_vertical"
                 android:layout_weight="1"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:onClick="editClick"
+                android:visibility="visible"/>
             <!--更多工具按钮-->
             <Button
                 android:id="@+id/btn_more"
