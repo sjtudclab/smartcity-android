@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,7 +41,11 @@ import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.ui.chat.audio.MediaRecordFunc;
 import sjtu.dclab.smartcity.ui.chat.utils.CommonUtils;
 
-public class ChatActivity extends Activity {
+public class ChatActivity extends Activity implements OnClickListener {
+
+    public static final int REQUEST_CODE_CAMERA = 18;
+    public static final int REQUEST_CODE_LOCAL = 19;
+    public static final int REQUEST_CODE_SELECT_FILE = 24;
 
     private ListView listView;
     private Button btnSendMessage, btnMore;
@@ -53,8 +60,8 @@ public class ChatActivity extends Activity {
     private View recordingContainer;
     private TextView recordingHint;
 
-    private int mRecordingState = -1;    // -1:没有在录制，0：录制wav，1：录制amr
-    private int mRecordingResult = -1;
+    private File cameraFile;
+    private int mRecordingResult;
 
     private InputMethodManager manager;
     private AnimationDrawable animationDrawable;
@@ -75,6 +82,11 @@ public class ChatActivity extends Activity {
 
         //发消息按钮监听
         btnSendMessage.setOnClickListener(new SendMsgListener());
+
+        //发送多媒体文件按钮监听
+        findViewById(R.id.view_camera).setOnClickListener(this);
+        findViewById(R.id.view_file).setOnClickListener(this);
+        findViewById(R.id.view_photo).setOnClickListener(this);
 
         //语音消息相关
         mRecorder = MediaRecordFunc.getInstance();
@@ -180,6 +192,57 @@ public class ChatActivity extends Activity {
     }
 
     /**
+     * onActivityResult
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        btnContainer.setVisibility(View.GONE);
+        //listView.setSelection(listView.getCount());
+        if (requestCode == REQUEST_CODE_LOCAL) { // 发送本地图片
+            if (data != null) {
+                Uri selectedImage = data.getData();
+                if (selectedImage != null) {
+                    //sendPicByUri(selectedImage); TODO
+                }
+            } else if (requestCode == REQUEST_CODE_CAMERA) { // 发送照片
+                if (cameraFile != null && cameraFile.exists()) {
+                    //sendPicture(cameraFile.getAbsolutePath()); TODO
+                }
+            } else if (requestCode == REQUEST_CODE_SELECT_FILE) { // 发送选择的文件
+                if (data != null) {
+                    Uri uri = data.getData();
+                    if (uri != null) {
+                        //sendFile(uri); TODO
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 消息图标点击事件
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        hideKeyboard();
+        switch (view.getId()) {
+            case R.id.view_photo:
+                selectPicFromLocal();   // 点击图片图标
+                break;
+            case R.id.view_camera:
+                selectPicFromCamera();  // 点击照相图标
+                break;
+            case R.id.view_file:
+                selectFileFromLocal();  // 发送文件
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
      * 点击文字输入框
      * @param v
      */
@@ -202,6 +265,9 @@ public class ChatActivity extends Activity {
             more.setVisibility(View.VISIBLE);
             btnContainer.setVisibility(View.VISIBLE);
 //            emojiIconContainer.setVisibility(View.GONE);
+        } else if (more.getVisibility() == View.VISIBLE) {
+            more.setVisibility(View.GONE);
+            btnContainer.setVisibility(View.GONE);
         }
 //        else {
 //            if (emojiIconContainer.getVisibility() == View.VISIBLE) {
@@ -274,6 +340,51 @@ public class ChatActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    /**
+     * 从图库获取图片
+     */
+    private void selectPicFromLocal() {
+        Intent intent;
+        if (Build.VERSION.SDK_INT < 19) {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+        } else {
+            intent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        }
+        startActivityForResult(intent, REQUEST_CODE_LOCAL);
+    }
+    /**
+     * 照相获取图片
+     */
+    public void selectPicFromCamera() {
+        if (!CommonUtils.isExitsSdcard()) {
+            String st = getResources().getString(R.string.sd_card_does_not_exist);
+            Toast.makeText(getApplicationContext(), st, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //TODO 设置拍照文件
+        cameraFile = new File(getFilesDir() + "/testTakingPhoto.jpg");
+        startActivityForResult(
+                new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(
+                        MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)),
+                REQUEST_CODE_CAMERA);
+    }
+    /**
+     * 选择文件
+     */
+    private void selectFileFromLocal() {
+        Intent intent = null;
+        if (Build.VERSION.SDK_INT < 19) {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+        } else {
+            intent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        }
+        startActivityForResult(intent, REQUEST_CODE_SELECT_FILE);
     }
 
     /**按住说话listener

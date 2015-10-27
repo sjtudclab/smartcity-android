@@ -328,6 +328,7 @@
     <string name="Recording_without_permission">无录音权限</string>
     <string name="The_recording_time_is_too_short">录音时间太短</string>
     <string name="send_failure_please">发送失败，请检测服务器是否连接</string>
+    <string name="sd_card_does_not_exist">SD卡不存在，不能拍照</string>
 
     <string name="view_record_wav">录音WAV文件</string>
     <string name="view_record_amr">录音AMR文件</string>
