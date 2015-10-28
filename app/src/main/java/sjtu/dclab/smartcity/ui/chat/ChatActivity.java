@@ -1,8 +1,10 @@
 package sjtu.dclab.smartcity.ui.chat;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
@@ -10,36 +12,26 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
+import android.widget.*;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.SQLite.DBManager;
-import sjtu.dclab.smartcity.chat.DeprecatedMessageAdapter;
-import sjtu.dclab.smartcity.chat.DeprecatedMessages;
-import sjtu.dclab.smartcity.chat.MessageEntity;
-import sjtu.dclab.smartcity.chat.Publisher;
+import sjtu.dclab.smartcity.chat.*;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.ui.chat.audio.MediaRecordFunc;
 import sjtu.dclab.smartcity.ui.chat.utils.CommonUtils;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ChatActivity extends Activity implements OnClickListener {
 
@@ -72,6 +64,7 @@ public class ChatActivity extends Activity implements OnClickListener {
     private DeprecatedMessageAdapter deprecatedAdapter;
 
     private DBManager dbm;
+    private BroadcastReceiverHelper broadcastReceiverHelper;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +95,35 @@ public class ChatActivity extends Activity implements OnClickListener {
         updateChatList();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        broadcastReceiverHelper = new BroadcastReceiverHelper(getApplicationContext());
+        broadcastReceiverHelper.register(PushCallback.ACTION);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(broadcastReceiverHelper);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (wakeLock.isHeld()) wakeLock.release();
+        // 停止语音播放 TODO
+
+        // 停止录音
+        mRecorder.stopRecordAndFile();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbm.closeDB();
+    }
+
     private void initView() {
         listView = (ListView) findViewById(R.id.chat_list);
         btnSendMessage = (Button) findViewById(R.id.MessageButton);
@@ -122,6 +144,7 @@ public class ChatActivity extends Activity implements OnClickListener {
         recordingHint = (TextView) findViewById(R.id.recording_hint);
 
     }
+
     private void setUpView() {
         dbm = new DBManager(this);
 
@@ -132,20 +155,6 @@ public class ChatActivity extends Activity implements OnClickListener {
                 .newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (wakeLock.isHeld()) wakeLock.release();
-        // 停止语音播放 TODO
-
-        // 停止录音
-        mRecorder.stopRecordAndFile();
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dbm.closeDB();
-    }
 
     public void updateChatList() {
         List<MessageEntity> msgs = reloadMsg();
@@ -222,6 +231,7 @@ public class ChatActivity extends Activity implements OnClickListener {
 
     /**
      * 消息图标点击事件
+     *
      * @param view
      */
     @Override
@@ -244,6 +254,7 @@ public class ChatActivity extends Activity implements OnClickListener {
 
     /**
      * 点击文字输入框
+     *
      * @param v
      */
     public void editClick(View v) {
@@ -254,8 +265,10 @@ public class ChatActivity extends Activity implements OnClickListener {
 //            iv_emoticons_checked.setVisibility(View.INVISIBLE);
         }
     }
+
     /**
      * 显示或隐藏图标按钮页
+     *
      * @param view
      */
     public void more(View view) {
@@ -280,8 +293,10 @@ public class ChatActivity extends Activity implements OnClickListener {
 //            }
 //        }
     }
+
     /**
      * 显示语音图标按钮
+     *
      * @param view
      */
     public void setModeVoice(View view) {
@@ -298,8 +313,10 @@ public class ChatActivity extends Activity implements OnClickListener {
 //        iv_emoticons_checked.setVisibility(View.INVISIBLE);
 //        emojiIconContainer.setVisibility(View.GONE);
     }
+
     /**
      * 显示键盘图标
+     *
      * @param view
      */
     public void setModeKeyboard(View view) {
@@ -325,6 +342,7 @@ public class ChatActivity extends Activity implements OnClickListener {
 
     /**
      * 发送语音
+     *
      * @param filePath
      * @param fileName
      * @param length
@@ -341,6 +359,7 @@ public class ChatActivity extends Activity implements OnClickListener {
             e.printStackTrace();
         }
     }
+
     /**
      * 从图库获取图片
      */
@@ -355,6 +374,7 @@ public class ChatActivity extends Activity implements OnClickListener {
         }
         startActivityForResult(intent, REQUEST_CODE_LOCAL);
     }
+
     /**
      * 照相获取图片
      */
@@ -371,6 +391,7 @@ public class ChatActivity extends Activity implements OnClickListener {
                         MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)),
                 REQUEST_CODE_CAMERA);
     }
+
     /**
      * 选择文件
      */
@@ -387,7 +408,8 @@ public class ChatActivity extends Activity implements OnClickListener {
         startActivityForResult(intent, REQUEST_CODE_SELECT_FILE);
     }
 
-    /**按住说话listener
+    /**
+     * 按住说话listener
      */
     class PressToSpeakListen implements View.OnTouchListener {
         @Override
@@ -495,6 +517,26 @@ public class ChatActivity extends Activity implements OnClickListener {
         }
     }
 
+    private class BroadcastReceiverHelper extends BroadcastReceiver {
+        Context context;
+        BroadcastReceiverHelper receiver;
 
+        public BroadcastReceiverHelper(Context context) {
+            this.context = context;
+            this.receiver = this;
+        }
+
+        public void register(String action) {
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(action);
+            context.registerReceiver(receiver, filter);
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("BROADCAST", "msg received");
+            updateChatList();
+        }
+    }
 }
 

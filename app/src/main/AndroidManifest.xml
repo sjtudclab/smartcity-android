@@ -1,145 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="sjtu.dclab.smartcity"
-    android:versionCode="1"
-    android:versionName="1.0" >
+          package="sjtu.dclab.smartcity"
+          android:versionCode="1"
+          android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="17" />
+    <uses-sdk android:minSdkVersion="17"/>
 
     <!-- 访问网络的权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <!-- QRCode涉及相关权限 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18"/>
 
     <application
         android:name=".GlobalApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Light.NoTitleBar" >
+        android:theme="@android:style/Theme.Light.NoTitleBar">
         <activity
             android:name=".ui.MainAty"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HomeAty" />
-        <activity android:name=".ui.MenuAty" />
-        <activity android:name=".ui.login.LoginAty" />
-        <activity android:name=".ui.login.LoginIdentityCommitteeAty" />
-        <activity android:name=".ui.login.LoginIdentityNormalParty" />
-        <activity android:name=".ui.minyisquare.MinyiAty" />
-        <activity android:name=".ui.minyisquare.Minadd" />
-        <activity android:name=".ui.minyisquare.Minsearch" />
-        <activity android:name=".ui.bianminservice.BianminAty" />
-        <activity android:name=".ui.bianminservice.Bianadd" />
-        <activity android:name=".ui.bianminservice.Biansearch" />
-        <activity android:name=".ui.yuqing.YuqingAty" />
-        <activity android:name=".ui.yuqing.YqDSH" />
-        <activity android:name=".ui.yuqing.YqYPB" />
-        <activity android:name=".ui.yuqing.Yqdetail" />
-        <activity android:name=".ui.ann_committee.AnnouncementAty" />
-        <activity android:name=".ui.ann_committee.AnnDetailAty" />
-        <activity android:name=".ui.ann_committee.AnnPublishAty" />
-        <activity android:name=".ui.party.OrgLifeAty" />
-        <activity android:name=".ui.party.OrgLifeDetailAty" />
-        <activity android:name=".ui.party.PartyExpensePayAty" />
-        <activity android:name=".ui.party.PartyLifeAty" />
-        <activity android:name=".ui.party.PartyLifeDetailAty" />
-        <activity android:name=".ui.party.SeasonCheck" />
-        <activity android:name=".ui.party.ThouhtReportAty" />
-        <activity android:name=".ui.party.ThoughtReportListAty" />
-        <activity android:name=".ui.party.ThoughtReportDetailAty" />
-        <activity android:name=".ui.party.ThoughtReportPublishAty" />
-        <activity android:name=".ui.chat.ChatGroupDetailsAty" />
-        <activity android:name=".ui.chat.ChatGroupMsgAty" />
-        <activity android:name=".ui.chat.ChatActivity" />
-        <activity android:name=".ui.minzheng.CivilAffairEditAty" />
-        <activity android:name=".ui.minzheng.CivilAffairHomeAty" />
-        <activity android:name=".ui.infocard.NameInformationActivity" />
-        <activity android:name=".ui.infocard.NetInformationActivity" />
-        <activity android:name=".ui.infocard.PartyInformationActivity" />
-        <activity android:name=".ui.infocard.PartyPersonInfomation" />
-        <activity android:name=".ui.infocard.SettingAty" />
-        <activity android:name=".ui.infocard.LivingInformationActivity" />
-        <activity android:name=".ui.chat.AddContactsAty" />
-        <activity android:name=".ui.chat.GroupChatAty" />
-        <activity android:name=".ui.vote.VoteAty" />
-        <activity android:name=".ui.vote.NewVoteAty" />
-        <activity android:name=".ui.human_resource_info.RenshiAty" />
-        <activity android:name=".ui.human_resource_info.RenshiChanged" />
-        <activity android:name=".ui.human_resource_info.RenshiDetail" />
-        <activity android:name=".ui.wuyerepair.PropertyRepairAty" />
-        <activity android:name=".ui.wuyerepair.PropertyRepairAddAty" />
-        <activity android:name=".ui.wuyerepair.PropertyRepairAssessAty" />
-        <activity android:name=".ui.wuyerepair.PropertyRepairCheckAty" />
-        <activity android:name=".ui.linli.LinliAty" />
-        <activity android:name=".ui.linli.Linlichat" />
-        <activity android:name=".ui.linli.Linlisearch" />
-        <activity android:name=".ui.linli.Linlichatdetail" />
-        <activity android:name=".ui.chat.GroupDetail" />
-        <activity android:name=".ui.info_look_up.HouseAty" />
-        <activity android:name=".ui.info_look_up.PopulationAty" />
-        <activity android:name=".ui.info_look_up.SearchResult" />
-        <activity android:name=".ui.info_look_up.SomethingMore" />
-        <activity android:name=".ui.chat.QRCodeTestAty" />
-        <activity android:name=".qrcode.activity.CaptureActivity" />
-        <activity android:name=".qrcode.activity.ResultActivity" />
-        <activity android:name=".ui.chat.GroupAddAty" />
+        <activity android:name=".ui.HomeAty"/>
+        <activity android:name=".ui.MenuAty"/>
+        <activity android:name=".ui.login.LoginAty"/>
+        <activity android:name=".ui.login.LoginIdentityCommitteeAty"/>
+        <activity android:name=".ui.login.LoginIdentityNormalParty"/>
+        <activity android:name=".ui.minyisquare.MinyiAty"/>
+        <activity android:name=".ui.minyisquare.Minadd"/>
+        <activity android:name=".ui.minyisquare.Minsearch"/>
+        <activity android:name=".ui.bianminservice.BianminAty"/>
+        <activity android:name=".ui.bianminservice.Bianadd"/>
+        <activity android:name=".ui.bianminservice.Biansearch"/>
+        <activity android:name=".ui.yuqing.YuqingAty"/>
+        <activity android:name=".ui.yuqing.YqDSH"/>
+        <activity android:name=".ui.yuqing.YqYPB"/>
+        <activity android:name=".ui.yuqing.Yqdetail"/>
+        <activity android:name=".ui.ann_committee.AnnouncementAty"/>
+        <activity android:name=".ui.ann_committee.AnnDetailAty"/>
+        <activity android:name=".ui.ann_committee.AnnPublishAty"/>
+        <activity android:name=".ui.party.OrgLifeAty"/>
+        <activity android:name=".ui.party.OrgLifeDetailAty"/>
+        <activity android:name=".ui.party.PartyExpensePayAty"/>
+        <activity android:name=".ui.party.PartyLifeAty"/>
+        <activity android:name=".ui.party.PartyLifeDetailAty"/>
+        <activity android:name=".ui.party.SeasonCheck"/>
+        <activity android:name=".ui.party.ThouhtReportAty"/>
+        <activity android:name=".ui.party.ThoughtReportListAty"/>
+        <activity android:name=".ui.party.ThoughtReportDetailAty"/>
+        <activity android:name=".ui.party.ThoughtReportPublishAty"/>
+        <activity android:name=".ui.chat.ChatGroupDetailsAty"/>
+        <activity android:name=".ui.chat.ChatGroupMsgAty"/>
+        <activity android:name=".ui.chat.ChatActivity"/>
+        <activity android:name=".ui.minzheng.CivilAffairEditAty"/>
+        <activity android:name=".ui.minzheng.CivilAffairHomeAty"/>
+        <activity android:name=".ui.infocard.NameInformationActivity"/>
+        <activity android:name=".ui.infocard.NetInformationActivity"/>
+        <activity android:name=".ui.infocard.PartyInformationActivity"/>
+        <activity android:name=".ui.infocard.PartyPersonInfomation"/>
+        <activity android:name=".ui.infocard.SettingAty"/>
+        <activity android:name=".ui.infocard.LivingInformationActivity"/>
+        <activity android:name=".ui.chat.AddContactsAty"/>
+        <activity android:name=".ui.chat.GroupChatAty"/>
+        <activity android:name=".ui.vote.VoteAty"/>
+        <activity android:name=".ui.vote.NewVoteAty"/>
+        <activity android:name=".ui.human_resource_info.RenshiAty"/>
+        <activity android:name=".ui.human_resource_info.RenshiChanged"/>
+        <activity android:name=".ui.human_resource_info.RenshiDetail"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAddAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairAssessAty"/>
+        <activity android:name=".ui.wuyerepair.PropertyRepairCheckAty"/>
+        <activity android:name=".ui.linli.LinliAty"/>
+        <activity android:name=".ui.linli.Linlichat"/>
+        <activity android:name=".ui.linli.Linlisearch"/>
+        <activity android:name=".ui.linli.Linlichatdetail"/>
+        <activity android:name=".ui.chat.GroupDetail"/>
+        <activity android:name=".ui.info_look_up.HouseAty"/>
+        <activity android:name=".ui.info_look_up.PopulationAty"/>
+        <activity android:name=".ui.info_look_up.SearchResult"/>
+        <activity android:name=".ui.info_look_up.SomethingMore"/>
+        <activity android:name=".ui.chat.QRCodeTestAty"/>
+        <activity android:name=".qrcode.activity.CaptureActivity"/>
+        <activity android:name=".qrcode.activity.ResultActivity"/>
+        <activity android:name=".ui.chat.GroupAddAty"/>
 
         <!-- Mqtt Service -->
-        <service android:name="org.eclipse.paho.android.service.MqttService" />
-        <service android:name=".chat.HeartbeatService" />
+        <service android:name="org.eclipse.paho.android.service.MqttService"/>
+        <service android:name=".chat.HeartbeatService"/>
 
         <activity
             android:name=".ui.minyisquare.MinyiDetail"
-            android:label="@string/title_activity_minyi_detail" >
+            android:label="@string/title_activity_minyi_detail">
         </activity>
         <activity
             android:name=".ui.minyisquare.SecondaryReplyAty"
-            android:label="@string/title_activity_reply_aty" >
+            android:label="@string/title_activity_reply_aty">
         </activity>
     </application>
 
     <!--聊天部分权限-->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
 </manifest>

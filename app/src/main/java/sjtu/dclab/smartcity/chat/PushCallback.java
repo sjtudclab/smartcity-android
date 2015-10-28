@@ -31,6 +31,8 @@ public class PushCallback implements MqttCallback {
     private Context context;
     private DBManager dbManager;
 
+    public static final String ACTION = "NEWMSG";
+
     public PushCallback(Context context) {
         this.context = context;
         this.dbManager = new DBManager(context);
@@ -74,10 +76,14 @@ public class PushCallback implements MqttCallback {
             case 1:
                 Friend friend = Friends.getFriend(msg.getFrom());
 
+                Intent bc = new Intent();
+                bc.setAction(ACTION);
+                context.sendBroadcast(bc);
+
                 msg.setName(friend.getName());
                 dbManager.saveMsg(msg);
-
                 MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
+
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
                 final Intent intent = new Intent(context, ChatActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
