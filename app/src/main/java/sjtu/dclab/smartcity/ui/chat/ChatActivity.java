@@ -24,6 +24,7 @@ import sjtu.dclab.smartcity.SQLite.DBManager;
 import sjtu.dclab.smartcity.chat.*;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
+import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.ui.chat.audio.MediaRecordFunc;
 import sjtu.dclab.smartcity.ui.chat.utils.CommonUtils;
@@ -41,6 +42,7 @@ public class ChatActivity extends Activity implements OnClickListener {
 
     private ListView listView;
     private Button btnSendMessage, btnMore;
+    private ImageButton ibtnGroupDetail;
     private EditText etMessage;
     private View more;
     private View buttonSetModeKeyboard;
@@ -57,12 +59,12 @@ public class ChatActivity extends Activity implements OnClickListener {
 
     private InputMethodManager manager;
     private AnimationDrawable animationDrawable;
-    MediaRecordFunc mRecorder;
+    private MediaRecordFunc mRecorder;
     private PowerManager.WakeLock wakeLock;
 
+    private boolean isGroup = false;
     private Friend friend;
-    private DeprecatedMessageAdapter deprecatedAdapter;
-
+    private Group group;
     private DBManager dbm;
     private BroadcastReceiverHelper broadcastReceiverHelper;
 
@@ -70,61 +72,6 @@ public class ChatActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_chat);
 
-        initView();
-        setUpView();
-
-        //发消息按钮监听
-        btnSendMessage.setOnClickListener(new SendMsgListener());
-
-        //发送多媒体文件按钮监听
-        findViewById(R.id.view_camera).setOnClickListener(this);
-        findViewById(R.id.view_file).setOnClickListener(this);
-        findViewById(R.id.view_photo).setOnClickListener(this);
-
-        //语音消息相关
-        mRecorder = MediaRecordFunc.getInstance();
-        buttonPressToSpeak.setOnTouchListener(new PressToSpeakListen());
-
-        Intent intent = getIntent();
-        friend = (Friend) intent.getSerializableExtra(String.valueOf(R.string.friend));
-        deprecatedAdapter = DeprecatedMessages.loadMessages(friend.getName());
-
-        // 设置聊天名称
-        chatTitle.setText(friend.getName());
-
-        updateChatList();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        broadcastReceiverHelper = new BroadcastReceiverHelper(getApplicationContext());
-        broadcastReceiverHelper.register(PushCallback.ACTION);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(broadcastReceiverHelper);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (wakeLock.isHeld()) wakeLock.release();
-        // 停止语音播放 TODO
-
-        // 停止录音
-        mRecorder.stopRecordAndFile();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dbm.closeDB();
-    }
-
-    private void initView() {
         listView = (ListView) findViewById(R.id.chat_list);
         btnSendMessage = (Button) findViewById(R.id.MessageButton);
         etMessage = (EditText) findViewById(R.id.MessageText);
@@ -143,21 +90,84 @@ public class ChatActivity extends Activity implements OnClickListener {
         recordingContainer = findViewById(R.id.view_talk);
         recordingHint = (TextView) findViewById(R.id.recording_hint);
 
-    }
+        //发消息按钮监听
+        btnSendMessage.setOnClickListener(new SendMsgListener());
 
-    private void setUpView() {
+        //发送多媒体文件按钮监听
+        findViewById(R.id.view_camera).setOnClickListener(this);
+        findViewById(R.id.view_file).setOnClickListener(this);
+        findViewById(R.id.view_photo).setOnClickListener(this);
+
+        //语音消息相关
+        mRecorder = MediaRecordFunc.getInstance();
+        buttonPressToSpeak.setOnTouchListener(new PressToSpeakListen());
+
         dbm = new DBManager(this);
-
         manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         wakeLock = ((PowerManager) getSystemService(Context.POWER_SERVICE))
                 .newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
+
+        broadcastReceiverHelper = new BroadcastReceiverHelper(getApplicationContext());
+        broadcastReceiverHelper.register(PushCallback.ACTION);
+
+        Intent intent = getIntent();
+        isGroup = intent.getBooleanExtra("ISGROUP", false);
+        if (!isGroup) {
+            friend = (Friend) intent.getSerializableExtra(String.valueOf(R.string.friend));
+            chatTitle.setText(friend.getName());
+        } else {
+            group = (Group) intent.getSerializableExtra(String.valueOf(R.string.group));
+            chatTitle.setText(group.getName());
+        }
+
+        if (isGroup) {
+            // 群组详情
+            ibtnGroupDetail = (ImageButton) findViewById(R.id.ibtn_group_detail);
+            ibtnGroupDetail.setVisibility(View.VISIBLE);
+            ibtnGroupDetail.setOnClickListener(new DetailBtnListener());
+        }
+
+        updateChatList();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            unregisterReceiver(broadcastReceiverHelper);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (wakeLock.isHeld()) wakeLock.release();
+        // 停止语音播放 TODO
+
+        // 停止录音
+        mRecorder.stopRecordAndFile();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        dbm.closeDB();
+    }
 
     public void updateChatList() {
         List<MessageEntity> msgs = reloadMsg();
+        if (msgs == null)
+            return;
+
         List<HashMap<String, Object>> history = new ArrayList<HashMap<String, Object>>();
         for (MessageEntity msg : msgs) {
             HashMap<String, Object> map = new HashMap<String, Object>();
@@ -165,7 +175,6 @@ public class ChatActivity extends Activity implements OnClickListener {
             map.put("content", msg.getContent());
             history.add(map);
         }
-        deprecatedAdapter.setMsgEntities(msgs);
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), history, R.layout.chat_item,
                 new String[]{"name", "content"}, new int[]{R.id.messagedetail_row_name, R.id.messagedetail_row_text});
         listView.setAdapter(adapter);
@@ -173,7 +182,13 @@ public class ChatActivity extends Activity implements OnClickListener {
     }
 
     protected List<MessageEntity> reloadMsg() {
-        List<MessageEntity> msgList = dbm.getMsg(Me.id, friend.getId());
+        List<MessageEntity> msgList = null;
+        if (!isGroup) {
+            msgList = dbm.getMsg(Me.id, friend.getId(), 1);
+
+        } else {
+            msgList = dbm.getMsg(Me.id, group.getId(), 2);
+        }
         return msgList;
     }
 
@@ -184,19 +199,43 @@ public class ChatActivity extends Activity implements OnClickListener {
             if (content.length() == 0) {
                 Toast.makeText(getApplicationContext(), "请输入内容", Toast.LENGTH_SHORT).show();
             } else {
-                Message msg = new Message();
-                msg.setContent(content);
-                msg.setFrom(Me.id);
-                msg.setTo(friend.getId());
-                msg.setName("我");
-                msg.setType(1); //TODO
-                msg.setSerialId("");
-                Publisher.publishMessage(msg);
-                etMessage.setText("");
-                //db
-                dbm.saveMsg(msg);
-                updateChatList();
+                if (!isGroup) {
+                    // 单聊
+                    Message msg = new Message();
+                    msg.setContent(content);
+                    msg.setFrom(Me.id);
+                    msg.setTo(friend.getId());
+                    msg.setName("我");
+                    msg.setType(1);
+                    msg.setSerialId("");
+                    Publisher.publishMessage(msg);
+                    etMessage.setText("");
+                    dbm.saveMsg(msg);
+                    updateChatList();
+                } else {
+                    // 群聊
+                    Message msg = new Message();
+                    msg.setContent(content);
+                    msg.setFrom(Me.id);
+                    msg.setTo(group.getId());
+                    msg.setName("我");
+                    msg.setType(2); //group msg type
+                    msg.setSerialId("");
+                    Publisher.publishMessage(msg);
+                    etMessage.setText("");
+                    dbm.saveMsg(msg);
+                    updateChatList();
+                }
             }
+        }
+    }
+
+    private class DetailBtnListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(), GroupDetail.class);
+            intent.putExtra("groupId", group.getId() + "");
+            startActivity(intent);
         }
     }
 

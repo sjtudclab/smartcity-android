@@ -28,7 +28,6 @@ import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.GroupTransfer;
 import sjtu.dclab.smartcity.ui.chat.AddContactsAty;
 import sjtu.dclab.smartcity.ui.chat.ChatActivity;
-import sjtu.dclab.smartcity.ui.chat.GroupChatAty;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ public class ContactsFragment extends Fragment {
         super.onStart();
 
         init();
-        setUpMessageAdapters();
+//        setUpMessageAdapters();
         startMQTTService();
     }
 
@@ -202,41 +201,13 @@ public class ContactsFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         //TODO group talk
-                        Intent intent = new Intent(getActivity(), GroupChatAty.class);
+                        Intent intent = new Intent(getActivity(), ChatActivity.class);
+                        intent.putExtra("ISGROUP", true);
                         intent.putExtra(String.valueOf(R.string.group), groups.get(i));
                         getActivity().startActivity(intent);
                     }
                 }
         );
-    }
-
-    private void setUpMessageAdapters() {
-        if (friends != null) {
-            for (Friend f : friends) {
-                String username = f.getName();
-                DeprecatedMessageAdapter adapter = DeprecatedMessages.loadMessages(username);
-                if (adapter == null) {
-                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
-                    adapter = new DeprecatedMessageAdapter(getActivity(), R.layout.chat_item,
-                            R.id.messagedetail_row_text, msgEntities);
-                    DeprecatedMessages.storeMessageAdapter(username, adapter);
-                }
-            }
-        }
-
-        // TODO test group
-        if (groups != null) {
-            for (Group g : groups) {
-                String groupname = g.getName();
-                DeprecatedMessageAdapter adapter = DeprecatedMessages.loadMessages(groupname);
-                if (adapter == null) {
-                    List<MessageEntity> msgEntities = new ArrayList<MessageEntity>();
-                    adapter = new DeprecatedMessageAdapter(getActivity(), R.layout.chat_item,
-                            R.id.messagedetail_row_text, msgEntities);
-                    DeprecatedMessages.storeMessageAdapter(groupname, adapter);
-                }
-            }
-        }
     }
 
     private void startMQTTService() {

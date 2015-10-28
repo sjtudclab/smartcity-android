@@ -81,7 +81,6 @@
         <activity android:name=".ui.infocard.SettingAty"/>
         <activity android:name=".ui.infocard.LivingInformationActivity"/>
         <activity android:name=".ui.chat.AddContactsAty"/>
-        <activity android:name=".ui.chat.GroupChatAty"/>
         <activity android:name=".ui.vote.VoteAty"/>
         <activity android:name=".ui.vote.NewVoteAty"/>
         <activity android:name=".ui.human_resource_info.RenshiAty"/>

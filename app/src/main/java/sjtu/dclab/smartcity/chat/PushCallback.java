@@ -19,7 +19,6 @@ import sjtu.dclab.smartcity.community.util.JsonUtil;
 import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.GroupMemberTransfer;
 import sjtu.dclab.smartcity.ui.chat.ChatActivity;
-import sjtu.dclab.smartcity.ui.chat.GroupChatAty;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.util.List;
@@ -72,18 +71,17 @@ public class PushCallback implements MqttCallback {
 
         int type = msg.getType();
 
+        // 收到新消息是广播
+        Intent bc = new Intent();
+        bc.setAction(ACTION);
+        context.sendBroadcast(bc);
+
         switch (type) {
             case 1:
                 Friend friend = Friends.getFriend(msg.getFrom());
-
-                Intent bc = new Intent();
-                bc.setAction(ACTION);
-                context.sendBroadcast(bc);
-
                 msg.setName(friend.getName());
                 dbManager.saveMsg(msg);
                 MessageEntity msgEntity = new MessageEntity(friend.getName(), msg.getContent());
-
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
                 final Intent intent = new Intent(context, ChatActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -97,7 +95,6 @@ public class PushCallback implements MqttCallback {
 
             case 2:
                 Group group = Groups.getGroup(msg.getTo());
-
                 String url = context.getString(R.string.URLRoot) + "groups/" + group.getId() + "/memberlist";
                 String resp = new BasicWebService().sendGetRequest(url, null);
                 List<GroupMemberTransfer> gmtList = GsonTool.getObjectList(resp, GroupMemberTransfer[].class);
@@ -107,14 +104,12 @@ public class PushCallback implements MqttCallback {
                         sender = gmt.getName();
                     }
                 }
-
                 msg.setName(sender);
                 dbManager.saveMsg(msg);
-
                 MessageEntity gmsgEntity = new MessageEntity(sender, msg.getContent());
-                DeprecatedMessages.storeMessageEntity(group.getName(), gmsgEntity, true);
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
-                final Intent gintent = new Intent(context, GroupChatAty.class);
+                final Intent gintent = new Intent(context, ChatActivity.class);
+                gintent.putExtra("ISGROUP", true);
                 gintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 gintent.putExtra(String.valueOf(R.string.group), group);
                 final PendingIntent gactivity = PendingIntent.getActivity(context, 0,

@@ -32,9 +32,9 @@ public class DBManager {
         );
     }
 
-    public List<MessageEntity> getMsg(long me, long peer) {
+    public List<MessageEntity> getMsg(long me, long peer, int type) {
         ArrayList<MessageEntity> msgs = new ArrayList<MessageEntity>();
-        Cursor cursor = getMsgCursor(me, peer);
+        Cursor cursor = getMsgCursor(me, peer, type);
         while (cursor.moveToNext()) {
             MessageEntity msg = new MessageEntity();
             msg.setContent(cursor.getString(cursor.getColumnIndex("content")));
@@ -46,14 +46,25 @@ public class DBManager {
         return msgs;
     }
 
-    public Cursor getMsgCursor(long me, long peer) {
-        String sql = "SELECT * FROM " + DBHelper.TABLE_NAME +
-                " WHERE (fromId=? AND toId=?)" +
-                " OR (toId=? AND fromId=?)" +
-                " ORDER BY _id";
+    public Cursor getMsgCursor(long me, long peer, int type) {
         String meStr = me + "";
         String peerStr = peer + "";
-        Cursor cursor = db.rawQuery(sql, new String[]{meStr, peerStr, meStr, peerStr});
+        String sql;
+        Cursor cursor = null;
+        switch (type){
+            case 1:
+                sql = "SELECT * FROM " + DBHelper.TABLE_NAME +
+                        " WHERE (fromId=? AND toId=? AND type=?)" +
+                        " OR (toId=? AND fromId=? AND type=?)" +
+                        " ORDER BY _id";
+                cursor = db.rawQuery(sql, new String[]{meStr, peerStr, "1", meStr, peerStr,"1"});
+                break;
+            case 2:
+                sql = "SELECT * FROM " + DBHelper.TABLE_NAME +
+                        " WHERE (toId=? AND type=?)" +
+                        " ORDER BY _id";
+                cursor = db.rawQuery(sql, new String[]{peerStr, "2"});
+        }
         return cursor;
     }
 
