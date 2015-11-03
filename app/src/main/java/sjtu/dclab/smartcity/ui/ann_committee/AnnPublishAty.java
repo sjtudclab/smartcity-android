@@ -68,8 +68,8 @@ public class AnnPublishAty extends Activity {
         Log.i(TAG, "onActivityResult:" + requestCode + ", Excepted:" + RESULT_OK);
         if (requestCode == 1) {
             Uri uri = data.getData();
-            String[] proj = {MediaStore.Images.Media.DATA};
-            Cursor cursor = managedQuery(uri, proj, null, null, null);
+            String[] projection = {MediaStore.Images.Media.DATA};
+            Cursor cursor = managedQuery(uri, projection, null, null, null);
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             filePath = cursor.getString(column_index);

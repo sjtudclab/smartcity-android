@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
@@ -19,6 +20,11 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.SQLite.DBManager;
 import sjtu.dclab.smartcity.chat.*;
@@ -28,6 +34,7 @@ import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.ui.chat.audio.MediaRecordFunc;
 import sjtu.dclab.smartcity.ui.chat.utils.CommonUtils;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ChatActivity extends Activity implements OnClickListener {
+    private String TAG = "ChatActivity";
 
     public static final int REQUEST_CODE_CAMERA = 18;
     public static final int REQUEST_CODE_LOCAL = 19;
@@ -140,11 +148,6 @@ public class ChatActivity extends Activity implements OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        try {
-            unregisterReceiver(broadcastReceiverHelper);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -161,6 +164,11 @@ public class ChatActivity extends Activity implements OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
 //        dbm.closeDB();
+        try {
+//            unregisterReceiver(broadcastReceiverHelper);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateChatList() {
@@ -251,20 +259,58 @@ public class ChatActivity extends Activity implements OnClickListener {
             if (data != null) {
                 Uri selectedImage = data.getData();
                 if (selectedImage != null) {
-                    //sendPicByUri(selectedImage); TODO
+                    //Uri转化为文件路径
+                    String[] projection = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = managedQuery(selectedImage, projection, null, null, null);
+                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                    cursor.moveToFirst();
+                    String filePath = cursor.getString(column_index);
+                    Log.e(TAG, "filePath：" + filePath);
+                    //发送
+                    final String url = getResources().getString(R.string.URLRoot) + "media";
+                    try{
+                        final MultipartEntity args = new MultipartEntity();
+                        args.addPart("contentType", new StringBody("2"));
+                        args.addPart("fileIndex", new StringBody("111111"));
+                        File uploadFile = new File(filePath);
+                        args.addPart("file", new FileBody(uploadFile));
+
+                        new Thread(new Runnable() { //若不另起线程会造成UI卡顿
+                            @Override
+                            public void run() {
+                                String resp = new BasicWebService().sendPostRequestWithMultipartEntity(url, args);
+                                if (resp == "success") {    //TODO resp应该为返回的获取资源的路径
+                                    Log.i(TAG, "发送成功！"); //TODO 发消息到UI线程提示成功
+                                } else {
+                                    Log.e(TAG, "状态码!=200 发送失败！");
+                                }
+                            }
+                        }).start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e(TAG, "exception 发送失败！");
+                        Toast.makeText(getApplicationContext(), "发送失败！", Toast.LENGTH_SHORT).show();
+                    }
                 }
             } else if (requestCode == REQUEST_CODE_CAMERA) { // 发送照片
+                Log.i(TAG, "cameraFile path: " + cameraFile.getPath());
                 if (cameraFile != null && cameraFile.exists()) {
+                    Uri uri = data.getData();
+                    Log.i(TAG, "file uri: " + uri.toString() + " uriPath: " + uri.getPath());
                     //sendPicture(cameraFile.getAbsolutePath()); TODO
+
                 }
             } else if (requestCode == REQUEST_CODE_SELECT_FILE) { // 发送选择的文件
+                Log.i(TAG, "file is not null: " + (data != null));
                 if (data != null) {
                     Uri uri = data.getData();
+                    Log.i(TAG, "file uri: " + uri.toString() + " uriPath: " + uri.getPath());
                     if (uri != null) {
                         //sendFile(uri); TODO
                     }
                 }
             }
+
         }
     }
 
@@ -418,17 +464,16 @@ public class ChatActivity extends Activity implements OnClickListener {
      * 照相获取图片
      */
     public void selectPicFromCamera() {
-        if (!CommonUtils.isExitsSdcard()) {
-            String st = getResources().getString(R.string.sd_card_does_not_exist);
-            Toast.makeText(getApplicationContext(), st, Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (!CommonUtils.isExitsSdcard()) {
+//            String st = getResources().getString(R.string.sd_card_does_not_exist);
+//            Toast.makeText(getApplicationContext(), st, Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         //TODO 设置拍照文件
         cameraFile = new File(getFilesDir() + "/testTakingPhoto.jpg");
         startActivityForResult(
                 new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(
-                        MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)),
-                REQUEST_CODE_CAMERA);
+                        MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)), REQUEST_CODE_CAMERA);
     }
 
     /**
