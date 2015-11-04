@@ -20,7 +20,7 @@ public class Message {
 	@JsonProperty
 	private int type;	//1个人，2组群
 	@JsonProperty
-	private int contentType;
+	private int contentType;	//1语音，2图片，3视频，普通消息不设置
 	@JsonProperty("messageId")
 	private long id;
 	@JsonProperty("content")

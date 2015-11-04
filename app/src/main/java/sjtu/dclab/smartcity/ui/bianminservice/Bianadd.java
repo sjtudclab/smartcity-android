@@ -7,18 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.tools.IOTools;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.io.File;
 import java.io.InputStream;
-
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.community.config.Me;
-import sjtu.dclab.smartcity.tools.IOTools;
-import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 /**
  * Created by HuangZhenyu on 15/7/27.
@@ -85,7 +82,7 @@ public class Bianadd extends Activity {
                 args.addPart("file", new FileBody(file));//TODO：照片上传
 
                 String resp = new BasicWebService().sendPostRequestWithMultipartEntity(
-                        URLRoot + "publish/create", args);
+                        URLRoot + "publish/create", args, false);
                 if (resp == "success") {
                     Toast.makeText(getApplicationContext(), "发布成功！", Toast.LENGTH_SHORT).show();
                     finish();

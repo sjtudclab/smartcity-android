@@ -116,7 +116,7 @@ public class AnnPublishAty extends Activity {
                     args.addPart("file", new FileBody(uploadFile));
                 }
                 args.addPart("redirect_url", new StringBody(redirect_url));
-                String resp = webService.sendPostRequestWithMultipartEntity(url, args);
+                String resp = webService.sendPostRequestWithMultipartEntity(url, args, false);
                 if (resp == "success") {
                     Toast.makeText(getApplicationContext(), "发布成功！", Toast.LENGTH_SHORT).show();
                     finish();

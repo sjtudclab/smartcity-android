@@ -176,7 +176,7 @@ public class BasicWebService {
     }
 
 
-    public String sendPostRequestWithMultipartEntity(String url, MultipartEntity entity) {
+    public String sendPostRequestWithMultipartEntity(String url, MultipartEntity entity, boolean res) {
         try {
             HttpPost httpPost = new HttpPost(url);
             HttpResponse httpResponse;
@@ -185,7 +185,17 @@ public class BasicWebService {
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             Log.i(TAG, "StatusCode=" + statusCode);
             if (statusCode / 100 == 2) {
-                return SUCCESS;
+                if (res) {
+                    HttpEntity httpEntity = httpResponse.getEntity();
+                    InputStream inputStream = httpEntity.getContent();
+                    String jaxrsmessage = "";
+                    jaxrsmessage = Reader.read(inputStream);
+                    Log.i("jaxrsmessage", jaxrsmessage);
+                    httpPost.abort();
+                    return jaxrsmessage;
+                } else {
+                    return SUCCESS;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

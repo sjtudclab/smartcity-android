@@ -70,7 +70,7 @@ public class NewVoteAty extends Activity {
                     if (!file.exists()) file.createNewFile();
                     IOTools.inputStreamToFile(is, file);
                     args.addPart("file", new FileBody(file));
-                    String res = new BasicWebService().sendPostRequestWithMultipartEntity(url, args);
+                    String res = new BasicWebService().sendPostRequestWithMultipartEntity(url, args, false);
                     if(res.equals("success")){
                         Toast.makeText(context, "发布成功", Toast.LENGTH_SHORT).show();
                         finish();

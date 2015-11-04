@@ -20,20 +20,19 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
-
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
-
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.SQLite.DBManager;
-import sjtu.dclab.smartcity.chat.*;
+import sjtu.dclab.smartcity.chat.MessageEntity;
+import sjtu.dclab.smartcity.chat.Publisher;
+import sjtu.dclab.smartcity.chat.PushCallback;
 import sjtu.dclab.smartcity.community.config.Me;
 import sjtu.dclab.smartcity.community.entity.Friend;
 import sjtu.dclab.smartcity.community.entity.Group;
 import sjtu.dclab.smartcity.community.entity.Message;
 import sjtu.dclab.smartcity.ui.chat.audio.MediaRecordFunc;
-import sjtu.dclab.smartcity.ui.chat.utils.CommonUtils;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.io.File;
@@ -268,7 +267,7 @@ public class ChatActivity extends Activity implements OnClickListener {
                     Log.e(TAG, "filePath：" + filePath);
                     //发送
                     final String url = getResources().getString(R.string.URLRoot) + "media";
-                    try{
+                    try {
                         final MultipartEntity args = new MultipartEntity();
                         args.addPart("contentType", new StringBody("2"));
                         args.addPart("fileIndex", new StringBody("111111"));
@@ -278,14 +277,41 @@ public class ChatActivity extends Activity implements OnClickListener {
                         new Thread(new Runnable() { //若不另起线程会造成UI卡顿
                             @Override
                             public void run() {
-                                String resp = new BasicWebService().sendPostRequestWithMultipartEntity(url, args);
-                                if (resp == "success") {    //TODO resp应该为返回的获取资源的路径
+                                String resp = new BasicWebService().sendPostRequestWithMultipartEntity(url, args, true);
+                                if (resp != "error") {
                                     Log.i(TAG, "发送成功！"); //TODO 发消息到UI线程提示成功
+                                    //发送资源的url
+                                    if (!isGroup) {
+                                        // 单聊
+                                        Message msg = new Message();
+                                        msg.setContent("[图片]:"+resp);
+                                        msg.setFrom(Me.id);
+                                        msg.setTo(friend.getId());
+                                        msg.setName("我");
+                                        msg.setType(1);
+                                        msg.setSerialId("");
+                                        msg.setContentType(2);
+                                        Publisher.publishMessage(msg);
+                                        dbm.saveMsg(msg);
+                                    } else {
+                                        // 群聊
+                                        Message msg = new Message();
+                                        msg.setContent(resp);
+                                        msg.setFrom(Me.id);
+                                        msg.setTo(group.getId());
+                                        msg.setName("我");
+                                        msg.setType(2); //group msg type
+                                        msg.setSerialId("");
+                                        msg.setContentType(2);
+                                        Publisher.publishMessage(msg);
+                                        dbm.saveMsg(msg);
+                                    }
                                 } else {
                                     Log.e(TAG, "状态码!=200 发送失败！");
                                 }
                             }
                         }).start();
+                        updateChatList();
                     } catch (Exception e) {
                         e.printStackTrace();
                         Log.e(TAG, "exception 发送失败！");
