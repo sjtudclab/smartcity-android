@@ -1,6 +1,7 @@
 package sjtu.dclab.smartcity.ui.chat;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +12,12 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -39,6 +39,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChatActivity extends Activity implements OnClickListener {
     private String TAG = "ChatActivity";
@@ -182,9 +185,10 @@ public class ChatActivity extends Activity implements OnClickListener {
             map.put("content", msg.getContent());
             history.add(map);
         }
-        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), history, R.layout.chat_item,
-                new String[]{"name", "content"}, new int[]{R.id.messagedetail_row_name, R.id.messagedetail_row_text});
-        listView.setAdapter(adapter);
+//        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), history, R.layout.chat_item,
+//                new String[]{"name", "content"}, new int[]{R.id.messagedetail_row_name, R.id.messagedetail_row_text});
+        ChatItemAdapter itemAdapter = new ChatItemAdapter(getApplicationContext(), history);
+        listView.setAdapter(itemAdapter);
         listView.setSelection(history.size() - 1);
     }
 
@@ -284,7 +288,7 @@ public class ChatActivity extends Activity implements OnClickListener {
                                     if (!isGroup) {
                                         // 单聊
                                         Message msg = new Message();
-                                        msg.setContent("[图片]:"+resp);
+                                        msg.setContent(resp);
                                         msg.setFrom(Me.id);
                                         msg.setTo(friend.getId());
                                         msg.setName("我");
@@ -627,6 +631,100 @@ public class ChatActivity extends Activity implements OnClickListener {
         }
     }
 
+    private class ChatItemAdapter extends BaseAdapter {
+        private LayoutInflater mInflater;
+        private List<? extends Map<String, ?>> data;
+
+        public ChatItemAdapter(Context context, List<? extends Map<String, ?>> data) {
+            this.mInflater = LayoutInflater.from(context);
+            this.data = data;
+        }
+
+        @Override
+        public int getCount() {
+            return this.data.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return this.data.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            ViewHolder holder;
+            if (view == null) {
+                view = mInflater.inflate(R.layout.chat_item, null);
+
+                holder = new ViewHolder();
+                holder.name = (TextView) view.findViewById(R.id.messagedetail_row_name);
+                holder.content = (TextView) view.findViewById(R.id.messagedetail_row_text);
+                view.setTag(holder);
+            } else {
+                holder = (ViewHolder) view.getTag();
+            }
+            CharSequence name = (CharSequence) this.data.get(i).get("name");
+            CharSequence content = (CharSequence) this.data.get(i).get("content");
+            holder.name.setText(name);
+            holder.content.setText(content);
+            String reg = "^/messages/*";
+            Pattern pattern = Pattern.compile(reg);
+            Matcher matcher = pattern.matcher(content.toString());
+            if (matcher.find())
+                holder.content.setOnClickListener(new MediaItemListener(content.toString()));
+            return view;
+        }
+    }
+
+    private final class ViewHolder {
+        private TextView name;
+        private TextView content;
+    }
+
+    private class MediaItemListener implements OnClickListener {
+        private String path;
+        private Context context;
+        private DownloadManager downloadManager;
+
+        public MediaItemListener(String path) {
+            this.path = path;
+            this.context = getApplicationContext();
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getApplicationContext(), "正在下载...", Toast.LENGTH_SHORT).show();
+            final String filepath = Environment.getExternalStorageDirectory() + "/" + "smartcity_download/";
+            final String url = getResources().getString(R.string.URLRoot) + "media/download?path=" + path;
+            final String filename = url.substring(url.lastIndexOf("/")+1);
+            try {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE| DownloadManager.Request.NETWORK_WIFI);
+                        request.setShowRunningNotification(true);
+                        request.setVisibleInDownloadsUi(true);
+                        request.setDestinationInExternalPublicDir(filepath, filename);
+                        downloadManager.enqueue(request);
+                        //TODO display the media
+//                        Intent intent = FileOpener.openFile(filepath + filename);
+//                        startActivity(intent);
+                    }
+                }).start();
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        }
+    }
+
     private class BroadcastReceiverHelper extends BroadcastReceiver {
         Context context;
         BroadcastReceiverHelper receiver;
@@ -649,4 +747,3 @@ public class ChatActivity extends Activity implements OnClickListener {
         }
     }
 }
-
