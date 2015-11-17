@@ -23,6 +23,7 @@ import android.widget.*;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
+import sjtu.dclab.smartcity.BroadcastReceiver.MediaDownloadCompleteReceiver;
 import sjtu.dclab.smartcity.R;
 import sjtu.dclab.smartcity.SQLite.DBManager;
 import sjtu.dclab.smartcity.chat.MessageEntity;
@@ -76,7 +77,8 @@ public class ChatActivity extends Activity implements OnClickListener {
     private Friend friend;
     private Group group;
     private DBManager dbm;
-    private BroadcastReceiverHelper broadcastReceiverHelper;
+    private MsgBroadcastReceiverHelper broadcastReceiverHelper;
+    private MediaDownloadCompleteReceiver mediaDownloadCompleteReceiver;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,8 +121,12 @@ public class ChatActivity extends Activity implements OnClickListener {
         wakeLock = ((PowerManager) getSystemService(Context.POWER_SERVICE))
                 .newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 
-        broadcastReceiverHelper = new BroadcastReceiverHelper(getApplicationContext());
+        // broadcast receiver registry
+        Context context = getApplicationContext();
+        broadcastReceiverHelper = new MsgBroadcastReceiverHelper(context);
         broadcastReceiverHelper.register(PushCallback.ACTION);
+        mediaDownloadCompleteReceiver = new MediaDownloadCompleteReceiver(context);
+        registerReceiver(mediaDownloadCompleteReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
         Intent intent = getIntent();
         isGroup = intent.getBooleanExtra("ISGROUP", false);
@@ -168,6 +174,7 @@ public class ChatActivity extends Activity implements OnClickListener {
 //        dbm.closeDB();
         try {
 //            unregisterReceiver(broadcastReceiverHelper);
+            unregisterReceiver(mediaDownloadCompleteReceiver);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -185,8 +192,6 @@ public class ChatActivity extends Activity implements OnClickListener {
             map.put("content", msg.getContent());
             history.add(map);
         }
-//        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), history, R.layout.chat_item,
-//                new String[]{"name", "content"}, new int[]{R.id.messagedetail_row_name, R.id.messagedetail_row_text});
         ChatItemAdapter itemAdapter = new ChatItemAdapter(getApplicationContext(), history);
         listView.setAdapter(itemAdapter);
         listView.setSelection(history.size() - 1);
@@ -268,7 +273,7 @@ public class ChatActivity extends Activity implements OnClickListener {
                     int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     cursor.moveToFirst();
                     String filePath = cursor.getString(column_index);
-                    Log.e(TAG, "filePath：" + filePath);
+                    Log.d(TAG, "filePath：" + filePath);
                     //发送
                     final String url = getResources().getString(R.string.URLRoot) + "media";
                     try {
@@ -278,49 +283,50 @@ public class ChatActivity extends Activity implements OnClickListener {
                         File uploadFile = new File(filePath);
                         args.addPart("file", new FileBody(uploadFile));
 
-                        new Thread(new Runnable() { //若不另起线程会造成UI卡顿
-                            @Override
-                            public void run() {
-                                String resp = new BasicWebService().sendPostRequestWithMultipartEntity(url, args, true);
-                                if (resp != "error") {
-                                    Log.i(TAG, "发送成功！"); //TODO 发消息到UI线程提示成功
-                                    //发送资源的url
-                                    if (!isGroup) {
-                                        // 单聊
-                                        Message msg = new Message();
-                                        msg.setContent(resp);
-                                        msg.setFrom(Me.id);
-                                        msg.setTo(friend.getId());
-                                        msg.setName("我");
-                                        msg.setType(1);
-                                        msg.setSerialId("");
-                                        msg.setContentType(2);
-                                        Publisher.publishMessage(msg);
-                                        dbm.saveMsg(msg);
-                                    } else {
-                                        // 群聊
-                                        Message msg = new Message();
-                                        msg.setContent(resp);
-                                        msg.setFrom(Me.id);
-                                        msg.setTo(group.getId());
-                                        msg.setName("我");
-                                        msg.setType(2); //group msg type
-                                        msg.setSerialId("");
-                                        msg.setContentType(2);
-                                        Publisher.publishMessage(msg);
-                                        dbm.saveMsg(msg);
-                                    }
-                                } else {
-                                    Log.e(TAG, "状态码!=200 发送失败！");
-                                }
+//                        new Thread(new Runnable() { //若不另起线程会造成UI卡顿
+//                            @Override
+//                            public void run() {
+                        String resp = new BasicWebService().sendPostRequestWithMultipartEntity(url, args, true);
+                        if (resp != "error") {
+                            Log.i(TAG, "发送成功！"); //TODO 发消息到UI线程提示成功
+                            //发送资源的url
+                            if (!isGroup) {
+                                // 单聊
+                                Message msg = new Message();
+                                msg.setContent(resp);
+                                msg.setFrom(Me.id);
+                                msg.setTo(friend.getId());
+                                msg.setName("我");
+                                msg.setType(1);
+                                msg.setSerialId("");
+                                msg.setContentType(2);
+                                Publisher.publishMessage(msg);
+                                dbm.saveMsg(msg);
+                            } else {
+                                // 群聊
+                                Message msg = new Message();
+                                msg.setContent(resp);
+                                msg.setFrom(Me.id);
+                                msg.setTo(group.getId());
+                                msg.setName("我");
+                                msg.setType(2); //group msg type
+                                msg.setSerialId("");
+                                msg.setContentType(2);
+                                Publisher.publishMessage(msg);
+                                dbm.saveMsg(msg);
                             }
-                        }).start();
-                        updateChatList();
+                            updateChatList();
+                        } else {
+                            Log.e(TAG, "状态码!=200 发送失败！");
+                        }
+//                            }
+//                        }).start();
                     } catch (Exception e) {
                         e.printStackTrace();
                         Log.e(TAG, "exception 发送失败！");
                         Toast.makeText(getApplicationContext(), "发送失败！", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             } else if (requestCode == REQUEST_CODE_CAMERA) { // 发送照片
                 Log.i(TAG, "cameraFile path: " + cameraFile.getPath());
@@ -340,7 +346,6 @@ public class ChatActivity extends Activity implements OnClickListener {
                     }
                 }
             }
-
         }
     }
 
@@ -686,6 +691,7 @@ public class ChatActivity extends Activity implements OnClickListener {
         private TextView content;
     }
 
+    // Download media
     private class MediaItemListener implements OnClickListener {
         private String path;
         private Context context;
@@ -701,22 +707,18 @@ public class ChatActivity extends Activity implements OnClickListener {
             Toast.makeText(getApplicationContext(), "正在下载...", Toast.LENGTH_SHORT).show();
             final String filepath = Environment.getExternalStorageDirectory() + "/" + "smartcity_download/";
             final String url = getResources().getString(R.string.URLRoot) + "media/download?path=" + path;
-            final String filename = url.substring(url.lastIndexOf("/")+1);
+            final String filename = url.substring(url.lastIndexOf("/") + 1);
             try {
-
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
                         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE| DownloadManager.Request.NETWORK_WIFI);
+                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
                         request.setShowRunningNotification(true);
                         request.setVisibleInDownloadsUi(true);
                         request.setDestinationInExternalPublicDir(filepath, filename);
                         downloadManager.enqueue(request);
-                        //TODO display the media
-//                        Intent intent = FileOpener.openFile(filepath + filename);
-//                        startActivity(intent);
                     }
                 }).start();
             } catch (Exception e) {
@@ -725,11 +727,11 @@ public class ChatActivity extends Activity implements OnClickListener {
         }
     }
 
-    private class BroadcastReceiverHelper extends BroadcastReceiver {
+    private class MsgBroadcastReceiverHelper extends BroadcastReceiver {
         Context context;
-        BroadcastReceiverHelper receiver;
+        MsgBroadcastReceiverHelper receiver;
 
-        public BroadcastReceiverHelper(Context context) {
+        public MsgBroadcastReceiverHelper(Context context) {
             this.context = context;
             this.receiver = this;
         }
