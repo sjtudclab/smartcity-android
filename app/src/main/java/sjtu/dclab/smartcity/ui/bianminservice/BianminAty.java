@@ -3,24 +3,21 @@ package sjtu.dclab.smartcity.ui.bianminservice;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
+import sjtu.dclab.smartcity.tools.GsonTool;
+import sjtu.dclab.smartcity.transfer.GoodTransfer;
+import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-import sjtu.dclab.smartcity.R;
-import sjtu.dclab.smartcity.tools.GsonTool;
-import sjtu.dclab.smartcity.transfer.ApplicationTransfer;
-import sjtu.dclab.smartcity.transfer.GoodTransfer;
-import sjtu.dclab.smartcity.webservice.BasicWebService;
 
 /**
  * Created by HuangZhenyu on 15/7/27.
@@ -82,6 +79,7 @@ public class BianminAty extends Activity {
             if (resultRequest != null) {
                 resultRequest = URLDecoder.decode(resultRequest, "utf-8");
                 goods = GsonTool.getObjectList(resultRequest, GoodTransfer[].class);
+                Collections.reverse(goods);
                 if (goods != null && goods.size() != 0) {
                     for (GoodTransfer good : goods) {
                         HashMap<String, Object> map = new HashMap<String, Object>();

@@ -14,6 +14,7 @@ import sjtu.dclab.smartcity.webservice.BasicWebService;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -80,10 +81,11 @@ public class MinyiAty extends Activity {
             if (resultRequest != null) {
                 resultRequest = URLDecoder.decode(resultRequest, "utf-8");
                 posts = GsonTool.getObjectList(resultRequest, PostTransfer[].class);
+                Collections.reverse(posts);
                 if (posts != null && posts.size() != 0) {
                     for (PostTransfer post : posts) {
                         HashMap<String, Object> map = new HashMap<String, Object>();
-                        map.put("itemIcon", R.drawable.ic_launcher0);//TODO 默认图片
+                        map.put("itemIcon", R.drawable.tab_img_profile);//TODO 默认图片
                         map.put("itemUser", post.getPosterName());
                         map.put("itemTit",post.getTitle());
                         map.put("itemCon",post.getContent());

@@ -7,7 +7,7 @@ package sjtu.dclab.smartcity.community.config;
  */
 public class Config {
 
-    public static String GATEWAY = "http://192.168.1.108:8080/community-server/";
+    public static String GATEWAY = "http://202.120.40.111:8080/community-server/";
 
     public static String getLoginUrl() {
         return GATEWAY + "rest/users/login";

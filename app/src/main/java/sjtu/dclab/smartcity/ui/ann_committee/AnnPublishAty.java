@@ -55,8 +55,8 @@ public class AnnPublishAty extends Activity {
         btnUpload = (Button) findViewById(R.id.btn_new_ann_upload);
         btnPublish = (Button) findViewById(R.id.btn_new_ann_publish);
 
-        etTitle.setText("标题");
-        etContent.setText("正文");
+        etTitle.setHint("标题");
+        etContent.setHint("正文");
 
         btnRet.setOnClickListener(new RtnListener());
         btnUpload.setOnClickListener(new UploadListener());

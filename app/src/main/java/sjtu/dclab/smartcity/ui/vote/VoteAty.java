@@ -15,10 +15,7 @@ import sjtu.dclab.smartcity.tools.GsonTool;
 import sjtu.dclab.smartcity.transfer.TopicTransfer;
 import sjtu.dclab.smartcity.webservice.BasicWebService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by theGODofws on 2015/7/30.
@@ -29,8 +26,8 @@ public class VoteAty extends Activity {
     private ImageButton ibtnRtn;
     private ImageButton ibtnAdd;
     private ListView lvVote;
-    private List<TopicTransfer> ttList = new ArrayList<TopicTransfer>();
-    private ArrayList<HashMap<String, Object>> voteList = new ArrayList<HashMap<String, Object>>();
+
+    private ArrayList<HashMap<String, Object>> voteList;
 
     private BasicWebService webService = new BasicWebService();
 
@@ -52,14 +49,22 @@ public class VoteAty extends Activity {
         ibtnAdd.setOnClickListener(new AddBtnListener());
 
         lvVote = (ListView) findViewById(R.id.lv_vote);
-
-        init();
     }
 
-    public void init() {
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateData();
+    }
+
+    public void updateData() {
         String url = getResources().getString(R.string.URLRoot) + getResources().getString(R.string.URLGetVote);
         String resp = webService.sendGetRequest(url, null);
+        List<TopicTransfer> ttList = null;
         ttList = GsonTool.getObjectList(resp, TopicTransfer[].class);
+        voteList = new ArrayList<HashMap<String, Object>>();
+        Collections.reverse(ttList);
         for (TopicTransfer vote : ttList) {
             HashMap<String, Object> item = new HashMap<String, Object>();
             item.put("topic_id", vote.getTopic_id());
@@ -145,7 +150,7 @@ public class VoteAty extends Activity {
             int rbtnId = radioGroup.getCheckedRadioButtonId();
             Context context = getApplicationContext();
             JSONObject jsonObject = new JSONObject();
-            String url = context.getResources().getString(R.string.URLRoot)+"topic/vote";
+            String url = context.getResources().getString(R.string.URLRoot) + "topic/vote";
             switch (rbtnId) {
                 case R.id.rb_vote_agree:
                     try {

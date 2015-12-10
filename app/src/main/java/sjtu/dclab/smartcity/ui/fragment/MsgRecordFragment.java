@@ -71,6 +71,7 @@ public class MsgRecordFragment extends Fragment {
                 map.put("name", name);
                 String pic = f.getImage();
                 pic = pic == null ? "tab_img_profile" : pic.split("\\.")[0];
+                pic = pic.equals("default")  ? "tab_img_profile" : pic;
                 int picId = getResources().getIdentifier(pic, "drawable", getActivity().getPackageName());
                 map.put("pic", picId);
                 map.put("msg", msg.getContent());

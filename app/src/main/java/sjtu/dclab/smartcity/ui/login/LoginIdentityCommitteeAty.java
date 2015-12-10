@@ -46,6 +46,7 @@ public class LoginIdentityCommitteeAty extends Activity {
                 globalApp.setStatus(getString(R.string.Committee));
                 intent.putExtra(statusKey, getString(R.string.Committee));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -63,6 +64,7 @@ public class LoginIdentityCommitteeAty extends Activity {
             public void onClick(View view) {
                 intent.putExtra(statusKey, getString(R.string.NormalParty));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -74,6 +76,7 @@ public class LoginIdentityCommitteeAty extends Activity {
                 intent.putExtra(statusKey, getString(R.string.Resident));
 
                 startActivity(intent);
+                finish();
             }
         });
     }

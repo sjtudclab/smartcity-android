@@ -3,7 +3,6 @@ package sjtu.dclab.smartcity.ui.ann_committee;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -28,15 +27,15 @@ public class AnnouncementAty extends Activity {
 
     private GlobalApp globalApp;
 
-    private List<InformationTransfer> infoList;
-    private List<HashMap<String, Object>> itemList = new ArrayList<HashMap<String, Object>>();
+
+    private List<HashMap<String, Object>> itemList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_ann_man);
 
-        globalApp = (GlobalApp)getApplication();
+        globalApp = (GlobalApp) getApplication();
 
         lvAnn = (ListView) findViewById(R.id.lv_annlist);
         ibtnRtn = (ImageButton) findViewById(R.id.btn_ann_rtn);
@@ -46,27 +45,15 @@ public class AnnouncementAty extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        init();
+        updateData();
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        init();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(TAG, "onResume()");
-        init();
-    }
-
-
-    public void init() {
+    public void updateData() {
         String url = getResources().getString(R.string.URLRoot) + getResources().getString(R.string.URLAnnouncement);
+        List<InformationTransfer> infoList = null;
         String resp = new BasicWebService().sendGetRequest(url, null);
         infoList = GsonTool.getObjectList(resp, InformationTransfer[].class);
+        itemList = new ArrayList<HashMap<String, Object>>();
         //TODO 时间转换格式不对
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd");
 //        ParsePosition pos = new ParsePosition(8);
@@ -99,7 +86,7 @@ public class AnnouncementAty extends Activity {
         lvAnn.setAdapter(adapter);
 
 
-        if (!globalApp.getStatus().equals(getString(R.string.Resident))){
+        if (!globalApp.getStatus().equals(getString(R.string.Resident))) {
             ibtnAdd.setVisibility(View.VISIBLE);
         }
 

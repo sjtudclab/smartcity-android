@@ -63,7 +63,7 @@ public class RenshiAty extends Activity {
                 }
             }
             String pic = mct.getImage();
-            pic = pic.split("\\.")[0];
+            pic = pic == null ? "tab_img_profile" : pic.split("\\.")[0];
             int picId = getResources().getIdentifier(pic,"drawable",getPackageName()); // 通过资源名获得资源id
             map.put("job", job);
             map.put("pic", picId);
