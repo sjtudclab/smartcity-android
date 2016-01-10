@@ -3,19 +3,15 @@ package sjtu.dclab.smartcity.ui.party;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.*;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by theGODofws on 2015/8/1.
@@ -80,5 +76,13 @@ public class ThoughtReportListAty extends Activity{
         item.put("ses_date","date");
         data_List.add(item);
         return data_List;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return true;
     }
 }

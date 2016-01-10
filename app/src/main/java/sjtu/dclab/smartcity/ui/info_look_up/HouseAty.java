@@ -3,16 +3,16 @@ package sjtu.dclab.smartcity.ui.info_look_up;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by theGODofws on 2015/8/13.
@@ -70,5 +70,13 @@ public class HouseAty extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return true;
     }
 }

@@ -3,17 +3,17 @@ package sjtu.dclab.smartcity.ui.party;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by theGODofws on 2015/7/22.
@@ -61,5 +61,13 @@ public class OrgLifeAty extends Activity{
         //create maps and put them into List dataList
         //keys are org_pic,org_tittle,org_text,org_note,org_num,org_time
         return data_List;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return true;
     }
 }

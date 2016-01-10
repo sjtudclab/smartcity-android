@@ -3,17 +3,17 @@ package sjtu.dclab.smartcity.ui.minzheng;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by hp on 2015/7/30.
@@ -78,5 +78,13 @@ public class CivilAffairHomeAty extends Activity implements View.OnClickListener
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return true;
     }
 }

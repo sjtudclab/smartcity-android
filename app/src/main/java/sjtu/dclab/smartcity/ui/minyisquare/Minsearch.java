@@ -3,6 +3,7 @@ package sjtu.dclab.smartcity.ui.minyisquare;
 import android.app.Activity;
 import android.os.Bundle;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import sjtu.dclab.smartcity.R;
@@ -26,5 +27,13 @@ public class Minsearch extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return true;
     }
 }

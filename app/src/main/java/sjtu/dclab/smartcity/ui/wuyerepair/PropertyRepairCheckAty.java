@@ -2,13 +2,13 @@ package sjtu.dclab.smartcity.ui.wuyerepair;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import sjtu.dclab.smartcity.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import sjtu.dclab.smartcity.R;
 
 /**
  * Created by hp on 2015/7/28.
@@ -35,5 +35,13 @@ public class PropertyRepairCheckAty extends Activity {
         data.add("200abcd-1111-1111-111111    电         1     已评价");
 
         return data;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return true;
     }
 }
