@@ -242,7 +242,7 @@ public class ContactsFragment extends Fragment {
 
                 @Override
                 public void onFailure(IMqttToken arg0, Throwable arg1) {
-                    Toast.makeText(getActivity(), "MQTT 服务器连接失败", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "MQTT 服务器连接失败", Toast.LENGTH_SHORT).show();
                     Log.e(TAG + " Failure", arg1.getMessage());
                 }
             });
